@@ -144,6 +144,33 @@ class homefragment : Fragment() {
             }, 2000)
 
         }
+        binding.ivSpeedometer.setOnClickListener {
+            googleAds.CheckInterstitial(requireActivity(), object : onAdShowed {
+                override fun onAdShow() {
+                    mController.navigate(R.id.action_homeFragment_to_speedometerfragment)
+                }
+            })
+            it.isEnabled = false
+            Handler(Looper.getMainLooper()).postDelayed({ it.isEnabled = true }, 2000)
+        }
+        binding.ivFuel.setOnClickListener {
+            googleAds.CheckInterstitial(requireActivity(), object : onAdShowed {
+                override fun onAdShow() {
+                    mController.navigate(R.id.action_homeFragment_to_fuelfragment)
+                }
+            })
+            it.isEnabled = false
+            Handler(Looper.getMainLooper()).postDelayed({ it.isEnabled = true }, 2000)
+        }
+        binding.ivReminders.setOnClickListener {
+            googleAds.CheckInterstitial(requireActivity(), object : onAdShowed {
+                override fun onAdShow() {
+                    mController.navigate(R.id.action_homeFragment_to_remindersfragment)
+                }
+            })
+            it.isEnabled = false
+            Handler(Looper.getMainLooper()).postDelayed({ it.isEnabled = true }, 2000)
+        }
         binding.ivPrivacy.setOnClickListener {
             showSharePrivacyDialog(requireContext(), "privacy")
         }

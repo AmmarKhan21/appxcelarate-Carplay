@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/cp_bg"
+    tools:context=".Fragments.SpeedometerFragment">
+
+    <!-- Toolbar -->
+    <ImageView
+        android:id="@+id/ic_back"
+        android:layout_width="@dimen/_38sdp"
+        android:layout_height="@dimen/_38sdp"
+        android:layout_margin="@dimen/_12sdp"
+        android:background="@drawable/cp_icon_circle_dark"
+        android:contentDescription="@string/txt_error"
+        android:padding="@dimen/_9sdp"
+        android:src="@drawable/ic_cp_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/cp_speed_title"
+        android:textColor="@color/cp_text"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/ic_back"
+        app:layout_constraintEnd_toStartOf="@id/unitToggle"
+        app:layout_constraintStart_toEndOf="@id/ic_back"
+        app:layout_constraintTop_toTopOf="@id/ic_back" />
+
+    <TextView
+        android:id="@+id/unitToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:background="@drawable/cp_chip_accent"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:minWidth="@dimen/_56sdp"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:text="@string/cp_unit_kmh"
+        android:textColor="@color/cp_accent"
+        android:textSize="@dimen/_10ssp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/ic_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ic_back" />
+
+    <!-- Gauge -->
+    <FrameLayout
+        android:id="@+id/gaugeContainer"
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_250sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ic_back">
+
+        <com.car.play.android.app.views.SpeedGaugeView
+            android:id="@+id/gauge"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvSpeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:includeFontPadding="false"
+                android:text="0"
+                android:textColor="@color/cp_text"
+                android:textSize="@dimen/_64ssp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.2"
+                android:text="@string/cp_unit_kmh"
+                android:textAllCaps="true"
+                android:textColor="@color/cp_accent"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvGps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:gravity="center"
+                android:text="@string/cp_waiting_gps"
+                android:textColor="@color/cp_text_muted"
+                android:textSize="@dimen/_9ssp" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- Stats grid -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/statCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <LinearLayout
+        android:id="@+id/cardDistance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:background="@drawable/cp_card"
+        android:orientation="vertical"
+        android:padding="@dimen/_12sdp"
+        app:layout_constraintEnd_toStartOf="@id/statCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gaugeContainer">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_cp_road"
+            android:drawablePadding="@dimen/_6sdp"
+            android:text="@string/cp_trip_distance"
+            android:textColor="@color/cp_text_muted"
+            android:textSize="@dimen/_9ssp" />
+
+        <TextView
+            android:id="@+id/tvDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:fontFamily="sans-serif-medium"
+            android:text="0.0 km"
+            android:textColor="@color/cp_text"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cardMax"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:background="@drawable/cp_card"
+        android:orientation="vertical"
+        android:padding="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/statCenter"
+        app:layout_constraintTop_toBottomOf="@id/gaugeContainer">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_cp_max"
+            android:drawablePadding="@dimen/_6sdp"
+            android:text="@string/cp_max_speed"
+            android:textColor="@color/cp_text_muted"
+            android:textSize="@dimen/_9ssp" />
+
+        <TextView
+            android:id="@+id/tvMax"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:fontFamily="sans-serif-medium"
+            android:text="0"
+            android:textColor="@color/cp_text"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cardAvg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:background="@drawable/cp_card"
+        android:orientation="vertical"
+        android:padding="@dimen/_12sdp"
+        app:layout_constraintEnd_toStartOf="@id/statCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardDistance">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_cp_avg"
+            android:drawablePadding="@dimen/_6sdp"
+            android:text="@string/cp_avg_speed"
+            android:textColor="@color/cp_text_muted"
+            android:textSize="@dimen/_9ssp" />
+
+        <TextView
+            android:id="@+id/tvAvg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:fontFamily="sans-serif-medium"
+            android:text="0"
+            android:textColor="@color/cp_text"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cardDuration"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:background="@drawable/cp_card"
+        android:orientation="vertical"
+        android:padding="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/statCenter"
+        app:layout_constraintTop_toBottomOf="@id/cardMax">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_cp_clock"
+            android:drawablePadding="@dimen/_6sdp"
+            android:text="@string/cp_duration"
+            android:textColor="@color/cp_text_muted"
+            android:textSize="@dimen/_9ssp" />
+
+        <TextView
+            android:id="@+id/tvDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:fontFamily="sans-serif-medium"
+            android:text="00:00"
+            android:textColor="@color/cp_text"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Controls -->
+    <TextView
+        android:id="@+id/btnStart"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_44sdp"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:background="@drawable/cp_btn_accent"
+        android:drawablePadding="@dimen/_6sdp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="@string/cp_start"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12ssp"
+        android:textStyle="bold"
+        app:drawableStartCompat="@drawable/ic_cp_play"
+        app:layout_constraintEnd_toStartOf="@id/statCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardAvg" />
+
+    <TextView
+        android:id="@+id/btnReset"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_44sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:background="@drawable/cp_btn_outline"
+        android:drawablePadding="@dimen/_6sdp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="@string/cp_reset"
+        android:textColor="@color/cp_accent"
+        android:textSize="@dimen/_12ssp"
+        android:textStyle="bold"
+        app:drawableStartCompat="@drawable/ic_cp_reset"
+        app:drawableTint="@color/cp_accent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/statCenter"
+        app:layout_constraintTop_toBottomOf="@id/cardDuration" />
+
+    <TextView
+        android:id="@+id/disclaimer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:gravity="center"
+        android:text="@string/cp_speed_disclaimer"
+        android:textColor="@color/cp_text_dim"
+        android:textSize="@dimen/_8ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnStart" />
+
+    <!-- Banner ad -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/banner_ad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_4sdp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

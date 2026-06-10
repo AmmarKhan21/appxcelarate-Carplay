@@ -6,7 +6,10 @@
         <item name="android:fitsSystemWindows">true</item>
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowIsTranslucent">false</item>
-        <item name="android:statusBarColor">@color/bg_dark</item>
+        <item name="android:statusBarColor">@color/cp_bg_top</item>
+        <item name="android:navigationBarColor">@color/cp_bg_bottom</item>
+        <item name="colorPrimary">@color/cp_accent_blue</item>
+        <item name="colorAccent">@color/cp_accent</item>
     </style>
 
     <style name="Theme.NewCarplay" parent="Base.Theme.NewCarplay" />

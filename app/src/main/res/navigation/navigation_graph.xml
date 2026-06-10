@@ -38,6 +38,15 @@
         <action
             android:id="@+id/action_homeFragment_to_weatherfragment"
             app:destination="@id/weatherfragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_speedometerfragment"
+            app:destination="@id/speedometerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_fuelfragment"
+            app:destination="@id/fuelFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_remindersfragment"
+            app:destination="@id/remindersFragment" />
     </fragment>
 
     <fragment
@@ -234,5 +243,23 @@
         android:name="com.car.newcarplay.Fragments.WeatherFragment"
         android:label="fragment_weather_fragment"
         tools:layout="@layout/fragment_weather" />
+
+    <fragment
+        android:id="@+id/speedometerFragment"
+        android:name="com.car.play.android.app.Fragments.SpeedometerFragment"
+        android:label="fragment_speedometer"
+        tools:layout="@layout/fragment_speedometer" />
+
+    <fragment
+        android:id="@+id/fuelFragment"
+        android:name="com.car.play.android.app.Fragments.FuelFragment"
+        android:label="fragment_fuel"
+        tools:layout="@layout/fragment_fuel" />
+
+    <fragment
+        android:id="@+id/remindersFragment"
+        android:name="com.car.play.android.app.Fragments.RemindersFragment"
+        android:label="fragment_reminders"
+        tools:layout="@layout/fragment_reminders" />
 
 </navigation>

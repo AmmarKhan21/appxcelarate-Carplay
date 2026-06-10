@@ -25,4 +25,48 @@
     <color name="orange">#FF9800</color>
     <color name="light_grey">#FF9800</color>
     <color name="colorPrimaryLight">#62789E</color>
+
+    <!-- ===== Cockpit design system ===== -->
+    <!-- Backgrounds -->
+    <color name="cp_bg_top">#0B0F17</color>
+    <color name="cp_bg_bottom">#121826</color>
+    <color name="cp_bg">#0E1320</color>
+    <!-- Surfaces / glass cards -->
+    <color name="cp_surface">#1B2333</color>
+    <color name="cp_surface_alt">#212B3D</color>
+    <color name="cp_surface_elevated">#26314A</color>
+    <color name="cp_stroke">#2E3A52</color>
+    <color name="cp_stroke_soft">#33415C</color>
+    <!-- Accents -->
+    <color name="cp_accent">#00E5FF</color>
+    <color name="cp_accent_dim">#0FB9CE</color>
+    <color name="cp_accent_blue">#2D7DFF</color>
+    <color name="cp_accent_blue_dark">#1B4FCC</color>
+    <!-- Semantic -->
+    <color name="cp_amber">#FFB020</color>
+    <color name="cp_green">#2ECC71</color>
+    <color name="cp_red">#FF5A5F</color>
+    <color name="cp_purple">#9B6CFF</color>
+    <!-- Text -->
+    <color name="cp_text">#F2F5FA</color>
+    <color name="cp_text_muted">#9AA6BC</color>
+    <color name="cp_text_dim">#6B768C</color>
+    <!-- Tile gradients -->
+    <color name="cp_tile_connect_a">#2D7DFF</color>
+    <color name="cp_tile_connect_b">#1B4FCC</color>
+    <color name="cp_tile_speed_a">#00E5FF</color>
+    <color name="cp_tile_speed_b">#0FB9CE</color>
+    <color name="cp_tile_fuel_a">#FF8A00</color>
+    <color name="cp_tile_fuel_b">#FF5A5F</color>
+    <color name="cp_tile_remind_a">#9B6CFF</color>
+    <color name="cp_tile_remind_b">#6C3FE0</color>
+    <color name="cp_tile_doc_a">#2ECC71</color>
+    <color name="cp_tile_doc_b">#1FA85B</color>
+    <color name="cp_tile_expense_a">#F5C453</color>
+    <color name="cp_tile_expense_b">#E0962B</color>
+    <color name="cp_tile_park_a">#5AC8FA</color>
+    <color name="cp_tile_park_b">#2D8FD0</color>
+    <color name="cp_tile_weather_a">#7AA0FF</color>
+    <color name="cp_tile_weather_b">#4A66E0</color>
+    <color name="cp_scrim">#99000000</color>
 </resources>

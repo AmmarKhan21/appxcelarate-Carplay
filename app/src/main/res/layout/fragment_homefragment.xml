@@ -5,458 +5,707 @@
     android:id="@+id/nav"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_bg"
+    android:background="@drawable/cp_bg"
     tools:context=".Fragments.homefragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/app_bg">
+        android:background="@drawable/cp_bg">
 
-        <ImageView
-            android:id="@+id/img_main"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_170sdp"
-            android:background="@drawable/img_main"
-            android:contentDescription="@string/txt_error"
-            android:scaleType="fitXY"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/iv_remove_ads"
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
-            android:layout_marginEnd="@dimen/_2sdp"
-            android:layout_marginBottom="@dimen/_5sdp"
-            android:contentDescription="@string/txt_error"
-            android:paddingStart="@dimen/_10sdp"
-            android:paddingEnd="@dimen/_10sdp"
-            android:src="@drawable/ads"
-            app:layout_constraintBottom_toBottomOf="@id/img_main"
-            app:layout_constraintEnd_toEndOf="@id/img_main" />
-
-
+        <!-- ===== Top bar ===== -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/toolBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:paddingHorizontal="@dimen/_14sdp"
+            android:paddingTop="@dimen/_12sdp"
+            android:paddingBottom="@dimen/_6sdp"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/ivNav"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
+                android:layout_width="@dimen/_38sdp"
+                android:layout_height="@dimen/_38sdp"
+                android:background="@drawable/cp_icon_circle_dark"
                 android:contentDescription="@string/txt_error"
-                android:padding="@dimen/_10sdp"
-                android:src="@drawable/iv_nav"
+                android:padding="@dimen/_9sdp"
+                android:src="@drawable/ic_cp_menu"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!--            <ImageView-->
-            <!--                android:id="@+id/iv_instruction"-->
-            <!--                android:layout_width="@dimen/_50sdp"-->
-            <!--                android:layout_height="@dimen/_50sdp"-->
-            <!--                android:src="@drawable/info"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintTop_toTopOf="parent"-->
-            <!--                android:contentDescription="@string/txt_error"-->
-            <!--                android:padding="@dimen/_9sdp"/>-->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/app_name"
+                android:textColor="@color/cp_text"
+                android:textSize="@dimen/_15ssp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/ivNav"
+                app:layout_constraintEnd_toStartOf="@id/iv_remove_ads"
+                app:layout_constraintStart_toEndOf="@id/ivNav"
+                app:layout_constraintTop_toTopOf="@id/ivNav" />
 
-            <!--            <ImageView-->
-            <!--                android:id="@+id/iv_remove_ads"-->
-            <!--                android:layout_width="@dimen/_50sdp"-->
-            <!--                android:layout_height="@dimen/_50sdp"-->
-            <!--                android:src="@drawable/ads"-->
-            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintTop_toBottomOf="@+id/iv_instruction"-->
-            <!--                android:contentDescription="@string/txt_error"-->
-            <!--                android:paddingEnd="@dimen/_10sdp"-->
-            <!--                android:layout_marginEnd="@dimen/_2sdp"-->
-            <!--                android:paddingStart="@dimen/_10sdp"-->
-            <!--                />-->
+            <LinearLayout
+                android:id="@+id/iv_remove_ads"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@drawable/cp_chip_accent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="@id/ivNav"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/ivNav">
 
+                <ImageView
+                    android:layout_width="@dimen/_13sdp"
+                    android:layout_height="@dimen/_13sdp"
+                    android:contentDescription="@string/txt_error"
+                    android:src="@drawable/ic_cp_shield"
+                    app:tint="@color/cp_accent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="@string/cp_remove_ads"
+                    android:textColor="@color/cp_accent"
+                    android:textSize="@dimen/_10ssp"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ScrollView
+        <!-- ===== Scrollable dashboard ===== -->
+        <androidx.core.widget.NestedScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/_7sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:clipToPadding="false"
+            android:paddingHorizontal="@dimen/_12sdp"
+            android:paddingBottom="@dimen/_10sdp"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toTopOf="@id/rmv_ads"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginHorizontal="@dimen/_8sdp"
-            app:layout_constraintTop_toBottomOf="@+id/img_main"
-            app:layout_constraintBottom_toTopOf="@id/rmv_ads">
+            app:layout_constraintTop_toBottomOf="@id/toolBar">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
+                <!-- Hero: Car Connect -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/carplay"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_90sdp"
-                    android:background="@drawable/card_bg"
-                    app:layout_constraintEnd_toStartOf="@+id/iv_documents"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginHorizontal="@dimen/_3sdp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    >
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_120sdp"
+                    android:background="@drawable/cp_tile_connect"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintTop_toTopOf="parent">
+
                     <ImageView
                         android:id="@+id/carimg"
-                        android:layout_width="@dimen/_35sdp"
-                        android:layout_height="@dimen/_35sdp"
+                        android:layout_width="@dimen/_46sdp"
+                        android:layout_height="@dimen/_46sdp"
+                        android:layout_marginStart="@dimen/_16sdp"
+                        android:background="@drawable/cp_icon_circle"
+                        android:padding="@dimen/_10sdp"
                         android:src="@drawable/car_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/connectTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:layout_marginEnd="@dimen/_14sdp"
+                        android:fontFamily="sans-serif-black"
+                        android:text="@string/cp_connect_title"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_19ssp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@id/connectSub"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginBottom="@dimen/_25sdp"
+                        app:layout_constraintStart_toEndOf="@id/carimg"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintVertical_chainStyle="packed" />
+
+                    <TextView
+                        android:id="@+id/connectSub"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:alpha="0.9"
+                        android:text="@string/cp_connect_sub"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_11ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@id/connectTitle"
+                        app:layout_constraintStart_toStartOf="@id/connectTitle"
+                        app:layout_constraintTop_toBottomOf="@id/connectTitle" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Car Connect"
-                        app:layout_constraintTop_toBottomOf="@id/carimg"
-                        app:layout_constraintStart_toStartOf="@id/carimg"
-                        app:layout_constraintEnd_toEndOf="@id/carimg"
+                        android:layout_marginEnd="@dimen/_14sdp"
+                        android:background="@drawable/cp_icon_circle"
+                        android:fontFamily="sans-serif-medium"
+                        android:paddingHorizontal="@dimen/_12sdp"
+                        android:paddingVertical="@dimen/_5sdp"
+                        android:text="@string/cp_connect_cta"
                         android:textColor="@color/white"
-                        android:layout_marginTop="@dimen/_2sdp"
-                        android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold"/>
+                        android:textSize="@dimen/_10ssp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <!-- Section label -->
+                <TextView
+                    android:id="@+id/featuresLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_14sdp"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.08"
+                    android:text="@string/cp_features"
+                    android:textAllCaps="true"
+                    android:textColor="@color/cp_text_muted"
+                    android:textSize="@dimen/_10ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/carplay" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/gridCenter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
+
+                <!-- Speedometer -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/iv_speedometer"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_96sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:background="@drawable/cp_tile_speed"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintEnd_toStartOf="@id/gridCenter"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/featuresLabel">
+
+                    <ImageView
+                        android:layout_width="@dimen/_38sdp"
+                        android:layout_height="@dimen/_38sdp"
+                        android:layout_marginStart="@dimen/_12sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:background="@drawable/cp_icon_circle"
+                        android:contentDescription="@string/txt_error"
+                        android:padding="@dimen/_8sdp"
+                        android:src="@drawable/ic_cp_speed"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:layout_marginBottom="@dimen/_12sdp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/cp_speedometer"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Fuel -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/iv_fuel"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_96sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:background="@drawable/cp_tile_fuel"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/gridCenter"
+                    app:layout_constraintTop_toTopOf="@id/iv_speedometer">
+
+                    <ImageView
+                        android:layout_width="@dimen/_38sdp"
+                        android:layout_height="@dimen/_38sdp"
+                        android:layout_marginStart="@dimen/_12sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:background="@drawable/cp_icon_circle"
+                        android:contentDescription="@string/txt_error"
+                        android:padding="@dimen/_8sdp"
+                        android:src="@drawable/ic_cp_fuel"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:layout_marginBottom="@dimen/_12sdp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/cp_fuel"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Reminders -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/iv_reminders"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_96sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:background="@drawable/cp_tile_remind"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintEnd_toStartOf="@id/gridCenter"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_speedometer">
+
+                    <ImageView
+                        android:layout_width="@dimen/_38sdp"
+                        android:layout_height="@dimen/_38sdp"
+                        android:layout_marginStart="@dimen/_12sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:background="@drawable/cp_icon_circle"
+                        android:contentDescription="@string/txt_error"
+                        android:padding="@dimen/_8sdp"
+                        android:src="@drawable/ic_cp_bell"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:layout_marginBottom="@dimen/_12sdp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/cp_reminders"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Documents -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/iv_documents"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/_90sdp"
-                    android:background="@drawable/card_bg"
+                    android:layout_height="@dimen/_96sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:background="@drawable/cp_tile_doc"
+                    android:clickable="true"
+                    android:focusable="true"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginHorizontal="@dimen/_3sdp"
-                    app:layout_constraintStart_toEndOf="@+id/carplay"
-                    app:layout_constraintTop_toTopOf="parent"
-                    >
+                    app:layout_constraintStart_toEndOf="@id/gridCenter"
+                    app:layout_constraintTop_toTopOf="@id/iv_reminders">
+
                     <ImageView
                         android:id="@+id/docimg"
-                        android:layout_width="@dimen/_35sdp"
-                        android:layout_height="@dimen/_35sdp"
+                        android:layout_width="@dimen/_38sdp"
+                        android:layout_height="@dimen/_38sdp"
+                        android:layout_marginStart="@dimen/_12sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:background="@drawable/cp_icon_circle"
+                        android:contentDescription="@string/txt_error"
+                        android:padding="@dimen/_8sdp"
                         android:src="@drawable/document_icon"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginBottom="@dimen/_25sdp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" />
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Document"
-                        app:layout_constraintTop_toBottomOf="@id/docimg"
-                        app:layout_constraintStart_toStartOf="@id/docimg"
-                        app:layout_constraintEnd_toEndOf="@id/docimg"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:layout_marginBottom="@dimen/_12sdp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/document"
                         android:textColor="@color/white"
-                        android:layout_marginTop="@dimen/_2sdp"
-                        android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold"/>
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Expense -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/iv_mnt_expense"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/_90sdp"
-                    android:background="@drawable/card_bg"
-                    android:layout_marginHorizontal="@dimen/_3sdp"
-                    android:layout_marginTop="@dimen/_7sdp"
-                    app:layout_constraintEnd_toStartOf="@+id/iv_carparking"
+                    android:layout_height="@dimen/_96sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:background="@drawable/cp_tile_expense"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintEnd_toStartOf="@id/gridCenter"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/carplay"
-                    >
+                    app:layout_constraintTop_toBottomOf="@id/iv_reminders">
+
                     <ImageView
                         android:id="@+id/expenseimg"
-                        android:layout_width="@dimen/_35sdp"
-                        android:layout_height="@dimen/_35sdp"
+                        android:layout_width="@dimen/_38sdp"
+                        android:layout_height="@dimen/_38sdp"
+                        android:layout_marginStart="@dimen/_12sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:background="@drawable/cp_icon_circle"
+                        android:contentDescription="@string/txt_error"
+                        android:padding="@dimen/_8sdp"
                         android:src="@drawable/expense_icon"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginBottom="@dimen/_25sdp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" />
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Expense"
-                        app:layout_constraintTop_toBottomOf="@id/expenseimg"
-                        app:layout_constraintStart_toStartOf="@id/expenseimg"
-                        app:layout_constraintEnd_toEndOf="@id/expenseimg"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:layout_marginBottom="@dimen/_12sdp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/cp_expense"
                         android:textColor="@color/white"
-                        android:layout_marginTop="@dimen/_2sdp"
-                        android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold"/>
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Car Parking -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/iv_carparking"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/_90sdp"
-                    android:background="@drawable/card_bg"
-                    android:layout_marginHorizontal="@dimen/_3sdp"
+                    android:layout_height="@dimen/_96sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:background="@drawable/cp_tile_park"
+                    android:clickable="true"
+                    android:focusable="true"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginTop="@dimen/_7sdp"
-                    app:layout_constraintStart_toEndOf="@+id/iv_mnt_expense"
-                    app:layout_constraintTop_toBottomOf="@+id/iv_documents"
-                    >
+                    app:layout_constraintStart_toEndOf="@id/gridCenter"
+                    app:layout_constraintTop_toTopOf="@id/iv_mnt_expense">
+
                     <ImageView
                         android:id="@+id/parkimg"
-                        android:layout_width="@dimen/_35sdp"
-                        android:layout_height="@dimen/_35sdp"
+                        android:layout_width="@dimen/_38sdp"
+                        android:layout_height="@dimen/_38sdp"
+                        android:layout_marginStart="@dimen/_12sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:background="@drawable/cp_icon_circle"
+                        android:contentDescription="@string/txt_error"
+                        android:padding="@dimen/_8sdp"
                         android:src="@drawable/parking_icon"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginBottom="@dimen/_25sdp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" />
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Car Parking"
-                        app:layout_constraintTop_toBottomOf="@id/parkimg"
-                        app:layout_constraintStart_toStartOf="@id/parkimg"
-                        app:layout_constraintEnd_toEndOf="@id/parkimg"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:layout_marginBottom="@dimen/_12sdp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/cp_parking"
                         android:textColor="@color/white"
-                        android:layout_marginTop="@dimen/_2sdp"
-                        android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold"/>
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <!-- Weather (wide) -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/iv_weather"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_90sdp"
-                    android:background="@drawable/card_bg"
-                    android:layout_marginHorizontal="@dimen/_3sdp"
-                    android:layout_marginTop="@dimen/_7sdp"
-                    app:layout_constraintEnd_toStartOf="@+id/iv_carparking"
-                    app:layout_constraintTop_toBottomOf="@+id/iv_mnt_expense"
-                    app:layout_constraintStart_toStartOf="@id/iv_mnt_expense"
-                    >
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/cp_tile_weather"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintTop_toBottomOf="@id/iv_mnt_expense">
+
                     <ImageView
                         android:id="@+id/weatherimg"
-                        android:layout_width="@dimen/_35sdp"
-                        android:layout_height="@dimen/_35sdp"
+                        android:layout_width="@dimen/_42sdp"
+                        android:layout_height="@dimen/_42sdp"
+                        android:layout_marginStart="@dimen/_16sdp"
+                        android:background="@drawable/cp_icon_circle"
+                        android:contentDescription="@string/txt_error"
+                        android:padding="@dimen/_9sdp"
                         android:src="@drawable/weather_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginBottom="@dimen/_25sdp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" />
+
                     <TextView
+                        android:id="@+id/weatherTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/cp_weather"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14ssp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@id/weatherSub"
+                        app:layout_constraintStart_toEndOf="@id/weatherimg"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed" />
+
+                    <TextView
+                        android:id="@+id/weatherSub"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Weather"
-                        app:layout_constraintTop_toBottomOf="@id/weatherimg"
-                        app:layout_constraintStart_toStartOf="@id/weatherimg"
-                        app:layout_constraintEnd_toEndOf="@id/weatherimg"
+                        android:alpha="0.9"
+                        android:text="@string/cp_weather_sub"
                         android:textColor="@color/white"
-                        android:layout_marginTop="@dimen/_2sdp"
-                        android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold"/>
+                        android:textSize="@dimen/_10ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/weatherTitle"
+                        app:layout_constraintTop_toBottomOf="@id/weatherTitle" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
-        <ImageView
+        <!-- ===== Remove ads banner ===== -->
+        <LinearLayout
             android:id="@+id/rmv_ads"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_70sdp"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            android:background="@drawable/ads_card"
-            android:contentDescription="@string/txt_error"
-            android:scaleType="fitXY"
+            android:layout_height="@dimen/_52sdp"
+            android:layout_marginHorizontal="@dimen/_12sdp"
             android:layout_marginBottom="@dimen/_8sdp"
+            android:background="@drawable/cp_remove_ads"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/_14sdp"
             app:layout_constraintBottom_toTopOf="@id/native_ad"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/native_ad"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            app:cardBackgroundColor="@color/bg_dark"
-            app:cardCornerRadius="0dp"
-            app:cardElevation="0dp"
-            android:layout_marginBottom="@dimen/_5sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_50sdp">
+            <ImageView
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@drawable/cp_icon_circle"
+                android:contentDescription="@string/txt_error"
+                android:padding="@dimen/_6sdp"
+                android:src="@drawable/ic_cp_shield" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_centerInParent="true"
-                    android:gravity="center"
-                    android:text="advertisement"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-                <com.google.android.gms.ads.nativead.NativeAdView
-                    android:id="@+id/admobnative"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/cp_go_adfree"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.9"
+                    android:text="@string/cp_go_adfree_sub"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_9ssp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cp_icon_circle"
+                android:fontFamily="sans-serif-medium"
+                android:paddingHorizontal="@dimen/_12sdp"
+                android:paddingVertical="@dimen/_5sdp"
+                android:text="@string/cp_upgrade"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10ssp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- ===== Native ad ===== -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/native_ad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:visibility="gone"
+            app:cardBackgroundColor="@color/cp_surface"
+            app:cardCornerRadius="@dimen/_16sdp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!-- ===== Drawer ===== -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/white">
+        app:itemBackground="@android:color/transparent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/app_bg"
+            android:background="@drawable/cp_bg"
             android:orientation="vertical">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_weight="0.2">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:contentDescription="@string/txt_error"
-                    android:src="@drawable/header_icon"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_weight="0.8"
-                android:background="@android:color/transparent"
-                android:orientation="vertical"
-                android:weightSum="6">
+                android:layout_height="@dimen/_150sdp"
+                android:background="@drawable/cp_header"
+                android:gravity="center"
+                android:orientation="vertical">
 
+                <ImageView
+                    android:layout_width="@dimen/_64sdp"
+                    android:layout_height="@dimen/_64sdp"
+                    android:background="@drawable/cp_icon_circle"
+                    android:contentDescription="@string/txt_error"
+                    android:padding="@dimen/_10sdp"
+                    android:src="@drawable/header_icon" />
 
-                <!--                <LinearLayout-->
-                <!--                    android:id="@+id/iv_feedback"-->
-                <!--                    android:layout_width="match_parent"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_margin="@dimen/_10sdp"-->
-                <!--                    android:layout_marginTop="@dimen/_12sdp"-->
-                <!--                    android:gravity="center_vertical"-->
-                <!--                    android:orientation="horizontal"-->
-                <!--                    tools:ignore="UseCompoundDrawables">-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="sans-serif-black"
+                    android:text="@string/app_name"
+                    android:textColor="@color/cp_text"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold" />
 
-                <!--                    <ImageView-->
-                <!--                        android:layout_width="30dp"-->
-                <!--                        android:layout_height="30dp"-->
-                <!--                        android:src="@drawable/feedback_icon"-->
-                <!--                        android:contentDescription="@string/txt_error" />-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cp_tagline"
+                    android:textColor="@color/cp_text_muted"
+                    android:textSize="@dimen/_9ssp" />
+            </LinearLayout>
 
-                <!--                    <TextView-->
-                <!--                        android:layout_width="match_parent"-->
-                <!--                        android:layout_height="wrap_content"-->
-                <!--                        android:layout_marginStart="@dimen/_7sdp"-->
-                <!--                        android:text="@string/txt_feedback"-->
-                <!--                        android:textColor="@color/white"-->
-                <!--                        android:textSize="16sp" />-->
-                <!--                </LinearLayout>-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/iv_ratus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginVertical="@dimen/_4sdp"
+                    android:background="@drawable/cp_card_alt"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
+                    android:padding="@dimen/_12sdp"
                     tools:ignore="UseCompoundDrawables">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
                         android:contentDescription="@string/txt_error"
                         android:src="@drawable/rate_us" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_7sdp"
+                        android:layout_marginStart="@dimen/_12sdp"
                         android:text="@string/txt_ratus"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textColor="@color/cp_text"
+                        android:textSize="@dimen/_12ssp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/iv_share"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginVertical="@dimen/_4sdp"
+                    android:background="@drawable/cp_card_alt"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
+                    android:padding="@dimen/_12sdp"
                     tools:ignore="UseCompoundDrawables">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
                         android:contentDescription="@string/txt_error"
                         android:src="@drawable/share" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_7sdp"
+                        android:layout_marginStart="@dimen/_12sdp"
                         android:text="@string/txt_share_app"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textColor="@color/cp_text"
+                        android:textSize="@dimen/_12ssp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/iv_privacy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginVertical="@dimen/_4sdp"
+                    android:background="@drawable/cp_card_alt"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingBottom="@dimen/_8sdp"
+                    android:padding="@dimen/_12sdp"
                     tools:ignore="UseCompoundDrawables">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
                         android:contentDescription="@string/txt_error"
                         android:src="@drawable/privacy" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_7sdp"
+                        android:layout_marginStart="@dimen/_12sdp"
                         android:text="@string/txt_privacy"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textColor="@color/cp_text"
+                        android:textSize="@dimen/_12ssp" />
                 </LinearLayout>
 
             </LinearLayout>

@@ -61,4 +61,69 @@
     <string name="please_provide_rating" translatable="false">Please provide a rating before submitting!</string>
     <string name="thanks" translatable="false">Thanks</string>
     <string name="submit" translatable="false">Submit Successfully</string>
+
+    <!-- ===== Cockpit redesign + new features ===== -->
+    <string name="cp_tagline">Your smart car companion</string>
+    <string name="cp_remove_ads">Remove Ads</string>
+    <string name="cp_features">Features</string>
+    <string name="cp_connect_title">Car Connect</string>
+    <string name="cp_connect_sub">Mirror your phone to the car display</string>
+    <string name="cp_connect_cta">Connect</string>
+    <string name="cp_speedometer">Speedometer</string>
+    <string name="cp_fuel">Fuel &amp; Mileage</string>
+    <string name="cp_reminders">Reminders</string>
+    <string name="cp_expense">Expense</string>
+    <string name="cp_parking">Car Parking</string>
+    <string name="cp_weather">Weather</string>
+    <string name="cp_weather_sub">Live forecast for your trip</string>
+    <string name="cp_go_adfree">Go ad-free</string>
+    <string name="cp_go_adfree_sub">Enjoy a clean, distraction-free experience</string>
+    <string name="cp_upgrade">Upgrade</string>
+
+    <!-- Speedometer -->
+    <string name="cp_speed_title">Speedometer</string>
+    <string name="cp_unit_kmh">km/h</string>
+    <string name="cp_unit_mph">mph</string>
+    <string name="cp_trip_distance">Trip Distance</string>
+    <string name="cp_max_speed">Max Speed</string>
+    <string name="cp_avg_speed">Avg Speed</string>
+    <string name="cp_duration">Duration</string>
+    <string name="cp_start">Start</string>
+    <string name="cp_pause">Pause</string>
+    <string name="cp_reset">Reset</string>
+    <string name="cp_waiting_gps">Waiting for GPS signal…</string>
+    <string name="cp_enable_location">Enable location to use the speedometer</string>
+    <string name="cp_speed_disclaimer">For reference only. Always follow road signs and drive safely.</string>
+
+    <!-- Fuel -->
+    <string name="cp_fuel_title">Fuel &amp; Mileage</string>
+    <string name="cp_add_fillup">Add Fill-up</string>
+    <string name="cp_avg_economy">Avg Economy</string>
+    <string name="cp_total_spent">Total Spent</string>
+    <string name="cp_last_fillup">Last Fill-up</string>
+    <string name="cp_fillups">Fill-ups</string>
+    <string name="cp_odometer">Odometer (km)</string>
+    <string name="cp_liters">Litres</string>
+    <string name="cp_price_total">Total cost</string>
+    <string name="cp_full_tank">Full tank</string>
+    <string name="cp_save">Save</string>
+    <string name="cp_cancel">Cancel</string>
+    <string name="cp_no_fillups">No fill-ups yet. Tap + to log your first one.</string>
+    <string name="cp_fuel_hint">Log every fill-up to track your real fuel economy and spending.</string>
+
+    <!-- Reminders -->
+    <string name="cp_reminders_title">Reminders</string>
+    <string name="cp_add_reminder">Add Reminder</string>
+    <string name="cp_reminder_title_hint">Title (e.g. Car Insurance)</string>
+    <string name="cp_reminder_note_hint">Note (optional)</string>
+    <string name="cp_due_date">Due date</string>
+    <string name="cp_pick_date">Pick date</string>
+    <string name="cp_reminder_type">Type</string>
+    <string name="cp_no_reminders">No reminders yet. Never miss a renewal again — tap + to add one.</string>
+    <string name="cp_notify_lead">Remind me</string>
+    <string name="cp_due_today">Due today</string>
+    <string name="cp_overdue">Overdue</string>
+    <string name="cp_days_left">%1$d days left</string>
+    <string name="cp_reminder_channel">Car reminders</string>
+    <string name="cp_notif_permission">Allow notifications to get reminder alerts</string>
 </resources>

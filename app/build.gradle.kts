@@ -119,4 +119,9 @@ dependencies {
     implementation ("com.karumi:dexter:6.2.3")
     implementation (libs.dotsindicator)
 
+    // Background scheduling for reminder notifications
+    implementation("androidx.work:work-runtime-ktx:2.9.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
+
 }
