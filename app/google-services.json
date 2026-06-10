@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "771007627048",
+    "project_id": "onlycarplayapp",
+    "storage_bucket": "onlycarplayapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:771007627048:android:3b4613ab8c19c34e609a1d",
+        "android_client_info": {
+          "package_name": "com.car.play.android.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6OQa36miATidxyrkcWrlzSTli5Lv6kmo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

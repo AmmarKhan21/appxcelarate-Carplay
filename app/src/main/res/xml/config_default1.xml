@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+    <entry key="banner_ad">ca-app-pub-5707446182534988/4315305094</entry>
+    <entry key="interstitial_ad">ca-app-pub-5707446182534988/5655767920</entry>
+    <entry key="native_ad">ca-app-pub-5707446182534988/8062978410</entry>
+    <entry key="remotr_count">1</entry>
+
+    <entry key="isBannerOn">true</entry>
+    <entry key="isInterstitialOn">true</entry>
+    <entry key="isNativeOn">true</entry>
+    <entry key="isAppOpenOn">true</entry>
+    <entry key="isReplaceInterOn">true</entry>
+    <entry key="isRewardedInterOn">true</entry>
+    <entry key="isRewardedOn">true</entry>
+
+</defaultsMap>

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/introFragmetn"
+    android:id="@+id/navigation_graph">
+
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.car.play.android.app.Fragments.homefragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_homefragment">
+<!--        <action-->
+<!--            android:id="@+id/action_homeFragment_to_instructionFragment"-->
+<!--            app:destination="@id/instructionFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_homeFragment_to_languageFragment"-->
+<!--            app:destination="@id/languageFragment" />-->
+        <action
+            android:id="@+id/action_homeFragment_to_feedbackFragment"
+            app:destination="@id/feedbackFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_carselectfragment"
+            app:destination="@id/carSelectionFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_emergencyfragment"
+            app:destination="@id/emergencyFragmet" />
+        <action
+            android:id="@+id/action_homeFragment_to_parkfragment"
+            app:destination="@id/carParkFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_showdocumentfragment"
+            app:destination="@id/showdocument" />
+        <action
+            android:id="@+id/action_homeFragment_to_carmaintenencefragment"
+            app:destination="@id/carmaintenence" />
+        <action
+            android:id="@+id/action_homeFragment_to_weatherfragment"
+            app:destination="@id/weatherfragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/carSelectionFragment"
+        android:name="com.car.play.android.app.Fragments.SelectCar"
+        android:label="fragment_car_selection"
+        tools:layout="@layout/fragment_select_car">
+        <action
+            android:id="@+id/action_carSelectionFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_carSelectionFragment_to_connectfragment"
+            app:destination="@id/connectfragment" />
+<!--        <action-->
+<!--            android:id="@+id/action_carSelectionFragment_to_homeFragment2"-->
+<!--            app:destination="@id/homeFragment" />-->
+    </fragment>
+
+    <fragment
+        android:id="@+id/connectfragment"
+        android:name="com.car.play.android.app.Fragments.ConnectFragment"
+        android:label="fragment_connect_fragmetn"
+        tools:layout="@layout/fragment_connect" >
+        <action
+            android:id="@+id/action_connectfragment_to_connectiontype"
+            app:destination="@id/connectiontype" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/connectiontype"
+        android:name="com.car.play.android.app.Fragments.ConnectionTypeFragment"
+        android:label="fragment_connectiontype_fragment"
+        tools:layout="@layout/fragment_connection_type" />
+
+    <fragment
+        android:id="@+id/introFragmetn"
+        android:name="com.car.play.android.app.Fragments.IntroFragment"
+        android:label="fragment_intro_fragmetn"
+        tools:layout="@layout/fragment_intro" >
+        <action
+            android:id="@+id/action_introFragmetn_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/emergencyFragmet"
+        android:name="com.car.play.android.app.Fragments.Emergency"
+        android:label="fragment_emergency_fragmetn"
+        tools:layout="@layout/fragment_emergency" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/carParkFragment"
+        android:name="com.car.play.android.app.Fragments.CarParkFragment"
+        android:label="fragment_car_park"
+        tools:layout="@layout/fragment_car_park" >
+        <action
+            android:id="@+id/action_carParkFragment_to_findParkCarFragment"
+            app:destination="@id/findParkCarFragment" />
+        <action
+            android:id="@+id/action_carParkFragment_to_parkCarFragment"
+            app:destination="@id/parkCarFragment" />
+        <action
+            android:id="@+id/action_carParkFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/showdocument"
+        android:name="com.car.play.android.app.Fragments.ShowDocument"
+        android:label="fragment_ShowDocumnt_fragmetn"
+        tools:layout="@layout/fragment_show_document" >
+        <action
+            android:id="@+id/action_showdocumentfragment_to_documentfragment"
+            app:destination="@id/documentfragment" />
+        <action
+            android:id="@+id/action_showdocumentfragment_to_homefragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_showdocumentfragment_to_mediafragment"
+            app:destination="@id/mediafragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/documentfragment"
+        android:name="com.car.play.android.app.Fragments.DocumentFragment"
+        android:label="fragment_ShowDocumnt_fragmetn"
+        tools:layout="@layout/fragment_document" >
+        <action
+            android:id="@+id/action_document_to_showdocumentfragment"
+            app:destination="@id/showdocument" />
+<!--        <action-->
+<!--            android:id="@+id/action_document_to_cameradocumentfragment"-->
+<!--            app:destination="@id/cameradocumentfragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_document_to_galleryfragment"-->
+<!--            app:destination="@id/galleryfragment" />-->
+
+        <action
+            android:id="@+id/action_document_to_savefragment"
+            app:destination="@id/saveFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/saveFragment"
+        android:name="com.car.play.android.app.Fragments.SaveFragment"
+        android:label="Save Image"
+        tools:layout="@layout/fragment_save">
+        <argument
+            android:name="image_uri"
+            app:argType="string" />
+    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/cameradocumentfragment"-->
+<!--        android:name="com.car.play.android.app.Fragments.CameraDocument"-->
+<!--        android:label="fragment_cameradocument"-->
+<!--        tools:layout="@layout/fragment_camera_document" />-->
+<!--    <action-->
+<!--        android:id="@+id/action_cammeradocument_to_documentfragment"-->
+<!--        app:destination="@id/documentfragment" />-->
+<!--    <action-->
+<!--        android:id="@+id/action_cammeradocument_to_galleryfragment"-->
+<!--        app:destination="@id/galleryfragment" />-->
+<!--    <action-->
+<!--        android:id="@+id/action_cammeradocument_to_cameradocument"-->
+<!--        app:destination="@id/cameradocumentfragment" />-->
+
+    <fragment
+        android:id="@+id/mediafragment"
+        android:name="com.car.play.android.app.Fragments.MediaFragment"
+        android:label="fragment_mediafragment"
+        tools:layout="@layout/fragment_media">
+
+        <argument
+            android:name="imagePathList"
+            app:argType="string[]" /> <!-- Define as an array of strings (list of image paths) -->
+
+        <argument
+            android:name="initialImagePath"
+            app:argType="string" /> <!-- Pass the path of the clicked image -->
+
+        <argument
+            android:name="clickedImageIndex"
+            app:argType="integer" /> <!-- Pass the index of the clicked image -->
+        <argument
+            android:name="imageTitleList"
+            app:argType="string[]" />
+        <argument
+            android:name="imageDateList"
+            app:argType="string[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/feedbackFragment"
+        android:name="com.car.play.android.app.Fragments.FeedbackFragment"
+        android:label="fragment_feedback"
+        tools:layout="@layout/fragment_feedback" />
+
+    <fragment
+        android:id="@+id/parkCarFragment"
+        android:name="com.car.play.android.app.Fragments.ParkCarFragment"
+        android:label="fragment_park_car"
+        tools:layout="@layout/fragment_park_car" />
+    <fragment
+        android:id="@+id/findParkCarFragment"
+        android:name="com.car.play.android.app.Fragments.FindParkCarFragment"
+        android:label="fragment_find_park_car"
+        tools:layout="@layout/fragment_find_park_car" />
+
+<!--    <fragment-->
+<!--        android:id="@+id/galleryfragment"-->
+<!--        android:name="com.car.play.android.app.Fragments.GalleryFragment"-->
+<!--        android:label="fragment_gallery_fragment"-->
+<!--        tools:layout="@layout/fragment_gallery" />-->
+    <fragment
+        android:id="@+id/carmaintenence"
+        android:name="com.car.play.android.app.Fragments.CarMaintenanceFragment"
+        android:label="fragment_carmaintenence_fragment"
+        tools:layout="@layout/fragment_car_maintenance">
+        <action
+            android:id="@+id/action_CarMaintenanceFragment_to_AddCarmaintenance"
+            app:destination="@id/addcarmaintenence" />
+        <action
+            android:id="@+id/action_CarMaintenanceFragment_to_homefragment"
+            app:destination="@id/addcarmaintenence" />
+    </fragment>
+    <fragment
+        android:id="@+id/addcarmaintenence"
+        android:name="com.car.play.android.app.Fragments.AddCarmaintenance"
+        android:label="fragment_addcarmaintenence_fragment"
+        tools:layout="@layout/fragment_add_carmaintenance"/>
+    <action
+        android:id="@+id/action_AddCarmaintenance_to_CarMaintenanceFragment"
+        app:destination="@id/carmaintenence" />
+    <fragment
+        android:id="@+id/weatherfragment"
+        android:name="com.car.newcarplay.Fragments.WeatherFragment"
+        android:label="fragment_weather_fragment"
+        tools:layout="@layout/fragment_weather" />
+
+</navigation>

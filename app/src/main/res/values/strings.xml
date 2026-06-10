@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">Android Carplay</string>
+    <string name="txt_error">Error</string>
+    <string name="txt_share_app">Share App</string>
+    <string name="txt_ratus">Rate Us</string>
+    <string name="txt_feedback">Feedback</string>
+    <string name="theme">Mode Theme</string>
+    <string name="txt_privacy">Privacy</string>
+    <string name="connect">Select your connection type</string>
+    <string name="search">Search</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txt_wirless">Wireless Connectivity</string>
+    <string name="txt_navigation">Navigation</string>
+    <string name="wirless_connectivity">Refers to the ability to connect devices networks without physical cables, using technologies like Wi-Fi ,Bluetooth, and cellular, Bluetooth,cellular
+     networks for data transmission.
+
+</string>
+    <string name="advertisement">Advertisement</string>
+    <string name="allow_photos"><![CDATA[Allow Car Play to access \nCamera on your device?]]></string>
+    <string name="navigation">Is the process of determining and planning a route to reach a specific destination ,often using tools like maps,, GPS, or compasses.</string>
+    <string name="txtSkip">Skip</string>
+    <string name="degree_celsius_symbol" translatable="false">°C</string>
+    <string name="ad_loading" translatable="false">Ad Loading...</string>
+    <string name="label_visibility" translatable="false">Visibility</string>
+    <string name="label_pressure" translatable="false">Pressure</string>
+    <string name="label_humidity" translatable="false">Humidity</string>
+    <string name="desc_sunset" translatable="false">icon of sunset</string>
+    <string name="label_cloudiness" translatable="false">Cloudiness</string>
+    <string name="label_wind_speed" translatable="false">Wind speed</string>
+    <string name="label_real_feel" translatable="false">Real Feel</string>
+    <string name="degree_celsius_symbol_with_temp" translatable="false">32.9°C</string>
+    <string name="desc_sunrise" translatable="false">icon of sunrise</string>
+    <string name="developer_option">Developer option is turned off</string>
+    <string name="unlock_feature">Unlock This Feature</string>
+    <string name="continue_btn">Continue</string>
+    <string name="no_thanks_btn">No Thansk</string>
+    <string name="park">Park Car</string>
+    <string name="txt_developer">Developer option is turned off</string>
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
+    <string name="find_car">Find Car</string>
+    <string name="park_heading">Car Parking</string>
+    <string name="document">Documents</string>
+    <string name="carmaintenance">Car Maintenance</string>
+    <string name="addservices">Add Services</string>
+    <string name="servicename">Service Name</string>
+    <string name="costtitle">Expense</string>
+    <string name="enter_message">Enter Messege</string>
+    <string name="txtSubmit">Submit</string>
+    <string name="txtExperience">Submit</string>
+    <string name="error_empty_message" translatable="false">Enter Your Message</string>
+    <string name="txtEmail" translatable="false">10xdigitalagency313@gmail.com</string>
+    <string name="txt_privacy_open" translatable="false">Are you want to view the privacy policy?</string>
+    <string name="txt_open_privacy" translatable="false">Open Privacy Policy</string>
+    <string name="txt_share" translatable="false">Are you want to share?</string>
+    <string name="txtYes" translatable="false">Yes</string>
+    <string name="no" translatable="false">NO</string>
+    <string name="park_car" translatable="false">Park Car</string>
+    <string name="submit_rating" translatable="false">Submit</string>
+        <string name="privacy" translatable="false">https://appxceleratetechpk.web.app/privacy-policy.html</string>
+    <string name="please_provide_rating" translatable="false">Please provide a rating before submitting!</string>
+    <string name="thanks" translatable="false">Thanks</string>
+    <string name="submit" translatable="false">Submit Successfully</string>
+</resources>

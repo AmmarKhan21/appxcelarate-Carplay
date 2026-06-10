@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bg"
+    tools:context=".Fragments.Emergency">
+
+
+
+    <ImageView
+        android:id="@+id/top"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_180sdp"
+        android:src="@drawable/emergency_top"
+        android:scaleType="fitXY"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+    <TextView
+        android:id="@+id/txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/unlock_feature"
+        android:textSize="@dimen/_13sdp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/top"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingEnd="@dimen/_8sdp"
+        android:textColor="@color/white"/>
+
+    <ImageView
+        android:id="@+id/main"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_180sdp"
+        android:src="@drawable/emergency_fature"
+        android:scaleType="fitXY"
+        android:padding="@dimen/_5sdp"
+        app:layout_constraintTop_toBottomOf="@+id/txt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+    <TextView
+        android:id="@+id/btn_continue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/continue_btn"
+        app:layout_constraintTop_toBottomOf="@id/main"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingEnd="@dimen/_8sdp"
+        android:textStyle="bold"
+        android:textSize="@dimen/_13sdp"
+        android:textColor="@color/lime"/>
+
+    <TextView
+        android:id="@+id/btn_nothanks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_thanks_btn"
+        app:layout_constraintTop_toBottomOf="@id/main"
+        app:layout_constraintEnd_toStartOf="@id/btn_continue"
+        android:paddingEnd="@dimen/_12sdp"
+        android:textStyle="bold"
+        android:textSize="@dimen/_13sdp"
+        android:textColor="@color/white"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

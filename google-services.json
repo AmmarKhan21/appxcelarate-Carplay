@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "579954558390",
+    "project_id": "carplaytemp-e1d3a",
+    "storage_bucket": "carplaytemp-e1d3a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:579954558390:android:eab8d31efc4def12a06d17",
+        "android_client_info": {
+          "package_name": "com.car.play.android.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAo6yI9jLkujZHWmT8eEB3qxNBOjOTTDrU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
