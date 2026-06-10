@@ -79,6 +79,13 @@
     <string name="cp_go_adfree">Go ad-free</string>
     <string name="cp_go_adfree_sub">Enjoy a clean, distraction-free experience</string>
     <string name="cp_upgrade">Upgrade</string>
+    <string name="cp_welcome">Welcome back</string>
+    <string name="cp_speedometer_sub">Live GPS speed &amp; trip</string>
+    <string name="cp_fuel_sub">Economy &amp; cost</string>
+    <string name="cp_reminders_sub">Renewals &amp; service due</string>
+    <string name="cp_documents_sub">Store car papers</string>
+    <string name="cp_expense_sub">Maintenance &amp; spend</string>
+    <string name="cp_parking_sub">Save &amp; find your car</string>
 
     <!-- Speedometer -->
     <string name="cp_speed_title">Speedometer</string>

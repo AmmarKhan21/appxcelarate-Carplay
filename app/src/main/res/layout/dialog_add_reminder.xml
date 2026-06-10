@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-black"
+            android:fontFamily="@font/manrope_extrabold"
             android:text="@string/cp_add_reminder"
             android:textColor="@color/cp_text"
             android:textSize="@dimen/_15ssp"

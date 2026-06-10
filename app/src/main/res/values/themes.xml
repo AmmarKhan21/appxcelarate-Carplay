@@ -10,6 +10,10 @@
         <item name="android:navigationBarColor">@color/cp_bg_bottom</item>
         <item name="colorPrimary">@color/cp_accent_blue</item>
         <item name="colorAccent">@color/cp_accent</item>
+        <item name="colorSecondary">@color/cp_accent</item>
+        <!-- App-wide product typeface -->
+        <item name="android:fontFamily">@font/manrope</item>
+        <item name="fontFamily">@font/manrope</item>
     </style>
 
     <style name="Theme.NewCarplay" parent="Base.Theme.NewCarplay" />

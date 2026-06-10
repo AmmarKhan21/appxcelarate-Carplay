@@ -18,9 +18,9 @@
             android:id="@+id/toolBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/_14sdp"
-            android:paddingTop="@dimen/_12sdp"
-            android:paddingBottom="@dimen/_6sdp"
+            android:paddingHorizontal="@dimen/_16sdp"
+            android:paddingTop="@dimen/_14sdp"
+            android:paddingBottom="@dimen/_8sdp"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
@@ -33,30 +33,49 @@
                 android:src="@drawable/ic_cp_menu"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/cp_text" />
 
             <TextView
+                android:id="@+id/welcomeLabel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:fontFamily="sans-serif-black"
+                android:fontFamily="@font/manrope_medium"
+                android:letterSpacing="0.04"
+                android:text="@string/cp_welcome"
+                android:textColor="@color/cp_text_muted"
+                android:textSize="@dimen/_9ssp"
+                app:layout_constraintBottom_toTopOf="@id/homeTitle"
+                app:layout_constraintEnd_toStartOf="@id/iv_remove_ads"
+                app:layout_constraintStart_toEndOf="@id/ivNav"
+                app:layout_constraintTop_toTopOf="@id/ivNav"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/homeTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:ellipsize="end"
+                android:fontFamily="@font/manrope_extrabold"
+                android:maxLines="1"
                 android:text="@string/app_name"
                 android:textColor="@color/cp_text"
                 android:textSize="@dimen/_15ssp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/ivNav"
                 app:layout_constraintEnd_toStartOf="@id/iv_remove_ads"
                 app:layout_constraintStart_toEndOf="@id/ivNav"
-                app:layout_constraintTop_toTopOf="@id/ivNav" />
+                app:layout_constraintTop_toBottomOf="@id/welcomeLabel" />
 
             <LinearLayout
                 android:id="@+id/iv_remove_ads"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_height="@dimen/_32sdp"
                 android:background="@drawable/cp_chip_accent"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingHorizontal="@dimen/_10sdp"
+                android:paddingHorizontal="@dimen/_11sdp"
                 app:layout_constraintBottom_toBottomOf="@id/ivNav"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/ivNav">
@@ -72,10 +91,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
+                    android:fontFamily="@font/manrope_bold"
                     android:text="@string/cp_remove_ads"
                     android:textColor="@color/cp_accent"
-                    android:textSize="@dimen/_10ssp"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/_9ssp" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -83,9 +102,8 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/_4sdp"
             android:clipToPadding="false"
-            android:paddingHorizontal="@dimen/_12sdp"
+            android:paddingHorizontal="@dimen/_14sdp"
             android:paddingBottom="@dimen/_10sdp"
             android:scrollbars="none"
             app:layout_constraintBottom_toTopOf="@id/rmv_ads"
@@ -95,43 +113,45 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layoutAnimation="@anim/cp_layout_grid">
 
                 <!-- Hero: Car Connect -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/carplay"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_120sdp"
-                    android:background="@drawable/cp_tile_connect"
+                    android:layout_height="@dimen/_104sdp"
+                    android:background="@drawable/cp_hero"
                     android:clickable="true"
                     android:focusable="true"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
                         android:id="@+id/carimg"
-                        android:layout_width="@dimen/_46sdp"
-                        android:layout_height="@dimen/_46sdp"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
                         android:layout_marginStart="@dimen/_16sdp"
-                        android:background="@drawable/cp_icon_circle"
-                        android:padding="@dimen/_10sdp"
-                        android:src="@drawable/car_icon"
+                        android:background="@drawable/cp_chipbg_blue"
+                        android:contentDescription="@string/txt_error"
+                        android:padding="@dimen/_12sdp"
+                        android:src="@drawable/ic_cp_car"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/cp_hue_blue" />
 
                     <TextView
                         android:id="@+id/connectTitle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_14sdp"
-                        android:layout_marginEnd="@dimen/_14sdp"
-                        android:fontFamily="sans-serif-black"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:fontFamily="@font/manrope_extrabold"
                         android:text="@string/cp_connect_title"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_19ssp"
-                        android:textStyle="bold"
+                        android:textColor="@color/cp_text"
+                        android:textSize="@dimen/_17ssp"
                         app:layout_constraintBottom_toTopOf="@id/connectSub"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/connectBtn"
                         app:layout_constraintStart_toEndOf="@id/carimg"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_chainStyle="packed" />
@@ -140,28 +160,29 @@
                         android:id="@+id/connectSub"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_2sdp"
-                        android:alpha="0.9"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:fontFamily="@font/manrope_medium"
                         android:text="@string/cp_connect_sub"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_11ssp"
+                        android:textColor="@color/cp_text_muted"
+                        android:textSize="@dimen/_10ssp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@id/connectTitle"
                         app:layout_constraintStart_toStartOf="@id/connectTitle"
                         app:layout_constraintTop_toBottomOf="@id/connectTitle" />
 
                     <TextView
+                        android:id="@+id/connectBtn"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/_34sdp"
                         android:layout_marginEnd="@dimen/_14sdp"
-                        android:background="@drawable/cp_icon_circle"
-                        android:fontFamily="sans-serif-medium"
-                        android:paddingHorizontal="@dimen/_12sdp"
-                        android:paddingVertical="@dimen/_5sdp"
+                        android:background="@drawable/cp_btn_accent"
+                        android:fontFamily="@font/manrope_bold"
+                        android:gravity="center"
+                        android:minWidth="@dimen/_70sdp"
+                        android:paddingHorizontal="@dimen/_14sdp"
                         android:text="@string/cp_connect_cta"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_10ssp"
-                        android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -172,15 +193,14 @@
                     android:id="@+id/featuresLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_14sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
                     android:layout_marginStart="@dimen/_4sdp"
-                    android:fontFamily="sans-serif-medium"
-                    android:letterSpacing="0.08"
+                    android:fontFamily="@font/manrope_bold"
+                    android:letterSpacing="0.12"
                     android:text="@string/cp_features"
                     android:textAllCaps="true"
-                    android:textColor="@color/cp_text_muted"
-                    android:textSize="@dimen/_10ssp"
-                    android:textStyle="bold"
+                    android:textColor="@color/cp_text_dim"
+                    android:textSize="@dimen/_9ssp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/carplay" />
 
@@ -195,10 +215,10 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/iv_speedometer"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/_96sdp"
+                    android:layout_height="@dimen/_98sdp"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:layout_marginEnd="@dimen/_5sdp"
-                    android:background="@drawable/cp_tile_speed"
+                    android:background="@drawable/cp_card"
                     android:clickable="true"
                     android:focusable="true"
                     app:layout_constraintEnd_toStartOf="@id/gridCenter"
@@ -206,27 +226,51 @@
                     app:layout_constraintTop_toBottomOf="@id/featuresLabel">
 
                     <ImageView
-                        android:layout_width="@dimen/_38sdp"
-                        android:layout_height="@dimen/_38sdp"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
                         android:layout_marginStart="@dimen/_12sdp"
                         android:layout_marginTop="@dimen/_12sdp"
-                        android:background="@drawable/cp_icon_circle"
+                        android:background="@drawable/cp_chipbg_sky"
                         android:contentDescription="@string/txt_error"
-                        android:padding="@dimen/_8sdp"
+                        android:padding="@dimen/_9sdp"
                         android:src="@drawable/ic_cp_speed"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/cp_hue_sky" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:contentDescription="@string/txt_error"
+                        android:src="@drawable/ic_cp_chevron"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/speedTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:fontFamily="@font/manrope_bold"
+                        android:text="@string/cp_speedometer"
+                        android:textColor="@color/cp_text"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintBottom_toTopOf="@id/speedSub"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <TextView
+                        android:id="@+id/speedSub"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_12sdp"
                         android:layout_marginBottom="@dimen/_12sdp"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="@string/cp_speedometer"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_12ssp"
-                        android:textStyle="bold"
+                        android:fontFamily="@font/manrope_medium"
+                        android:text="@string/cp_speedometer_sub"
+                        android:textColor="@color/cp_text_muted"
+                        android:textSize="@dimen/_8ssp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" />
@@ -236,10 +280,10 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/iv_fuel"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/_96sdp"
+                    android:layout_height="@dimen/_98sdp"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:layout_marginStart="@dimen/_5sdp"
-                    android:background="@drawable/cp_tile_fuel"
+                    android:background="@drawable/cp_card"
                     android:clickable="true"
                     android:focusable="true"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -247,27 +291,51 @@
                     app:layout_constraintTop_toTopOf="@id/iv_speedometer">
 
                     <ImageView
-                        android:layout_width="@dimen/_38sdp"
-                        android:layout_height="@dimen/_38sdp"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
                         android:layout_marginStart="@dimen/_12sdp"
                         android:layout_marginTop="@dimen/_12sdp"
-                        android:background="@drawable/cp_icon_circle"
+                        android:background="@drawable/cp_chipbg_amber"
                         android:contentDescription="@string/txt_error"
-                        android:padding="@dimen/_8sdp"
+                        android:padding="@dimen/_9sdp"
                         android:src="@drawable/ic_cp_fuel"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/cp_hue_amber" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:contentDescription="@string/txt_error"
+                        android:src="@drawable/ic_cp_chevron"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/fuelTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:fontFamily="@font/manrope_bold"
+                        android:text="@string/cp_fuel"
+                        android:textColor="@color/cp_text"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintBottom_toTopOf="@id/fuelSub"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <TextView
+                        android:id="@+id/fuelSub"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_12sdp"
                         android:layout_marginBottom="@dimen/_12sdp"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="@string/cp_fuel"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_12ssp"
-                        android:textStyle="bold"
+                        android:fontFamily="@font/manrope_medium"
+                        android:text="@string/cp_fuel_sub"
+                        android:textColor="@color/cp_text_muted"
+                        android:textSize="@dimen/_8ssp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" />
@@ -277,10 +345,10 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/iv_reminders"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/_96sdp"
+                    android:layout_height="@dimen/_98sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginEnd="@dimen/_5sdp"
-                    android:background="@drawable/cp_tile_remind"
+                    android:background="@drawable/cp_card"
                     android:clickable="true"
                     android:focusable="true"
                     app:layout_constraintEnd_toStartOf="@id/gridCenter"
@@ -288,27 +356,51 @@
                     app:layout_constraintTop_toBottomOf="@id/iv_speedometer">
 
                     <ImageView
-                        android:layout_width="@dimen/_38sdp"
-                        android:layout_height="@dimen/_38sdp"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
                         android:layout_marginStart="@dimen/_12sdp"
                         android:layout_marginTop="@dimen/_12sdp"
-                        android:background="@drawable/cp_icon_circle"
+                        android:background="@drawable/cp_chipbg_violet"
                         android:contentDescription="@string/txt_error"
-                        android:padding="@dimen/_8sdp"
+                        android:padding="@dimen/_9sdp"
                         android:src="@drawable/ic_cp_bell"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/cp_hue_violet" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:contentDescription="@string/txt_error"
+                        android:src="@drawable/ic_cp_chevron"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/remindTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:fontFamily="@font/manrope_bold"
+                        android:text="@string/cp_reminders"
+                        android:textColor="@color/cp_text"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintBottom_toTopOf="@id/remindSub"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <TextView
+                        android:id="@+id/remindSub"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_12sdp"
                         android:layout_marginBottom="@dimen/_12sdp"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="@string/cp_reminders"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_12ssp"
-                        android:textStyle="bold"
+                        android:fontFamily="@font/manrope_medium"
+                        android:text="@string/cp_reminders_sub"
+                        android:textColor="@color/cp_text_muted"
+                        android:textSize="@dimen/_8ssp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" />
@@ -318,10 +410,10 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/iv_documents"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/_96sdp"
+                    android:layout_height="@dimen/_98sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginStart="@dimen/_5sdp"
-                    android:background="@drawable/cp_tile_doc"
+                    android:background="@drawable/cp_card"
                     android:clickable="true"
                     android:focusable="true"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -330,27 +422,51 @@
 
                     <ImageView
                         android:id="@+id/docimg"
-                        android:layout_width="@dimen/_38sdp"
-                        android:layout_height="@dimen/_38sdp"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
                         android:layout_marginStart="@dimen/_12sdp"
                         android:layout_marginTop="@dimen/_12sdp"
-                        android:background="@drawable/cp_icon_circle"
+                        android:background="@drawable/cp_chipbg_green"
                         android:contentDescription="@string/txt_error"
-                        android:padding="@dimen/_8sdp"
-                        android:src="@drawable/document_icon"
+                        android:padding="@dimen/_9sdp"
+                        android:src="@drawable/ic_cp_doc"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/cp_hue_green" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:contentDescription="@string/txt_error"
+                        android:src="@drawable/ic_cp_chevron"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/docTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:fontFamily="@font/manrope_bold"
+                        android:text="@string/document"
+                        android:textColor="@color/cp_text"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintBottom_toTopOf="@id/docSub"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <TextView
+                        android:id="@+id/docSub"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_12sdp"
                         android:layout_marginBottom="@dimen/_12sdp"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="@string/document"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_12ssp"
-                        android:textStyle="bold"
+                        android:fontFamily="@font/manrope_medium"
+                        android:text="@string/cp_documents_sub"
+                        android:textColor="@color/cp_text_muted"
+                        android:textSize="@dimen/_8ssp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" />
@@ -360,10 +476,10 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/iv_mnt_expense"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/_96sdp"
+                    android:layout_height="@dimen/_98sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginEnd="@dimen/_5sdp"
-                    android:background="@drawable/cp_tile_expense"
+                    android:background="@drawable/cp_card"
                     android:clickable="true"
                     android:focusable="true"
                     app:layout_constraintEnd_toStartOf="@id/gridCenter"
@@ -372,27 +488,51 @@
 
                     <ImageView
                         android:id="@+id/expenseimg"
-                        android:layout_width="@dimen/_38sdp"
-                        android:layout_height="@dimen/_38sdp"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
                         android:layout_marginStart="@dimen/_12sdp"
                         android:layout_marginTop="@dimen/_12sdp"
-                        android:background="@drawable/cp_icon_circle"
+                        android:background="@drawable/cp_chipbg_rose"
                         android:contentDescription="@string/txt_error"
-                        android:padding="@dimen/_8sdp"
-                        android:src="@drawable/expense_icon"
+                        android:padding="@dimen/_9sdp"
+                        android:src="@drawable/ic_cp_wallet"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/cp_hue_rose" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:contentDescription="@string/txt_error"
+                        android:src="@drawable/ic_cp_chevron"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/expenseTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:fontFamily="@font/manrope_bold"
+                        android:text="@string/cp_expense"
+                        android:textColor="@color/cp_text"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintBottom_toTopOf="@id/expenseSub"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <TextView
+                        android:id="@+id/expenseSub"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_12sdp"
                         android:layout_marginBottom="@dimen/_12sdp"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="@string/cp_expense"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_12ssp"
-                        android:textStyle="bold"
+                        android:fontFamily="@font/manrope_medium"
+                        android:text="@string/cp_expense_sub"
+                        android:textColor="@color/cp_text_muted"
+                        android:textSize="@dimen/_8ssp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" />
@@ -402,10 +542,10 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/iv_carparking"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/_96sdp"
+                    android:layout_height="@dimen/_98sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginStart="@dimen/_5sdp"
-                    android:background="@drawable/cp_tile_park"
+                    android:background="@drawable/cp_card"
                     android:clickable="true"
                     android:focusable="true"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -414,27 +554,51 @@
 
                     <ImageView
                         android:id="@+id/parkimg"
-                        android:layout_width="@dimen/_38sdp"
-                        android:layout_height="@dimen/_38sdp"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
                         android:layout_marginStart="@dimen/_12sdp"
                         android:layout_marginTop="@dimen/_12sdp"
-                        android:background="@drawable/cp_icon_circle"
+                        android:background="@drawable/cp_chipbg_teal"
                         android:contentDescription="@string/txt_error"
-                        android:padding="@dimen/_8sdp"
-                        android:src="@drawable/parking_icon"
+                        android:padding="@dimen/_9sdp"
+                        android:src="@drawable/ic_cp_parking"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/cp_hue_teal" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:contentDescription="@string/txt_error"
+                        android:src="@drawable/ic_cp_chevron"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/parkTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:fontFamily="@font/manrope_bold"
+                        android:text="@string/cp_parking"
+                        android:textColor="@color/cp_text"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintBottom_toTopOf="@id/parkSub"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <TextView
+                        android:id="@+id/parkSub"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_12sdp"
                         android:layout_marginBottom="@dimen/_12sdp"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="@string/cp_parking"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_12ssp"
-                        android:textStyle="bold"
+                        android:fontFamily="@font/manrope_medium"
+                        android:text="@string/cp_parking_sub"
+                        android:textColor="@color/cp_text_muted"
+                        android:textSize="@dimen/_8ssp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" />
@@ -444,9 +608,9 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/iv_weather"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_70sdp"
+                    android:layout_height="@dimen/_66sdp"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@drawable/cp_tile_weather"
+                    android:background="@drawable/cp_card"
                     android:clickable="true"
                     android:focusable="true"
                     app:layout_constraintTop_toBottomOf="@id/iv_mnt_expense">
@@ -455,26 +619,27 @@
                         android:id="@+id/weatherimg"
                         android:layout_width="@dimen/_42sdp"
                         android:layout_height="@dimen/_42sdp"
-                        android:layout_marginStart="@dimen/_16sdp"
-                        android:background="@drawable/cp_icon_circle"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:background="@drawable/cp_chipbg_blue"
                         android:contentDescription="@string/txt_error"
-                        android:padding="@dimen/_9sdp"
-                        android:src="@drawable/weather_icon"
+                        android:padding="@dimen/_10sdp"
+                        android:src="@drawable/ic_cp_weather"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/cp_hue_blue" />
 
                     <TextView
                         android:id="@+id/weatherTitle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_14sdp"
-                        android:fontFamily="sans-serif-medium"
+                        android:fontFamily="@font/manrope_bold"
                         android:text="@string/cp_weather"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_14ssp"
-                        android:textStyle="bold"
+                        android:textColor="@color/cp_text"
+                        android:textSize="@dimen/_13ssp"
                         app:layout_constraintBottom_toTopOf="@id/weatherSub"
+                        app:layout_constraintEnd_toStartOf="@id/weatherChevron"
                         app:layout_constraintStart_toEndOf="@id/weatherimg"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_chainStyle="packed" />
@@ -483,13 +648,24 @@
                         android:id="@+id/weatherSub"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:alpha="0.9"
+                        android:fontFamily="@font/manrope_medium"
                         android:text="@string/cp_weather_sub"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_10ssp"
+                        android:textColor="@color/cp_text_muted"
+                        android:textSize="@dimen/_9ssp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@id/weatherTitle"
                         app:layout_constraintTop_toBottomOf="@id/weatherTitle" />
+
+                    <ImageView
+                        android:id="@+id/weatherChevron"
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:contentDescription="@string/txt_error"
+                        android:src="@drawable/ic_cp_chevron"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -499,8 +675,8 @@
         <LinearLayout
             android:id="@+id/rmv_ads"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_52sdp"
-            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_height="@dimen/_54sdp"
+            android:layout_marginHorizontal="@dimen/_14sdp"
             android:layout_marginBottom="@dimen/_8sdp"
             android:background="@drawable/cp_remove_ads"
             android:clickable="true"
@@ -513,12 +689,13 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <ImageView
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:background="@drawable/cp_icon_circle"
+                android:layout_width="@dimen/_32sdp"
+                android:layout_height="@dimen/_32sdp"
+                android:background="@drawable/cp_chipbg_blue"
                 android:contentDescription="@string/txt_error"
-                android:padding="@dimen/_6sdp"
-                android:src="@drawable/ic_cp_shield" />
+                android:padding="@dimen/_7sdp"
+                android:src="@drawable/ic_cp_shield"
+                app:tint="@color/cp_accent" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -530,32 +707,30 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-medium"
+                    android:fontFamily="@font/manrope_bold"
                     android:text="@string/cp_go_adfree"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_12ssp"
-                    android:textStyle="bold" />
+                    android:textColor="@color/cp_text"
+                    android:textSize="@dimen/_12ssp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:alpha="0.9"
+                    android:fontFamily="@font/manrope_medium"
                     android:text="@string/cp_go_adfree_sub"
-                    android:textColor="@color/white"
+                    android:textColor="@color/cp_text_muted"
                     android:textSize="@dimen/_9ssp" />
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/cp_icon_circle"
-                android:fontFamily="sans-serif-medium"
-                android:paddingHorizontal="@dimen/_12sdp"
-                android:paddingVertical="@dimen/_5sdp"
+                android:layout_height="@dimen/_32sdp"
+                android:background="@drawable/cp_btn_accent"
+                android:fontFamily="@font/manrope_bold"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/_14sdp"
                 android:text="@string/cp_upgrade"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_10ssp"
-                android:textStyle="bold" />
+                android:textSize="@dimen/_10ssp" />
         </LinearLayout>
 
         <!-- ===== Native ad ===== -->
@@ -563,7 +738,7 @@
             android:id="@+id/native_ad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginHorizontal="@dimen/_14sdp"
             android:layout_marginBottom="@dimen/_8sdp"
             android:visibility="gone"
             app:cardBackgroundColor="@color/cp_surface"
@@ -596,26 +771,27 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/_64sdp"
-                    android:layout_height="@dimen/_64sdp"
-                    android:background="@drawable/cp_icon_circle"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:background="@drawable/cp_chipbg_blue"
                     android:contentDescription="@string/txt_error"
-                    android:padding="@dimen/_10sdp"
-                    android:src="@drawable/header_icon" />
+                    android:padding="@dimen/_14sdp"
+                    android:src="@drawable/ic_cp_car"
+                    app:tint="@color/cp_accent" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:fontFamily="sans-serif-black"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/manrope_extrabold"
                     android:text="@string/app_name"
                     android:textColor="@color/cp_text"
-                    android:textSize="@dimen/_14ssp"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/_14ssp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/manrope_medium"
                     android:text="@string/cp_tagline"
                     android:textColor="@color/cp_text_muted"
                     android:textSize="@dimen/_9ssp" />
@@ -649,6 +825,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_12sdp"
+                        android:fontFamily="@font/manrope_medium"
                         android:text="@string/txt_ratus"
                         android:textColor="@color/cp_text"
                         android:textSize="@dimen/_12ssp" />
@@ -676,6 +853,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_12sdp"
+                        android:fontFamily="@font/manrope_medium"
                         android:text="@string/txt_share_app"
                         android:textColor="@color/cp_text"
                         android:textSize="@dimen/_12ssp" />
@@ -703,6 +881,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_12sdp"
+                        android:fontFamily="@font/manrope_medium"
                         android:text="@string/txt_privacy"
                         android:textColor="@color/cp_text"
                         android:textSize="@dimen/_12ssp" />

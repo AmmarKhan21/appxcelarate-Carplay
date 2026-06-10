@@ -36,7 +36,7 @@ class SpeedGaugeView @JvmOverloads constructor(
     private val trackPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.STROKE
         strokeCap = Paint.Cap.ROUND
-        color = Color.parseColor("#2E3A52")
+        color = Color.parseColor("#212838")
         strokeWidth = 14f * density
     }
 
@@ -48,13 +48,13 @@ class SpeedGaugeView @JvmOverloads constructor(
 
     private val tickPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.STROKE
-        color = Color.parseColor("#33415C")
+        color = Color.parseColor("#2A3242")
         strokeWidth = 2f * density
     }
 
     private val majorTickPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.STROKE
-        color = Color.parseColor("#6B768C")
+        color = Color.parseColor("#576073")
         strokeWidth = 3f * density
     }
 
@@ -94,9 +94,9 @@ class SpeedGaugeView @JvmOverloads constructor(
         progressPaint.shader = SweepGradient(
             w / 2f, h / 2f,
             intArrayOf(
-                Color.parseColor("#2D7DFF"),
-                Color.parseColor("#00E5FF"),
-                Color.parseColor("#2D7DFF")
+                Color.parseColor("#4D7CFE"),
+                Color.parseColor("#6E9BFF"),
+                Color.parseColor("#4D7CFE")
             ),
             floatArrayOf(0f, 0.5f, 1f)
         )
