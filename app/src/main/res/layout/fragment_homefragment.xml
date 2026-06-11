@@ -90,179 +90,351 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginHorizontal="@dimen/_8sdp"
             app:layout_constraintTop_toBottomOf="@+id/img_main"
-            app:layout_constraintBottom_toTopOf="@id/rmv_ads">
+            app:layout_constraintBottom_toTopOf="@id/rmv_ads"
+            android:scrollbars="none">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/carplay"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_90sdp"
-                    android:background="@drawable/card_bg"
-                    app:layout_constraintEnd_toStartOf="@+id/iv_documents"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginHorizontal="@dimen/_3sdp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    >
-                    <ImageView
-                        android:id="@+id/carimg"
-                        android:layout_width="@dimen/_35sdp"
-                        android:layout_height="@dimen/_35sdp"
-                        android:src="@drawable/car_icon"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginBottom="@dimen/_25sdp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Car Connect"
-                        app:layout_constraintTop_toBottomOf="@id/carimg"
-                        app:layout_constraintStart_toStartOf="@id/carimg"
-                        app:layout_constraintEnd_toEndOf="@id/carimg"
-                        android:textColor="@color/white"
-                        android:layout_marginTop="@dimen/_2sdp"
-                        android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                <!-- Row 1: Car Connect + Document -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/_5sdp">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/carplay"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/_3sdp"
+                        android:background="@drawable/card_bg">
+                        <ImageView android:id="@+id/carimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/car_icon" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Car Connect" app:layout_constraintTop_toBottomOf="@id/carimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/iv_documents"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:background="@drawable/card_bg">
+                        <ImageView android:id="@+id/docimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/document_icon" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Document" app:layout_constraintTop_toBottomOf="@id/docimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/iv_documents"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_90sdp"
-                    android:background="@drawable/card_bg"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginHorizontal="@dimen/_3sdp"
-                    app:layout_constraintStart_toEndOf="@+id/carplay"
-                    app:layout_constraintTop_toTopOf="parent"
-                    >
-                    <ImageView
-                        android:id="@+id/docimg"
-                        android:layout_width="@dimen/_35sdp"
-                        android:layout_height="@dimen/_35sdp"
-                        android:src="@drawable/document_icon"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginBottom="@dimen/_25sdp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Document"
-                        app:layout_constraintTop_toBottomOf="@id/docimg"
-                        app:layout_constraintStart_toStartOf="@id/docimg"
-                        app:layout_constraintEnd_toEndOf="@id/docimg"
-                        android:textColor="@color/white"
-                        android:layout_marginTop="@dimen/_2sdp"
-                        android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/iv_mnt_expense"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_90sdp"
-                    android:background="@drawable/card_bg"
-                    android:layout_marginHorizontal="@dimen/_3sdp"
-                    android:layout_marginTop="@dimen/_7sdp"
-                    app:layout_constraintEnd_toStartOf="@+id/iv_carparking"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/carplay"
-                    >
-                    <ImageView
-                        android:id="@+id/expenseimg"
-                        android:layout_width="@dimen/_35sdp"
-                        android:layout_height="@dimen/_35sdp"
-                        android:src="@drawable/expense_icon"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginBottom="@dimen/_25sdp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Expense"
-                        app:layout_constraintTop_toBottomOf="@id/expenseimg"
-                        app:layout_constraintStart_toStartOf="@id/expenseimg"
-                        app:layout_constraintEnd_toEndOf="@id/expenseimg"
-                        android:textColor="@color/white"
-                        android:layout_marginTop="@dimen/_2sdp"
-                        android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/iv_carparking"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_90sdp"
-                    android:background="@drawable/card_bg"
-                    android:layout_marginHorizontal="@dimen/_3sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginTop="@dimen/_7sdp"
-                    app:layout_constraintStart_toEndOf="@+id/iv_mnt_expense"
-                    app:layout_constraintTop_toBottomOf="@+id/iv_documents"
-                    >
-                    <ImageView
-                        android:id="@+id/parkimg"
-                        android:layout_width="@dimen/_35sdp"
-                        android:layout_height="@dimen/_35sdp"
-                        android:src="@drawable/parking_icon"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginBottom="@dimen/_25sdp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Car Parking"
-                        app:layout_constraintTop_toBottomOf="@id/parkimg"
-                        app:layout_constraintStart_toStartOf="@id/parkimg"
-                        app:layout_constraintEnd_toEndOf="@id/parkimg"
-                        android:textColor="@color/white"
-                        android:layout_marginTop="@dimen/_2sdp"
-                        android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                <!-- Row 2: Expense + Car Parking -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/_5sdp">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/iv_mnt_expense"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/_3sdp"
+                        android:background="@drawable/card_bg">
+                        <ImageView android:id="@+id/expenseimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/expense_icon" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Expense" app:layout_constraintTop_toBottomOf="@id/expenseimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/iv_carparking"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:background="@drawable/card_bg">
+                        <ImageView android:id="@+id/parkimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/parking_icon" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Car Parking" app:layout_constraintTop_toBottomOf="@id/parkimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/iv_weather"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_90sdp"
-                    android:background="@drawable/card_bg"
-                    android:layout_marginHorizontal="@dimen/_3sdp"
-                    android:layout_marginTop="@dimen/_7sdp"
-                    app:layout_constraintEnd_toStartOf="@+id/iv_carparking"
-                    app:layout_constraintTop_toBottomOf="@+id/iv_mnt_expense"
-                    app:layout_constraintStart_toStartOf="@id/iv_mnt_expense"
-                    >
-                    <ImageView
-                        android:id="@+id/weatherimg"
-                        android:layout_width="@dimen/_35sdp"
-                        android:layout_height="@dimen/_35sdp"
-                        android:src="@drawable/weather_icon"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginBottom="@dimen/_25sdp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Weather"
-                        app:layout_constraintTop_toBottomOf="@id/weatherimg"
-                        app:layout_constraintStart_toStartOf="@id/weatherimg"
-                        app:layout_constraintEnd_toEndOf="@id/weatherimg"
-                        android:textColor="@color/white"
-                        android:layout_marginTop="@dimen/_2sdp"
-                        android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                <!-- Row 3: Weather + Speedometer -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/_5sdp">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/iv_weather"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/_3sdp"
+                        android:background="@drawable/card_bg">
+                        <ImageView android:id="@+id/weatherimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/weather_icon" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Weather" app:layout_constraintTop_toBottomOf="@id/weatherimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/iv_speedometer"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:background="@drawable/card_bg">
+                        <ImageView android:id="@+id/speedimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Speedometer" app:layout_constraintTop_toBottomOf="@id/speedimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <!-- Row 4: Fuel Tracker + Reminders -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/_5sdp">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/iv_fuel"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/_3sdp"
+                        android:background="@drawable/card_bg">
+                        <ImageView android:id="@+id/fuelimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fuel Tracker" app:layout_constraintTop_toBottomOf="@id/fuelimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/iv_reminders"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:background="@drawable/card_bg">
+                        <ImageView android:id="@+id/reminderimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Reminders" app:layout_constraintTop_toBottomOf="@id/reminderimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
+                <!-- Row 5: Emergency + Trip Tracker -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/_5sdp">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/iv_emergency"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/_3sdp"
+                        android:background="@drawable/card_bg">
+                        <ImageView android:id="@+id/emergencyimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Emergency" app:layout_constraintTop_toBottomOf="@id/emergencyimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/emergency_red" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/iv_trip"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:background="@drawable/card_bg">
+                        <ImageView android:id="@+id/tripimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Trip Tracker" app:layout_constraintTop_toBottomOf="@id/tripimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
+                <!-- Row 6: Driving Score + Nearby Places -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/_5sdp">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/iv_driving_score"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/_3sdp"
+                        android:background="@drawable/card_bg">
+                        <ImageView android:id="@+id/scoreimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Drive Score" app:layout_constraintTop_toBottomOf="@id/scoreimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/iv_nearby"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:background="@drawable/card_bg">
+                        <ImageView android:id="@+id/nearbyimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Nearby" app:layout_constraintTop_toBottomOf="@id/nearbyimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
+                <!-- Row 7: Dash Cam + Tire Pressure -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/_5sdp">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/iv_dashcam"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/_3sdp"
+                        android:background="@drawable/card_bg">
+                        <ImageView android:id="@+id/dashcamimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Dash Cam" app:layout_constraintTop_toBottomOf="@id/dashcamimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/iv_tire"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:background="@drawable/card_bg">
+                        <ImageView android:id="@+id/tireimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tire Pressure" app:layout_constraintTop_toBottomOf="@id/tireimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
+                <!-- Row 8: My Cars + Fatigue Alert -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/_5sdp">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/iv_car_profile"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/_3sdp"
+                        android:background="@drawable/card_bg">
+                        <ImageView android:id="@+id/carprofileimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/car_icon" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="My Cars" app:layout_constraintTop_toBottomOf="@id/carprofileimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/iv_fatigue"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:background="@drawable/card_bg">
+                        <ImageView android:id="@+id/fatigueimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fatigue Alert" app:layout_constraintTop_toBottomOf="@id/fatigueimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
+                <!-- Row 9: Insurance + Mileage Log -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/_5sdp">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/iv_insurance"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/_3sdp"
+                        android:background="@drawable/card_bg">
+                        <ImageView android:id="@+id/insuranceimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/document_icon" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Insurance" app:layout_constraintTop_toBottomOf="@id/insuranceimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/iv_mileage"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:background="@drawable/card_bg">
+                        <ImageView android:id="@+id/mileageimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mileage Log" app:layout_constraintTop_toBottomOf="@id/mileageimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
+                <!-- Row 10: AI Assistant + DND Mode -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/_5sdp">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/iv_ai_assistant"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/_3sdp"
+                        android:background="@drawable/card_bg">
+                        <ImageView android:id="@+id/aiimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="AI Assistant" app:layout_constraintTop_toBottomOf="@id/aiimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/iv_dnd"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:background="@drawable/card_bg">
+                        <ImageView android:id="@+id/dndimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Drive Mode" app:layout_constraintTop_toBottomOf="@id/dndimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
+                <!-- Row 11: Expense Manager + Service History -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/_5sdp">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/iv_expense_manager"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/_3sdp"
+                        android:background="@drawable/card_bg">
+                        <ImageView android:id="@+id/expmanimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/expense_icon" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Expenses" app:layout_constraintTop_toBottomOf="@id/expmanimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/iv_service_history"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:background="@drawable/card_bg">
+                        <ImageView android:id="@+id/historyimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Service History" app:layout_constraintTop_toBottomOf="@id/historyimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
+                <!-- Row 12: Voice + Predictive Maintenance -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/_10sdp">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/iv_voice"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/_3sdp"
+                        android:background="@drawable/card_bg">
+                        <ImageView android:id="@+id/voiceimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Voice" app:layout_constraintTop_toBottomOf="@id/voiceimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/iv_predictive"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:background="@drawable/card_bg">
+                        <ImageView android:id="@+id/predictimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Maintenance" app:layout_constraintTop_toBottomOf="@id/predictimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
+            </LinearLayout>
         </ScrollView>
 
         <ImageView

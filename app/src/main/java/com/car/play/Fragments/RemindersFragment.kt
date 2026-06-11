@@ -1,0 +1,244 @@
+package com.car.play.android.app.Fragments
+
+import android.app.AlarmManager
+import android.app.DatePickerDialog
+import android.app.PendingIntent
+import android.app.TimePickerDialog
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.car.play.GoogleAds.GoogleAds
+import com.car.play.android.app.Adapters.ReminderAdapter
+import com.car.play.android.app.R
+import com.car.play.android.app.databinding.DialogAddReminderBinding
+import com.car.play.android.app.databinding.FragmentRemindersBinding
+import com.car.play.android.app.db.ReminderEntity
+import com.car.play.android.app.db.ReminderViewModel
+import com.google.android.material.switchmaterial.SwitchMaterial
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
+
+class RemindersFragment : Fragment() {
+
+    private lateinit var binding: FragmentRemindersBinding
+    private lateinit var googleAds: GoogleAds
+    private lateinit var viewModel: ReminderViewModel
+    private lateinit var reminderAdapter: ReminderAdapter
+    private var currentFilter = "All"
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentRemindersBinding.inflate(inflater, container, false)
+        googleAds = GoogleAds()
+        googleAds.CheckNative(this, binding.nativeAd)
+        viewModel = ViewModelProvider(requireActivity()).get(ReminderViewModel::class.java)
+
+        setupRecyclerView()
+        setupClickListeners()
+        setupFilterChips()
+        observeData()
+
+        return binding.root
+    }
+
+    private fun setupRecyclerView() {
+        reminderAdapter = ReminderAdapter(
+            emptyList(),
+            onDeleteClick = { reminder -> showDeleteDialog(reminder) },
+            onCompleteClick = { reminder, isChecked -> viewModel.markComplete(reminder.id, isChecked) }
+        )
+        binding.rvReminders.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = reminderAdapter
+        }
+    }
+
+    private fun setupClickListeners() {
+        binding.icBack.setOnClickListener { findNavController().popBackStack() }
+        binding.fabAddReminder.setOnClickListener { showAddReminderDialog() }
+    }
+
+    private fun setupFilterChips() {
+        binding.chipAll.setOnClickListener {
+            currentFilter = "All"
+            observeData()
+        }
+        binding.chipActive.setOnClickListener {
+            currentFilter = "Active"
+            observeData()
+        }
+        binding.chipCompleted.setOnClickListener {
+            currentFilter = "Completed"
+            observeData()
+        }
+    }
+
+    private fun observeData() {
+        val liveData = when (currentFilter) {
+            "Active" -> viewModel.activeReminders
+            else -> viewModel.allReminders
+        }
+
+        liveData.observe(viewLifecycleOwner, Observer { reminders ->
+            val filteredList = when (currentFilter) {
+                "Completed" -> reminders.filter { it.isCompleted }
+                else -> reminders
+            }
+
+            if (filteredList.isNullOrEmpty()) {
+                binding.emptyImg.visibility = View.VISIBLE
+                binding.rvReminders.visibility = View.GONE
+            } else {
+                binding.emptyImg.visibility = View.GONE
+                binding.rvReminders.visibility = View.VISIBLE
+                reminderAdapter.updateList(filteredList)
+            }
+        })
+    }
+
+    private fun showDeleteDialog(reminder: ReminderEntity) {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Delete Reminder")
+            .setMessage("Are you sure you want to delete this reminder?")
+            .setPositiveButton("Delete") { _, _ ->
+                viewModel.deleteReminder(reminder)
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
+    private fun showAddReminderDialog() {
+        val dialogBinding = DialogAddReminderBinding.inflate(LayoutInflater.from(requireContext()))
+        val calendar = Calendar.getInstance()
+
+        val categories = arrayOf("Oil Change", "Tire Rotation", "Insurance", "Inspection", "Car Wash", "Other")
+        val categoryAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, categories)
+        categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        dialogBinding.spinnerCategory.adapter = categoryAdapter
+
+        val priorities = arrayOf("High", "Medium", "Low")
+        val priorityAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, priorities)
+        priorityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        dialogBinding.spinnerPriority.adapter = priorityAdapter
+
+        val intervals = arrayOf("Weekly", "Monthly", "Yearly")
+        val intervalAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, intervals)
+        intervalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        dialogBinding.spinnerRecurringInterval.adapter = intervalAdapter
+
+        dialogBinding.switchRecurring.setOnCheckedChangeListener { _, isChecked ->
+            dialogBinding.spinnerRecurringInterval.visibility = if (isChecked) View.VISIBLE else View.GONE
+        }
+
+        dialogBinding.etDate.setOnClickListener {
+            DatePickerDialog(
+                requireContext(),
+                { _, year, month, day ->
+                    calendar.set(Calendar.YEAR, year)
+                    calendar.set(Calendar.MONTH, month)
+                    calendar.set(Calendar.DAY_OF_MONTH, day)
+                    val format = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+                    dialogBinding.etDate.setText(format.format(calendar.time))
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            ).show()
+        }
+
+        dialogBinding.etTime.setOnClickListener {
+            TimePickerDialog(
+                requireContext(),
+                { _, hour, minute ->
+                    calendar.set(Calendar.HOUR_OF_DAY, hour)
+                    calendar.set(Calendar.MINUTE, minute)
+                    val format = SimpleDateFormat("HH:mm", Locale.getDefault())
+                    dialogBinding.etTime.setText(format.format(calendar.time))
+                },
+                calendar.get(Calendar.HOUR_OF_DAY),
+                calendar.get(Calendar.MINUTE),
+                true
+            ).show()
+        }
+
+        val dialog = AlertDialog.Builder(requireContext(), R.style.Theme_NewCarplay)
+            .setView(dialogBinding.root)
+            .create()
+
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        dialogBinding.btnCancel.setOnClickListener { dialog.dismiss() }
+
+        dialogBinding.btnSave.setOnClickListener {
+            val title = dialogBinding.etTitle.text.toString().trim()
+            val description = dialogBinding.etDescription.text.toString().trim()
+            val date = dialogBinding.etDate.text.toString().trim()
+            val time = dialogBinding.etTime.text.toString().trim()
+            val category = dialogBinding.spinnerCategory.selectedItem?.toString() ?: ""
+            val priority = dialogBinding.spinnerPriority.selectedItem?.toString() ?: ""
+            val isRecurring = dialogBinding.switchRecurring.isChecked
+            val recurringInterval = if (isRecurring) {
+                dialogBinding.spinnerRecurringInterval.selectedItem?.toString() ?: ""
+            } else ""
+
+            if (title.isEmpty()) {
+                Toast.makeText(requireContext(), "Please enter a title", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (date.isEmpty()) {
+                Toast.makeText(requireContext(), "Please select a date", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (time.isEmpty()) {
+                Toast.makeText(requireContext(), "Please select a time", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            viewModel.addReminder(title, description, date, time, isRecurring, recurringInterval, category, priority)
+            scheduleNotification(title, description, calendar)
+            Toast.makeText(requireContext(), "Reminder saved", Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun scheduleNotification(title: String, description: String, calendar: Calendar) {
+        try {
+            val alarmManager = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            val intent = Intent("com.car.play.REMINDER_NOTIFICATION").apply {
+                putExtra("title", title)
+                putExtra("description", description)
+            }
+            val pendingIntent = PendingIntent.getBroadcast(
+                requireContext(),
+                System.currentTimeMillis().toInt(),
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+            alarmManager.setExactAndAllowWhileIdle(
+                AlarmManager.RTC_WAKEUP,
+                calendar.timeInMillis,
+                pendingIntent
+            )
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+}

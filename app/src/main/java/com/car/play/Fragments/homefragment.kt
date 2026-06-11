@@ -79,71 +79,32 @@ class homefragment : Fragment() {
 
     private fun setupClickListeners() {
         binding.ivNav.setOnClickListener { binding.nav.open() }
-        binding.carplay.setOnClickListener {
-            googleAds.CheckInterstitial(requireActivity(),object : onAdShowed {
-                override fun onAdShow() {
-                    mController.navigate(R.id.action_homeFragment_to_carselectfragment)
-                }
-            })
-            it.isEnabled = false
-            Handler(Looper.getMainLooper()).postDelayed({
-                it.isEnabled = true
-            }, 2000)
 
-        }
+        setupFeatureTile(binding.carplay, R.id.action_homeFragment_to_carselectfragment)
+        setupFeatureTile(binding.ivDocuments, R.id.action_homeFragment_to_showdocumentfragment)
+        setupFeatureTile(binding.ivMntExpense, R.id.action_homeFragment_to_carmaintenencefragment)
+        setupFeatureTile(binding.ivCarparking, R.id.action_homeFragment_to_parkfragment)
+        setupFeatureTile(binding.ivWeather, R.id.action_homeFragment_to_weatherfragment)
+        setupFeatureTile(binding.ivEmergency, R.id.action_homeFragment_to_emergencyfragment)
+        setupFeatureTile(binding.ivSpeedometer, R.id.action_homeFragment_to_speedometerfragment)
+        setupFeatureTile(binding.ivFuel, R.id.action_homeFragment_to_fuelfragment)
+        setupFeatureTile(binding.ivReminders, R.id.action_homeFragment_to_remindersfragment)
+        setupFeatureTile(binding.ivTrip, R.id.action_homeFragment_to_tripfragment)
+        setupFeatureTile(binding.ivDrivingScore, R.id.action_homeFragment_to_drivingscorefragment)
+        setupFeatureTile(binding.ivNearby, R.id.action_homeFragment_to_nearbyfragment)
+        setupFeatureTile(binding.ivDashcam, R.id.action_homeFragment_to_dashcamfragment)
+        setupFeatureTile(binding.ivTire, R.id.action_homeFragment_to_tirefragment)
+        setupFeatureTile(binding.ivCarProfile, R.id.action_homeFragment_to_carprofilefragment)
+        setupFeatureTile(binding.ivFatigue, R.id.action_homeFragment_to_fatiguefragment)
+        setupFeatureTile(binding.ivInsurance, R.id.action_homeFragment_to_insurancefragment)
+        setupFeatureTile(binding.ivMileage, R.id.action_homeFragment_to_mileagefragment)
+        setupFeatureTile(binding.ivAiAssistant, R.id.action_homeFragment_to_aiassistantfragment)
+        setupFeatureTile(binding.ivDnd, R.id.action_homeFragment_to_dndfragment)
+        setupFeatureTile(binding.ivExpenseManager, R.id.action_homeFragment_to_expensemanagerfragment)
+        setupFeatureTile(binding.ivServiceHistory, R.id.action_homeFragment_to_servicetimelinefragment)
+        setupFeatureTile(binding.ivVoice, R.id.action_homeFragment_to_voicefragment)
+        setupFeatureTile(binding.ivPredictive, R.id.action_homeFragment_to_predictivefragment)
 
-//        binding.ivEmergrncy.setOnClickListener {
-//            mController.navigate(R.id.action_homeFragment_to_emergencyfragment)
-//        }
-        binding.ivCarparking.setOnClickListener {
-            googleAds.CheckInterstitial(requireActivity(),object : onAdShowed {
-                override fun onAdShow() {
-                    mController.navigate(R.id.action_homeFragment_to_parkfragment)
-                }
-            })
-            it.isEnabled = false
-            Handler(Looper.getMainLooper()).postDelayed({
-                it.isEnabled = true
-            }, 2000)
-
-
-        }
-        binding.ivDocuments.setOnClickListener {
-            googleAds.CheckInterstitial(requireActivity(),object : onAdShowed {
-                override fun onAdShow() {
-                    mController.navigate(R.id.action_homeFragment_to_showdocumentfragment)
-                }
-            })
-            it.isEnabled = false
-            Handler(Looper.getMainLooper()).postDelayed({
-                it.isEnabled = true
-            }, 2000)
-
-        }
-        binding.ivMntExpense.setOnClickListener {
-            googleAds.CheckInterstitial(requireActivity(),object : onAdShowed {
-                override fun onAdShow() {
-                    mController.navigate(R.id.action_homeFragment_to_carmaintenencefragment)
-                }
-            })
-            it.isEnabled = false
-            Handler(Looper.getMainLooper()).postDelayed({
-                it.isEnabled = true
-            }, 2000)
-
-        }
-        binding.ivWeather.setOnClickListener {
-            googleAds.CheckInterstitial(requireActivity(),object : onAdShowed {
-                override fun onAdShow() {
-                    mController.navigate(R.id.action_homeFragment_to_weatherfragment)
-                }
-            })
-            it.isEnabled = false
-            Handler(Looper.getMainLooper()).postDelayed({
-                it.isEnabled = true
-            }, 2000)
-
-        }
         binding.ivPrivacy.setOnClickListener {
             showSharePrivacyDialog(requireContext(), "privacy")
         }
@@ -153,6 +114,18 @@ class homefragment : Fragment() {
         binding.ivRatus.setOnClickListener {
             binding.nav.close()
             RatingDialog.ratingDialog(this, requireActivity())
+        }
+    }
+
+    private fun setupFeatureTile(view: android.view.View, destinationId: Int) {
+        view.setOnClickListener {
+            googleAds.CheckInterstitial(requireActivity(), object : onAdShowed {
+                override fun onAdShow() {
+                    mController.navigate(destinationId)
+                }
+            })
+            it.isEnabled = false
+            Handler(Looper.getMainLooper()).postDelayed({ it.isEnabled = true }, 2000)
         }
     }
     private fun setupSubscribeButton() {

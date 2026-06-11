@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_dark"
+    android:orientation="vertical"
+    android:padding="@dimen/_15sdp">
+
+    <!-- Front Left -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/front_left"
+        android:textColor="#BBBBBB"
+        android:textSize="@dimen/_10ssp" />
+
+    <EditText
+        android:id="@+id/etFrontLeft"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:background="@drawable/rounded_bg"
+        android:hint="e.g. 32.0"
+        android:inputType="numberDecimal"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@color/white"
+        android:textColorHint="#999999"
+        android:textSize="@dimen/_12ssp" />
+
+    <!-- Front Right -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:text="@string/front_right"
+        android:textColor="#BBBBBB"
+        android:textSize="@dimen/_10ssp" />
+
+    <EditText
+        android:id="@+id/etFrontRight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:background="@drawable/rounded_bg"
+        android:hint="e.g. 32.0"
+        android:inputType="numberDecimal"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@color/white"
+        android:textColorHint="#999999"
+        android:textSize="@dimen/_12ssp" />
+
+    <!-- Rear Left -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:text="@string/rear_left"
+        android:textColor="#BBBBBB"
+        android:textSize="@dimen/_10ssp" />
+
+    <EditText
+        android:id="@+id/etRearLeft"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:background="@drawable/rounded_bg"
+        android:hint="e.g. 32.0"
+        android:inputType="numberDecimal"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@color/white"
+        android:textColorHint="#999999"
+        android:textSize="@dimen/_12ssp" />
+
+    <!-- Rear Right -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:text="@string/rear_right"
+        android:textColor="#BBBBBB"
+        android:textSize="@dimen/_10ssp" />
+
+    <EditText
+        android:id="@+id/etRearRight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:background="@drawable/rounded_bg"
+        android:hint="e.g. 32.0"
+        android:inputType="numberDecimal"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@color/white"
+        android:textColorHint="#999999"
+        android:textSize="@dimen/_12ssp" />
+
+    <!-- Recommended Pressure -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:text="Recommended PSI"
+        android:textColor="#BBBBBB"
+        android:textSize="@dimen/_10ssp" />
+
+    <EditText
+        android:id="@+id/etRecommended"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:background="@drawable/rounded_bg"
+        android:hint="e.g. 35.0"
+        android:inputType="numberDecimal"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@color/white"
+        android:textColorHint="#999999"
+        android:textSize="@dimen/_12ssp" />
+
+    <!-- Notes -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:text="@string/notes"
+        android:textColor="#BBBBBB"
+        android:textSize="@dimen/_10ssp" />
+
+    <EditText
+        android:id="@+id/etNotes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:background="@drawable/rounded_bg"
+        android:gravity="top"
+        android:hint="Optional notes..."
+        android:inputType="textMultiLine"
+        android:lines="3"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@color/white"
+        android:textColorHint="#999999"
+        android:textSize="@dimen/_12ssp" />
+
+    <!-- Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/btnCancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_weight="1"
+            android:background="@drawable/card_bg"
+            android:gravity="center"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_10sdp"
+            android:text="@string/cancel"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/btnSave"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_weight="1"
+            android:background="@drawable/submit_btn_bg"
+            android:gravity="center"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_10sdp"
+            android:text="@string/save"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

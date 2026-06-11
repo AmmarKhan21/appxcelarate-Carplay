@@ -25,4 +25,41 @@
     <color name="orange">#FF9800</color>
     <color name="light_grey">#FF9800</color>
     <color name="colorPrimaryLight">#62789E</color>
+
+    <!-- Feature colors -->
+    <color name="emergency_red">#FF1744</color>
+    <color name="success_green">#4CAF50</color>
+    <color name="warning_yellow">#FFC107</color>
+    <color name="warning_orange">#FF9800</color>
+    <color name="info_blue">#2196F3</color>
+    <color name="dark_surface">#1A1A2E</color>
+    <color name="dark_card">#16213E</color>
+    <color name="accent_blue">#3E73BF</color>
+    <color name="text_secondary">#B0B0B0</color>
+    <color name="text_hint">#808080</color>
+    <color name="speedometer_bg">#0F0F23</color>
+    <color name="speed_green">#00E676</color>
+    <color name="speed_yellow">#FFEA00</color>
+    <color name="speed_red">#FF1744</color>
+    <color name="score_excellent">#00C853</color>
+    <color name="score_good">#64DD17</color>
+    <color name="score_average">#FFD600</color>
+    <color name="score_poor">#FF6D00</color>
+    <color name="score_bad">#DD2C00</color>
+    <color name="chat_user_bubble">#3E73BF</color>
+    <color name="chat_bot_bubble">#2C2C3E</color>
+    <color name="tire_ok">#4CAF50</color>
+    <color name="tire_low">#FFC107</color>
+    <color name="tire_critical">#FF1744</color>
+    <color name="fatigue_fresh">#4CAF50</color>
+    <color name="fatigue_moderate">#FFC107</color>
+    <color name="fatigue_tired">#FF9800</color>
+    <color name="fatigue_dangerous">#FF1744</color>
+    <color name="divider">#2A2A3E</color>
+    <color name="input_bg">#33FFFFFF</color>
+    <color name="button_primary">#3E73BF</color>
+    <color name="button_danger">#FF1744</color>
+    <color name="card_dark_bg">#1E1E32</color>
+    <color name="transparent_white_10">#1AFFFFFF</color>
+    <color name="transparent_white_20">#33FFFFFF</color>
 </resources>
