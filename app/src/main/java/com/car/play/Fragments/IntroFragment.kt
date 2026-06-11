@@ -1,65 +1,63 @@
 package com.car.play.android.app.Fragments
-import android.app.Activity
-import android.content.Context
-import android.content.res.Configuration
+
 import android.os.Bundle
-import android.util.DisplayMetrics
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
-import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import com.car.play.GoogleAds.GoogleAds
-
 import com.google.android.material.tabs.TabLayout
 import com.car.play.android.app.Adapters.IntroAdapter
 import com.car.play.android.app.R
 import com.car.play.android.app.data_classes.Intro
-import com.car.play.android.app.databinding.FragmentHomefragmentBinding
 import com.car.play.android.app.databinding.FragmentIntroBinding
-
-import java.util.Locale
 
 class IntroFragment : Fragment() {
     private val binding by lazy { FragmentIntroBinding.inflate(layoutInflater) }
-    private val mController by lazy { (requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment).navController }
+    private val mController by lazy {
+        (requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment).navController
+    }
     private lateinit var mList: List<Intro>
     private lateinit var introViewPagerAdapter: IntroAdapter
     private var position: Int = 0
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
     private lateinit var googleAds: GoogleAds
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        setupClickListeners()
         setupView()
-//        val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-//        val savedLanguage = sharedPreferences.getString("language", "en")
-//        savedLanguage?.let { setAppLocale(it) }
+        setupClickListeners()
         googleAds = GoogleAds()
-        googleAds.CheckNative(this@IntroFragment,binding.nativeAd)
+        googleAds.CheckNative(this@IntroFragment, binding.nativeAd)
         return binding.root
     }
 
-
-
-
     private fun setupView() {
         mList = listOf(
-            Intro(getString(R.string.txt_wirless), getString(R.string.wirless_connectivity), R.drawable.iv_intro1),
-            Intro(getString(R.string.txt_navigation), getString(R.string.navigation), R.drawable.iv_intro2),
+            Intro(
+                "Connect Your Car",
+                "Seamlessly connect your phone to your car via WiFi, Bluetooth, USB, or screen casting.",
+                R.drawable.iv_intro1
+            ),
+            Intro(
+                "Track Everything",
+                "Monitor fuel, expenses, maintenance, trips, and driving score all in one place.",
+                R.drawable.iv_intro2
+            ),
+            Intro(
+                "Drive Smarter",
+                "Get AI assistance, voice commands, emergency SOS, and predictive maintenance alerts.",
+                R.drawable.iv_intro1
+            ),
         )
 
         introViewPagerAdapter = IntroAdapter(requireContext(), mList)
         binding.screenViewpager.adapter = introViewPagerAdapter
         binding.tabIndicator.setupWithViewPager(binding.screenViewpager)
         binding.dotsIndicator.setViewPager(binding.screenViewpager)
+
         binding.btnNext.setOnClickListener {
             position = binding.screenViewpager.currentItem
             if (position < mList.size) {
@@ -88,7 +86,6 @@ class IntroFragment : Fragment() {
     private fun setupClickListeners() {
         binding.txtSkip.setOnClickListener { startHome() }
         binding.btnGetStarted.setOnClickListener { startHome() }
-        binding.txtSkip.setOnClickListener { binding.screenViewpager.currentItem = mList.size }
     }
 
     private fun loadLastScreen() {
@@ -100,21 +97,10 @@ class IntroFragment : Fragment() {
     private fun loadFirstScreen() {
         binding.btnNext.visibility = View.VISIBLE
         binding.btnGetStarted.visibility = View.INVISIBLE
-        binding.txtSkip.visibility = View.INVISIBLE
+        binding.txtSkip.visibility = View.VISIBLE
     }
 
     private fun startHome() {
         mController.navigate(R.id.action_introFragmetn_to_homeFragment)
     }
-
-//    private fun setAppLocale(languageCode: String) {
-//        val locale = Locale(languageCode)
-//        Locale.setDefault(locale)
-//        val configuration = Configuration()
-//        configuration.setLocale(locale)
-//        val context: Context = requireContext().createConfigurationContext(configuration)
-//        resources.updateConfiguration(configuration, resources.displayMetrics)
-//    }
-
-
 }

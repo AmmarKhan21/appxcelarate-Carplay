@@ -10,10 +10,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/roundeded_bg1"
+        android:background="@drawable/card_bg_light"
         android:layout_margin="@dimen/_12sdp">
-
-
 
         <TextView
             android:id="@+id/tv_privacy"
@@ -23,40 +21,39 @@
             app:layout_constraintTop_toTopOf="parent"
             android:text="@string/txt_ratus"
             android:textStyle="bold"
-            android:textColor="@color/white"
+            android:textColor="@color/text_primary"
             android:layout_margin="@dimen/_15sdp"
             android:textSize="25sp"/>
-
 
         <RatingBar
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:stepSize="0.5"
-            android:theme="@style/Widget.AppCompat.RatingBar"
+            android:theme="@style/RatingBar"
             android:numStars="5"
-            android:progressTint="@color/yellow"
-            android:progressBackgroundTint="@android:color/darker_gray"
+            android:progressTint="#FFFBBF24"
+            android:progressBackgroundTint="@color/outline"
             app:layout_constraintTop_toBottomOf="@+id/tv_privacy"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="@dimen/_10sdp"
-            />
+            android:layout_marginTop="@dimen/_10sdp" />
+
         <EditText
             android:id="@+id/feedback"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/ratingBar"
             android:gravity="start"
-            android:background="@drawable/rounded_white"
-            android:textColor="@color/black"
+            android:background="@drawable/input_bg"
+            android:textColor="@color/text_primary"
             android:paddingHorizontal="@dimen/_10sdp"
             android:paddingVertical="@dimen/_10sdp"
-            android:textColorHint="@color/black"
+            android:textColorHint="@color/text_hint"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintStart_toStartOf="@id/lv_cancel"
             app:layout_constraintEnd_toEndOf="@id/lv_submit"
-            android:layout_marginVertical="@dimen/_4sdp"
+            android:layout_marginVertical="@dimen/_8sdp"
             android:hint="Enter feedback" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -67,7 +64,6 @@
             app:layout_constraintTop_toBottomOf="@+id/feedback"
             app:layout_constraintEnd_toStartOf="@+id/lv_submit"
             app:layout_constraintStart_toStartOf="parent"
-
             android:layout_margin="@dimen/_15sdp">
 
             <TextView
@@ -79,10 +75,9 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:text="Cancel"
                 android:textStyle="bold"
-                android:textColor="@color/white"
+                android:textColor="@color/text_secondary"
                 android:layout_margin="@dimen/_10sdp"
                 android:textSize="16sp"/>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -93,8 +88,8 @@
             app:layout_constraintTop_toBottomOf="@+id/feedback"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_margin="@dimen/_15sdp"
-
             app:layout_constraintStart_toEndOf="@+id/lv_cancel">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -104,14 +99,12 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:text="@string/submit_rating"
                 android:textStyle="bold"
-                android:textColor="@color/white"
+                android:textColor="@color/primary"
                 android:lineSpacingExtra="-10dp"
                 android:layout_margin="@dimen/_10sdp"
                 android:textSize="16sp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

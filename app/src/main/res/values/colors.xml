@@ -1,13 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Base colors -->
     <color name="black">#FF000000</color>
-    <color name="bg">#C2C5E4</color>
-    <color name="bg_dark">#4F536C</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="splashbgcolour">#3E73BF</color>
-    <color name="splashbg">#2058AF</color>
-    <color name="home_bg">#4B6CA2</color>
-    <color name="item_bg">#92979E</color>\
+
+    <!-- New Light Theme Palette -->
+    <color name="bg">#FFF5F7FA</color>
+    <color name="bg_light">#FFF5F7FA</color>
+    <color name="bg_white">#FFFFFFFF</color>
+    <color name="bg_dark">#FF1E293B</color>
+    <color name="surface">#FFFFFFFF</color>
+    <color name="surface_variant">#FFF1F5F9</color>
+
+    <color name="primary">#FF2563EB</color>
+    <color name="primary_dark">#FF1D4ED8</color>
+    <color name="primary_light">#FF60A5FA</color>
+    <color name="primary_container">#FFDBEAFE</color>
+
+    <color name="text_primary">#FF1E293B</color>
+    <color name="text_secondary">#FF64748B</color>
+    <color name="text_hint">#FF94A3B8</color>
+    <color name="text_disabled">#FFCBD5E1</color>
+    <color name="text_on_primary">#FFFFFFFF</color>
+
+    <color name="divider">#FFE2E8F0</color>
+    <color name="divider_light">#FFF1F5F9</color>
+    <color name="outline">#FFCBD5E1</color>
+
+    <color name="card_bg">#FFFFFFFF</color>
+    <color name="card_shadow">#1A000000</color>
+
+    <!-- Legacy (kept for feature screens) -->
+    <color name="splashbgcolour">#2563EB</color>
+    <color name="splashbg">#1D4ED8</color>
+    <color name="home_bg">#F5F7FA</color>
+    <color name="item_bg">#FFFFFF</color>
+    <color name="colorPrimaryLight">#60A5FA</color>
+
+    <!-- Named colors -->
     <color name="yellow">#FFFF00</color>
     <color name="fuchsia">#FF00FF</color>
     <color name="red">#FF0000</color>
@@ -23,43 +53,77 @@
     <color name="blue">#0000FF</color>
     <color name="navy">#000080</color>
     <color name="orange">#FF9800</color>
-    <color name="light_grey">#FF9800</color>
-    <color name="colorPrimaryLight">#62789E</color>
+    <color name="light_grey">#FFE2E8F0</color>
 
-    <!-- Feature colors -->
-    <color name="emergency_red">#FF1744</color>
-    <color name="success_green">#4CAF50</color>
-    <color name="warning_yellow">#FFC107</color>
-    <color name="warning_orange">#FF9800</color>
-    <color name="info_blue">#2196F3</color>
-    <color name="dark_surface">#1A1A2E</color>
-    <color name="dark_card">#16213E</color>
-    <color name="accent_blue">#3E73BF</color>
-    <color name="text_secondary">#B0B0B0</color>
-    <color name="text_hint">#808080</color>
-    <color name="speedometer_bg">#0F0F23</color>
-    <color name="speed_green">#00E676</color>
-    <color name="speed_yellow">#FFEA00</color>
-    <color name="speed_red">#FF1744</color>
-    <color name="score_excellent">#00C853</color>
-    <color name="score_good">#64DD17</color>
-    <color name="score_average">#FFD600</color>
-    <color name="score_poor">#FF6D00</color>
-    <color name="score_bad">#DD2C00</color>
-    <color name="chat_user_bubble">#3E73BF</color>
-    <color name="chat_bot_bubble">#2C2C3E</color>
-    <color name="tire_ok">#4CAF50</color>
-    <color name="tire_low">#FFC107</color>
-    <color name="tire_critical">#FF1744</color>
-    <color name="fatigue_fresh">#4CAF50</color>
-    <color name="fatigue_moderate">#FFC107</color>
-    <color name="fatigue_tired">#FF9800</color>
-    <color name="fatigue_dangerous">#FF1744</color>
-    <color name="divider">#2A2A3E</color>
-    <color name="input_bg">#33FFFFFF</color>
-    <color name="button_primary">#3E73BF</color>
-    <color name="button_danger">#FF1744</color>
-    <color name="card_dark_bg">#1E1E32</color>
+    <!-- Feature / semantic colors -->
+    <color name="emergency_red">#FFEF4444</color>
+    <color name="success_green">#FF22C55E</color>
+    <color name="warning_yellow">#FFFBBF24</color>
+    <color name="warning_orange">#FFF97316</color>
+    <color name="info_blue">#FF3B82F6</color>
+
+    <color name="dark_surface">#FF1E293B</color>
+    <color name="dark_card">#FF0F172A</color>
+    <color name="accent_blue">#FF2563EB</color>
+
+    <color name="speedometer_bg">#FF0F172A</color>
+    <color name="speed_green">#FF22C55E</color>
+    <color name="speed_yellow">#FFFBBF24</color>
+    <color name="speed_red">#FFEF4444</color>
+
+    <color name="score_excellent">#FF22C55E</color>
+    <color name="score_good">#FF84CC16</color>
+    <color name="score_average">#FFFBBF24</color>
+    <color name="score_poor">#FFF97316</color>
+    <color name="score_bad">#FFEF4444</color>
+
+    <color name="chat_user_bubble">#FF2563EB</color>
+    <color name="chat_bot_bubble">#FFF1F5F9</color>
+
+    <color name="tire_ok">#FF22C55E</color>
+    <color name="tire_low">#FFFBBF24</color>
+    <color name="tire_critical">#FFEF4444</color>
+
+    <color name="fatigue_fresh">#FF22C55E</color>
+    <color name="fatigue_moderate">#FFFBBF24</color>
+    <color name="fatigue_tired">#FFF97316</color>
+    <color name="fatigue_dangerous">#FFEF4444</color>
+
+    <color name="input_bg">#FFF1F5F9</color>
+    <color name="button_primary">#FF2563EB</color>
+    <color name="button_danger">#FFEF4444</color>
+    <color name="card_dark_bg">#FF0F172A</color>
     <color name="transparent_white_10">#1AFFFFFF</color>
     <color name="transparent_white_20">#33FFFFFF</color>
+
+    <!-- Icon circle background colors -->
+    <color name="icon_bg_blue">#FFDBEAFE</color>
+    <color name="icon_bg_indigo">#FFE0E7FF</color>
+    <color name="icon_bg_amber">#FFFEF3C7</color>
+    <color name="icon_bg_green">#FFD1FAE5</color>
+    <color name="icon_bg_cyan">#FFCFFAFE</color>
+    <color name="icon_bg_pink">#FFFCE7F3</color>
+    <color name="icon_bg_orange">#FFFFEDD5</color>
+    <color name="icon_bg_violet">#FFEDE9FE</color>
+    <color name="icon_bg_red">#FFFEE2E2</color>
+    <color name="icon_bg_purple">#FFF3E8FF</color>
+    <color name="icon_bg_slate">#FFE2E8F0</color>
+    <color name="icon_bg_dark">#FF1E293B</color>
+
+    <!-- Icon tint colors -->
+    <color name="icon_tint_blue">#FF2563EB</color>
+    <color name="icon_tint_indigo">#FF4F46E5</color>
+    <color name="icon_tint_amber">#FFD97706</color>
+    <color name="icon_tint_green">#FF16A34A</color>
+    <color name="icon_tint_cyan">#FF0891B2</color>
+    <color name="icon_tint_pink">#FFDB2777</color>
+    <color name="icon_tint_orange">#FFEA580C</color>
+    <color name="icon_tint_violet">#FF7C3AED</color>
+    <color name="icon_tint_red">#FFDC2626</color>
+    <color name="icon_tint_purple">#FF9333EA</color>
+    <color name="icon_tint_slate">#FF475569</color>
+
+    <!-- Welcome card gradient -->
+    <color name="welcome_start">#FF2563EB</color>
+    <color name="welcome_end">#FF1D4ED8</color>
 </resources>

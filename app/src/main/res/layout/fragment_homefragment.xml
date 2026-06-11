@@ -5,460 +5,1404 @@
     android:id="@+id/nav"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_bg"
+    android:background="@color/bg_light"
     tools:context=".Fragments.homefragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/app_bg">
+        android:background="@color/bg_light">
 
+        <!-- Hidden legacy views -->
         <ImageView
             android:id="@+id/img_main"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_170sdp"
-            android:background="@drawable/img_main"
-            android:contentDescription="@string/txt_error"
-            android:scaleType="fitXY"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/iv_remove_ads"
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
-            android:layout_marginEnd="@dimen/_2sdp"
-            android:layout_marginBottom="@dimen/_5sdp"
-            android:contentDescription="@string/txt_error"
-            android:paddingStart="@dimen/_10sdp"
-            android:paddingEnd="@dimen/_10sdp"
-            android:src="@drawable/ads"
-            app:layout_constraintBottom_toBottomOf="@id/img_main"
-            app:layout_constraintEnd_toEndOf="@id/img_main" />
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-
+        <!-- Top Bar -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/toolBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_52sdp"
+            android:background="@color/white"
+            android:elevation="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/ivNav"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
+                android:layout_width="@dimen/_44sdp"
+                android:layout_height="@dimen/_44sdp"
                 android:contentDescription="@string/txt_error"
-                android:padding="@dimen/_10sdp"
+                android:padding="@dimen/_12sdp"
                 android:src="@drawable/iv_nav"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!--            <ImageView-->
-            <!--                android:id="@+id/iv_instruction"-->
-            <!--                android:layout_width="@dimen/_50sdp"-->
-            <!--                android:layout_height="@dimen/_50sdp"-->
-            <!--                android:src="@drawable/info"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintTop_toTopOf="parent"-->
-            <!--                android:contentDescription="@string/txt_error"-->
-            <!--                android:padding="@dimen/_9sdp"/>-->
-
-            <!--            <ImageView-->
-            <!--                android:id="@+id/iv_remove_ads"-->
-            <!--                android:layout_width="@dimen/_50sdp"-->
-            <!--                android:layout_height="@dimen/_50sdp"-->
-            <!--                android:src="@drawable/ads"-->
-            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintTop_toBottomOf="@+id/iv_instruction"-->
-            <!--                android:contentDescription="@string/txt_error"-->
-            <!--                android:paddingEnd="@dimen/_10sdp"-->
-            <!--                android:layout_marginEnd="@dimen/_2sdp"-->
-            <!--                android:paddingStart="@dimen/_10sdp"-->
-            <!--                />-->
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Android Carplay"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/_16ssp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <!-- Main ScrollView -->
         <ScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/_7sdp"
+            android:scrollbars="none"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toTopOf="@id/rmv_ads"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginHorizontal="@dimen/_8sdp"
-            app:layout_constraintTop_toBottomOf="@+id/img_main"
-            app:layout_constraintBottom_toTopOf="@id/rmv_ads"
-            android:scrollbars="none">
+            app:layout_constraintTop_toBottomOf="@id/toolBar">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layoutAnimation="@anim/layout_animation_fall_down"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/_12sdp"
+                android:paddingTop="@dimen/_12sdp"
+                android:paddingBottom="@dimen/_8sdp">
 
-                <!-- Row 1: Car Connect + Document -->
+                <!-- Welcome Card -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_90sdp"
+                    android:background="@drawable/welcome_card_bg"
+                    android:padding="@dimen/_16sdp"
+                    android:layout_marginBottom="@dimen/_16sdp">
+
+                    <TextView
+                        android:id="@+id/welcome_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hello, Driver!"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_18ssp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:text="Your smart car companion"
+                        android:textColor="#B0D4FF"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/welcome_title" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:alpha="0.15"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_my_cars"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/white" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Section: Connectivity -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:paddingStart="@dimen/_4sdp"
+                    android:text="Connectivity"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="@dimen/_5sdp">
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:orientation="horizontal">
+
+                    <!-- Car Connect -->
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/carplay"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginEnd="@dimen/_4sdp"
                         android:layout_weight="1"
-                        android:layout_marginEnd="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
-                        <ImageView android:id="@+id/carimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/car_icon" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Car Connect" app:layout_constraintTop_toBottomOf="@id/carimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:cardElevation="2dp"
+                        app:strokeWidth="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp">
+                            <FrameLayout
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp">
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/icon_circle_bg"
+                                    android:backgroundTint="@color/icon_bg_blue" />
+                                <ImageView
+                                    android:layout_width="@dimen/_22sdp"
+                                    android:layout_height="@dimen/_22sdp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_car_connect"
+                                    app:tint="@color/icon_tint_blue" />
+                            </FrameLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:maxLines="1"
+                                android:text="Car Connect"
+                                android:textColor="@color/text_primary"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Document -->
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/iv_documents"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginStart="@dimen/_4sdp"
                         android:layout_weight="1"
-                        android:layout_marginStart="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
-                        <ImageView android:id="@+id/docimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/document_icon" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Document" app:layout_constraintTop_toBottomOf="@id/docimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:cardElevation="2dp"
+                        app:strokeWidth="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp">
+                            <FrameLayout
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp">
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/icon_circle_bg"
+                                    android:backgroundTint="@color/icon_bg_indigo" />
+                                <ImageView
+                                    android:layout_width="@dimen/_22sdp"
+                                    android:layout_height="@dimen/_22sdp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_document"
+                                    app:tint="@color/icon_tint_indigo" />
+                            </FrameLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:maxLines="1"
+                                android:text="Document"
+                                android:textColor="@color/text_primary"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
-                <!-- Row 2: Expense + Car Parking -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="@dimen/_5sdp">
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_marginBottom="@dimen/_16sdp"
+                    android:orientation="horizontal">
+
+                    <!-- Expense -->
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/iv_mnt_expense"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginEnd="@dimen/_4sdp"
                         android:layout_weight="1"
-                        android:layout_marginEnd="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
-                        <ImageView android:id="@+id/expenseimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/expense_icon" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Expense" app:layout_constraintTop_toBottomOf="@id/expenseimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/iv_carparking"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:cardElevation="2dp"
+                        app:strokeWidth="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp">
+                            <FrameLayout
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp">
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/icon_circle_bg"
+                                    android:backgroundTint="@color/icon_bg_amber" />
+                                <ImageView
+                                    android:layout_width="@dimen/_22sdp"
+                                    android:layout_height="@dimen/_22sdp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_expense"
+                                    app:tint="@color/icon_tint_amber" />
+                            </FrameLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:maxLines="1"
+                                android:text="Expense"
+                                android:textColor="@color/text_primary"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <Space
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
-                        <ImageView android:id="@+id/parkimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/parking_icon" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Car Parking" app:layout_constraintTop_toBottomOf="@id/parkimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:layout_weight="1" />
                 </LinearLayout>
 
-                <!-- Row 3: Weather + Speedometer -->
+                <!-- Section: Driving -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:paddingStart="@dimen/_4sdp"
+                    android:text="Driving"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="@dimen/_5sdp">
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:orientation="horizontal">
+
+                    <!-- Weather -->
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/iv_weather"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginEnd="@dimen/_4sdp"
                         android:layout_weight="1"
-                        android:layout_marginEnd="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
-                        <ImageView android:id="@+id/weatherimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/weather_icon" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Weather" app:layout_constraintTop_toBottomOf="@id/weatherimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:cardElevation="2dp"
+                        app:strokeWidth="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp">
+                            <FrameLayout
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp">
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/icon_circle_bg"
+                                    android:backgroundTint="@color/icon_bg_cyan" />
+                                <ImageView
+                                    android:layout_width="@dimen/_22sdp"
+                                    android:layout_height="@dimen/_22sdp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_weather"
+                                    app:tint="@color/icon_tint_cyan" />
+                            </FrameLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:maxLines="1"
+                                android:text="Weather"
+                                android:textColor="@color/text_primary"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Speedometer -->
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/iv_speedometer"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginStart="@dimen/_4sdp"
                         android:layout_weight="1"
-                        android:layout_marginStart="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
-                        <ImageView android:id="@+id/speedimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Speedometer" app:layout_constraintTop_toBottomOf="@id/speedimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:cardElevation="2dp"
+                        app:strokeWidth="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp">
+                            <FrameLayout
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp">
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/icon_circle_bg"
+                                    android:backgroundTint="@color/icon_bg_pink" />
+                                <ImageView
+                                    android:layout_width="@dimen/_22sdp"
+                                    android:layout_height="@dimen/_22sdp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_speedometer"
+                                    app:tint="@color/icon_tint_pink" />
+                            </FrameLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:maxLines="1"
+                                android:text="Speedometer"
+                                android:textColor="@color/text_primary"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
-                <!-- Row 4: Fuel Tracker + Reminders -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="@dimen/_5sdp">
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_marginBottom="@dimen/_16sdp"
+                    android:orientation="horizontal">
+
+                    <!-- Fuel Tracker -->
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/iv_fuel"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginEnd="@dimen/_4sdp"
                         android:layout_weight="1"
-                        android:layout_marginEnd="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
-                        <ImageView android:id="@+id/fuelimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fuel Tracker" app:layout_constraintTop_toBottomOf="@id/fuelimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/iv_reminders"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
-                        <ImageView android:id="@+id/reminderimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Reminders" app:layout_constraintTop_toBottomOf="@id/reminderimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </LinearLayout>
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:cardElevation="2dp"
+                        app:strokeWidth="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp">
+                            <FrameLayout
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp">
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/icon_circle_bg"
+                                    android:backgroundTint="@color/icon_bg_orange" />
+                                <ImageView
+                                    android:layout_width="@dimen/_22sdp"
+                                    android:layout_height="@dimen/_22sdp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_fuel"
+                                    app:tint="@color/icon_tint_orange" />
+                            </FrameLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:maxLines="1"
+                                android:text="Fuel Tracker"
+                                android:textColor="@color/text_primary"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
 
-                <!-- Row 5: Emergency + Trip Tracker -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="@dimen/_5sdp">
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/iv_emergency"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
-                        <ImageView android:id="@+id/emergencyimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Emergency" app:layout_constraintTop_toBottomOf="@id/emergencyimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/emergency_red" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <!-- Trip Tracker -->
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/iv_trip"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginStart="@dimen/_4sdp"
                         android:layout_weight="1"
-                        android:layout_marginStart="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
-                        <ImageView android:id="@+id/tripimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Trip Tracker" app:layout_constraintTop_toBottomOf="@id/tripimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:cardElevation="2dp"
+                        app:strokeWidth="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp">
+                            <FrameLayout
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp">
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/icon_circle_bg"
+                                    android:backgroundTint="@color/icon_bg_green" />
+                                <ImageView
+                                    android:layout_width="@dimen/_22sdp"
+                                    android:layout_height="@dimen/_22sdp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_trip"
+                                    app:tint="@color/icon_tint_green" />
+                            </FrameLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:maxLines="1"
+                                android:text="Trip Tracker"
+                                android:textColor="@color/text_primary"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
-                <!-- Row 6: Driving Score + Nearby Places -->
+                <!-- Section: Vehicle Care -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:paddingStart="@dimen/_4sdp"
+                    android:text="Vehicle Care"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="@dimen/_5sdp">
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/iv_driving_score"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
-                        <ImageView android:id="@+id/scoreimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Drive Score" app:layout_constraintTop_toBottomOf="@id/scoreimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/iv_nearby"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
-                        <ImageView android:id="@+id/nearbyimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Nearby" app:layout_constraintTop_toBottomOf="@id/nearbyimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </LinearLayout>
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:orientation="horizontal">
 
-                <!-- Row 7: Dash Cam + Tire Pressure -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="@dimen/_5sdp">
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/iv_dashcam"
+                    <!-- Reminders -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/iv_reminders"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginEnd="@dimen/_4sdp"
                         android:layout_weight="1"
-                        android:layout_marginEnd="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
-                        <ImageView android:id="@+id/dashcamimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Dash Cam" app:layout_constraintTop_toBottomOf="@id/dashcamimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:cardElevation="2dp"
+                        app:strokeWidth="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp">
+                            <FrameLayout
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp">
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/icon_circle_bg"
+                                    android:backgroundTint="@color/icon_bg_violet" />
+                                <ImageView
+                                    android:layout_width="@dimen/_22sdp"
+                                    android:layout_height="@dimen/_22sdp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_reminder"
+                                    app:tint="@color/icon_tint_violet" />
+                            </FrameLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:maxLines="1"
+                                android:text="Reminders"
+                                android:textColor="@color/text_primary"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Tire Pressure -->
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/iv_tire"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginStart="@dimen/_4sdp"
                         android:layout_weight="1"
-                        android:layout_marginStart="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
-                        <ImageView android:id="@+id/tireimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tire Pressure" app:layout_constraintTop_toBottomOf="@id/tireimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:cardElevation="2dp"
+                        app:strokeWidth="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp">
+                            <FrameLayout
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp">
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/icon_circle_bg"
+                                    android:backgroundTint="@color/icon_bg_slate" />
+                                <ImageView
+                                    android:layout_width="@dimen/_22sdp"
+                                    android:layout_height="@dimen/_22sdp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_tire"
+                                    app:tint="@color/icon_tint_slate" />
+                            </FrameLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:maxLines="1"
+                                android:text="Tire Pressure"
+                                android:textColor="@color/text_primary"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
-                <!-- Row 8: My Cars + Fatigue Alert -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="@dimen/_5sdp">
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:orientation="horizontal">
+
+                    <!-- My Cars -->
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/iv_car_profile"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginEnd="@dimen/_4sdp"
                         android:layout_weight="1"
-                        android:layout_marginEnd="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
-                        <ImageView android:id="@+id/carprofileimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/car_icon" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="My Cars" app:layout_constraintTop_toBottomOf="@id/carprofileimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/iv_fatigue"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
-                        <ImageView android:id="@+id/fatigueimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fatigue Alert" app:layout_constraintTop_toBottomOf="@id/fatigueimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </LinearLayout>
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:cardElevation="2dp"
+                        app:strokeWidth="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp">
+                            <FrameLayout
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp">
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/icon_circle_bg"
+                                    android:backgroundTint="@color/icon_bg_blue" />
+                                <ImageView
+                                    android:layout_width="@dimen/_22sdp"
+                                    android:layout_height="@dimen/_22sdp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_my_cars"
+                                    app:tint="@color/icon_tint_blue" />
+                            </FrameLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:maxLines="1"
+                                android:text="My Cars"
+                                android:textColor="@color/text_primary"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
 
-                <!-- Row 9: Insurance + Mileage Log -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="@dimen/_5sdp">
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <!-- Insurance -->
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/iv_insurance"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginStart="@dimen/_4sdp"
                         android:layout_weight="1"
-                        android:layout_marginEnd="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
-                        <ImageView android:id="@+id/insuranceimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/document_icon" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Insurance" app:layout_constraintTop_toBottomOf="@id/insuranceimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:cardElevation="2dp"
+                        app:strokeWidth="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp">
+                            <FrameLayout
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp">
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/icon_circle_bg"
+                                    android:backgroundTint="@color/icon_bg_green" />
+                                <ImageView
+                                    android:layout_width="@dimen/_22sdp"
+                                    android:layout_height="@dimen/_22sdp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_insurance"
+                                    app:tint="@color/icon_tint_green" />
+                            </FrameLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:maxLines="1"
+                                android:text="Insurance"
+                                android:textColor="@color/text_primary"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_16sdp"
+                    android:orientation="horizontal">
+
+                    <!-- Mileage Log -->
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/iv_mileage"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginEnd="@dimen/_4sdp"
                         android:layout_weight="1"
-                        android:layout_marginStart="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
-                        <ImageView android:id="@+id/mileageimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mileage Log" app:layout_constraintTop_toBottomOf="@id/mileageimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </LinearLayout>
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:cardElevation="2dp"
+                        app:strokeWidth="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp">
+                            <FrameLayout
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp">
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/icon_circle_bg"
+                                    android:backgroundTint="@color/icon_bg_indigo" />
+                                <ImageView
+                                    android:layout_width="@dimen/_22sdp"
+                                    android:layout_height="@dimen/_22sdp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_mileage"
+                                    app:tint="@color/icon_tint_indigo" />
+                            </FrameLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:maxLines="1"
+                                android:text="Mileage Log"
+                                android:textColor="@color/text_primary"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
 
-                <!-- Row 10: AI Assistant + DND Mode -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="@dimen/_5sdp">
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/iv_ai_assistant"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
-                        <ImageView android:id="@+id/aiimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="AI Assistant" app:layout_constraintTop_toBottomOf="@id/aiimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/iv_dnd"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
-                        <ImageView android:id="@+id/dndimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Drive Mode" app:layout_constraintTop_toBottomOf="@id/dndimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </LinearLayout>
-
-                <!-- Row 11: Expense Manager + Service History -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="@dimen/_5sdp">
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/iv_expense_manager"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
-                        <ImageView android:id="@+id/expmanimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/expense_icon" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Expenses" app:layout_constraintTop_toBottomOf="@id/expmanimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <!-- Service History -->
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/iv_service_history"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginStart="@dimen/_4sdp"
                         android:layout_weight="1"
-                        android:layout_marginStart="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
-                        <ImageView android:id="@+id/historyimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Service History" app:layout_constraintTop_toBottomOf="@id/historyimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:cardElevation="2dp"
+                        app:strokeWidth="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp">
+                            <FrameLayout
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp">
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/icon_circle_bg"
+                                    android:backgroundTint="@color/icon_bg_cyan" />
+                                <ImageView
+                                    android:layout_width="@dimen/_22sdp"
+                                    android:layout_height="@dimen/_22sdp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_service_history"
+                                    app:tint="@color/icon_tint_cyan" />
+                            </FrameLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:maxLines="1"
+                                android:text="Service History"
+                                android:textColor="@color/text_primary"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
-                <!-- Row 12: Voice + Predictive Maintenance -->
+                <!-- Section: Safety -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:paddingStart="@dimen/_4sdp"
+                    android:text="Safety"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="@dimen/_10sdp">
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:orientation="horizontal">
+
+                    <!-- Emergency -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/iv_emergency"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginEnd="@dimen/_4sdp"
+                        android:layout_weight="1"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:cardElevation="2dp"
+                        app:strokeWidth="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp">
+                            <FrameLayout
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp">
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/icon_circle_bg"
+                                    android:backgroundTint="@color/icon_bg_red" />
+                                <ImageView
+                                    android:layout_width="@dimen/_22sdp"
+                                    android:layout_height="@dimen/_22sdp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_emergency"
+                                    app:tint="@color/icon_tint_red" />
+                            </FrameLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:maxLines="1"
+                                android:text="Emergency"
+                                android:textColor="@color/text_primary"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Fatigue Alert -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/iv_fatigue"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:layout_weight="1"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:cardElevation="2dp"
+                        app:strokeWidth="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp">
+                            <FrameLayout
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp">
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/icon_circle_bg"
+                                    android:backgroundTint="@color/icon_bg_orange" />
+                                <ImageView
+                                    android:layout_width="@dimen/_22sdp"
+                                    android:layout_height="@dimen/_22sdp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_fatigue"
+                                    app:tint="@color/icon_tint_orange" />
+                            </FrameLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:maxLines="1"
+                                android:text="Fatigue Alert"
+                                android:textColor="@color/text_primary"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_16sdp"
+                    android:orientation="horizontal">
+
+                    <!-- Dash Cam -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/iv_dashcam"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginEnd="@dimen/_4sdp"
+                        android:layout_weight="1"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:cardElevation="2dp"
+                        app:strokeWidth="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp">
+                            <FrameLayout
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp">
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/icon_circle_bg"
+                                    android:backgroundTint="@color/icon_bg_purple" />
+                                <ImageView
+                                    android:layout_width="@dimen/_22sdp"
+                                    android:layout_height="@dimen/_22sdp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_dashcam"
+                                    app:tint="@color/icon_tint_purple" />
+                            </FrameLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:maxLines="1"
+                                android:text="Dash Cam"
+                                android:textColor="@color/text_primary"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Drive Mode -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/iv_dnd"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:layout_weight="1"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:cardElevation="2dp"
+                        app:strokeWidth="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp">
+                            <FrameLayout
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp">
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/icon_circle_bg"
+                                    android:backgroundTint="@color/icon_bg_dark" />
+                                <ImageView
+                                    android:layout_width="@dimen/_22sdp"
+                                    android:layout_height="@dimen/_22sdp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_dnd"
+                                    app:tint="@color/white" />
+                            </FrameLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:maxLines="1"
+                                android:text="Drive Mode"
+                                android:textColor="@color/text_primary"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <!-- Section: Smart Features -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:paddingStart="@dimen/_4sdp"
+                    android:text="Smart Features"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:orientation="horizontal">
+
+                    <!-- Drive Score -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/iv_driving_score"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginEnd="@dimen/_4sdp"
+                        android:layout_weight="1"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:cardElevation="2dp"
+                        app:strokeWidth="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp">
+                            <FrameLayout
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp">
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/icon_circle_bg"
+                                    android:backgroundTint="@color/icon_bg_amber" />
+                                <ImageView
+                                    android:layout_width="@dimen/_22sdp"
+                                    android:layout_height="@dimen/_22sdp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_driving_score"
+                                    app:tint="@color/icon_tint_amber" />
+                            </FrameLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:maxLines="1"
+                                android:text="Drive Score"
+                                android:textColor="@color/text_primary"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Nearby -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/iv_nearby"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:layout_weight="1"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:cardElevation="2dp"
+                        app:strokeWidth="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp">
+                            <FrameLayout
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp">
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/icon_circle_bg"
+                                    android:backgroundTint="@color/icon_bg_blue" />
+                                <ImageView
+                                    android:layout_width="@dimen/_22sdp"
+                                    android:layout_height="@dimen/_22sdp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_nearby"
+                                    app:tint="@color/icon_tint_blue" />
+                            </FrameLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:maxLines="1"
+                                android:text="Nearby"
+                                android:textColor="@color/text_primary"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_16sdp"
+                    android:orientation="horizontal">
+
+                    <!-- AI Assistant -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/iv_ai_assistant"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginEnd="@dimen/_4sdp"
+                        android:layout_weight="1"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:cardElevation="2dp"
+                        app:strokeWidth="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp">
+                            <FrameLayout
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp">
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/icon_circle_bg"
+                                    android:backgroundTint="@color/icon_bg_purple" />
+                                <ImageView
+                                    android:layout_width="@dimen/_22sdp"
+                                    android:layout_height="@dimen/_22sdp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_ai_assistant"
+                                    app:tint="@color/icon_tint_purple" />
+                            </FrameLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:maxLines="1"
+                                android:text="AI Assistant"
+                                android:textColor="@color/text_primary"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Voice -->
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/iv_voice"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginStart="@dimen/_4sdp"
                         android:layout_weight="1"
-                        android:layout_marginEnd="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
-                        <ImageView android:id="@+id/voiceimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Voice" app:layout_constraintTop_toBottomOf="@id/voiceimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:cardElevation="2dp"
+                        app:strokeWidth="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp">
+                            <FrameLayout
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp">
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/icon_circle_bg"
+                                    android:backgroundTint="@color/icon_bg_pink" />
+                                <ImageView
+                                    android:layout_width="@dimen/_22sdp"
+                                    android:layout_height="@dimen/_22sdp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_voice"
+                                    app:tint="@color/icon_tint_pink" />
+                            </FrameLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:maxLines="1"
+                                android:text="Voice"
+                                android:textColor="@color/text_primary"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <!-- Section: More -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:paddingStart="@dimen/_4sdp"
+                    android:text="More"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:orientation="horizontal">
+
+                    <!-- Car Parking -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/iv_carparking"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginEnd="@dimen/_4sdp"
+                        android:layout_weight="1"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:cardElevation="2dp"
+                        app:strokeWidth="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp">
+                            <FrameLayout
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp">
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/icon_circle_bg"
+                                    android:backgroundTint="@color/icon_bg_green" />
+                                <ImageView
+                                    android:layout_width="@dimen/_22sdp"
+                                    android:layout_height="@dimen/_22sdp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_parking"
+                                    app:tint="@color/icon_tint_green" />
+                            </FrameLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:maxLines="1"
+                                android:text="Car Parking"
+                                android:textColor="@color/text_primary"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Expenses -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/iv_expense_manager"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:layout_weight="1"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:cardElevation="2dp"
+                        app:strokeWidth="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp">
+                            <FrameLayout
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp">
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/icon_circle_bg"
+                                    android:backgroundTint="@color/icon_bg_amber" />
+                                <ImageView
+                                    android:layout_width="@dimen/_22sdp"
+                                    android:layout_height="@dimen/_22sdp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_wallet"
+                                    app:tint="@color/icon_tint_amber" />
+                            </FrameLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:maxLines="1"
+                                android:text="Expenses"
+                                android:textColor="@color/text_primary"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:orientation="horizontal">
+
+                    <!-- Maintenance -->
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/iv_predictive"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginEnd="@dimen/_4sdp"
                         android:layout_weight="1"
-                        android:layout_marginStart="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
-                        <ImageView android:id="@+id/predictimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Maintenance" app:layout_constraintTop_toBottomOf="@id/predictimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:cardElevation="2dp"
+                        app:strokeWidth="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp">
+                            <FrameLayout
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp">
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/icon_circle_bg"
+                                    android:backgroundTint="@color/icon_bg_slate" />
+                                <ImageView
+                                    android:layout_width="@dimen/_22sdp"
+                                    android:layout_height="@dimen/_22sdp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_maintenance"
+                                    app:tint="@color/icon_tint_slate" />
+                            </FrameLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:maxLines="1"
+                                android:text="Maintenance"
+                                android:textColor="@color/text_primary"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:layout_weight="1" />
                 </LinearLayout>
 
             </LinearLayout>
         </ScrollView>
 
+        <!-- Remove Ads Banner -->
         <ImageView
             android:id="@+id/rmv_ads"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_70sdp"
+            android:layout_height="@dimen/_50sdp"
             android:layout_marginHorizontal="@dimen/_10sdp"
-            android:background="@drawable/ads_card"
+            android:layout_marginBottom="@dimen/_4sdp"
             android:contentDescription="@string/txt_error"
             android:scaleType="fitXY"
-            android:layout_marginBottom="@dimen/_8sdp"
+            android:src="@drawable/ads"
             app:layout_constraintBottom_toTopOf="@id/native_ad"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <!-- Native Ad -->
         <androidx.cardview.widget.CardView
             android:id="@+id/native_ad"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_5sdp"
             android:visibility="visible"
-            app:cardBackgroundColor="@color/bg_dark"
+            app:cardBackgroundColor="@color/surface_variant"
             app:cardCornerRadius="0dp"
             app:cardElevation="0dp"
-            android:layout_marginBottom="@dimen/_5sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -470,11 +1414,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_centerInParent="true"
                     android:gravity="center"
                     android:text="advertisement"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textColor="@color/text_hint"
+                    android:textSize="14sp" />
 
                 <com.google.android.gms.ads.nativead.NativeAdView
                     android:id="@+id/admobnative"
@@ -486,11 +1429,13 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!-- Navigation Drawer -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/_250sdp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/white">
@@ -498,143 +1443,147 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/app_bg"
+            android:background="@color/white"
             android:orientation="vertical">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_weight="0.2">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:contentDescription="@string/txt_error"
-                    android:src="@drawable/header_icon"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
+            <!-- Drawer Header -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_weight="0.8"
-                android:background="@android:color/transparent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/welcome_card_bg"
+                android:gravity="center"
                 android:orientation="vertical"
-                android:weightSum="6">
+                android:paddingHorizontal="@dimen/_20sdp"
+                android:paddingTop="@dimen/_30sdp"
+                android:paddingBottom="@dimen/_20sdp">
 
+                <FrameLayout
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp">
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/icon_circle_bg"
+                        android:backgroundTint="#40FFFFFF" />
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/txt_error"
+                        android:src="@drawable/ic_my_cars"
+                        app:tint="@color/white" />
+                </FrameLayout>
 
-                <!--                <LinearLayout-->
-                <!--                    android:id="@+id/iv_feedback"-->
-                <!--                    android:layout_width="match_parent"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_margin="@dimen/_10sdp"-->
-                <!--                    android:layout_marginTop="@dimen/_12sdp"-->
-                <!--                    android:gravity="center_vertical"-->
-                <!--                    android:orientation="horizontal"-->
-                <!--                    tools:ignore="UseCompoundDrawables">-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="Android Carplay"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_16ssp"
+                    android:textStyle="bold" />
 
-                <!--                    <ImageView-->
-                <!--                        android:layout_width="30dp"-->
-                <!--                        android:layout_height="30dp"-->
-                <!--                        android:src="@drawable/feedback_icon"-->
-                <!--                        android:contentDescription="@string/txt_error" />-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:text="Smart Car Companion"
+                    android:textColor="#B0D4FF"
+                    android:textSize="@dimen/_11ssp" />
+            </LinearLayout>
 
-                <!--                    <TextView-->
-                <!--                        android:layout_width="match_parent"-->
-                <!--                        android:layout_height="wrap_content"-->
-                <!--                        android:layout_marginStart="@dimen/_7sdp"-->
-                <!--                        android:text="@string/txt_feedback"-->
-                <!--                        android:textColor="@color/white"-->
-                <!--                        android:textSize="16sp" />-->
-                <!--                </LinearLayout>-->
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider" />
+
+            <!-- Menu Items -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/_8sdp">
 
                 <LinearLayout
                     android:id="@+id/iv_ratus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
+                    android:background="?android:attr/selectableItemBackground"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    tools:ignore="UseCompoundDrawables">
+                    android:paddingHorizontal="@dimen/_16sdp"
+                    android:paddingVertical="@dimen/_12sdp">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
                         android:contentDescription="@string/txt_error"
-                        android:src="@drawable/rate_us" />
+                        android:src="@drawable/rate_us"
+                        app:tint="@color/text_secondary" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_7sdp"
+                        android:layout_marginStart="@dimen/_12sdp"
                         android:text="@string/txt_ratus"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/_13ssp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/iv_share"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
+                    android:background="?android:attr/selectableItemBackground"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    tools:ignore="UseCompoundDrawables">
+                    android:paddingHorizontal="@dimen/_16sdp"
+                    android:paddingVertical="@dimen/_12sdp">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
                         android:contentDescription="@string/txt_error"
-                        android:src="@drawable/share" />
+                        android:src="@drawable/share"
+                        app:tint="@color/text_secondary" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_7sdp"
+                        android:layout_marginStart="@dimen/_12sdp"
                         android:text="@string/txt_share_app"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/_13ssp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/iv_privacy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
+                    android:background="?android:attr/selectableItemBackground"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingBottom="@dimen/_8sdp"
-                    tools:ignore="UseCompoundDrawables">
+                    android:paddingHorizontal="@dimen/_16sdp"
+                    android:paddingVertical="@dimen/_12sdp">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
                         android:contentDescription="@string/txt_error"
-                        android:src="@drawable/privacy" />
+                        android:src="@drawable/privacy"
+                        app:tint="@color/text_secondary" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_7sdp"
+                        android:layout_marginStart="@dimen/_12sdp"
                         android:text="@string/txt_privacy"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/_13ssp" />
                 </LinearLayout>
-
             </LinearLayout>
-
         </LinearLayout>
-
     </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

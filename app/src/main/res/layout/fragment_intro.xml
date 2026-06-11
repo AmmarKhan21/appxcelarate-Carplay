@@ -4,97 +4,88 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_bg"
+    android:background="@color/white"
     tools:context=".Fragments.IntroFragment">
-
-
 
     <TextView
         android:id="@+id/txtSkip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:layout_marginEnd="@dimen/_15sdp"
+        android:padding="@dimen/_15sdp"
         android:text="@string/txtSkip"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#64748B"
+        android:textSize="@dimen/_14ssp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/black"
-        android:visibility="invisible" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/screen_viewpager"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/tab_indicator"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/dotsIndicator"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtSkip" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/btn_next"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="32dp"
-        android:background="@color/bg"
-        android:layout_marginLeft="32dp"
         android:visibility="gone"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/dotsIndicator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:tabBackground="@drawable/indicator_selector"
-        app:tabIndicatorHeight="0dp"
-        tools:ignore="RtlHardcoded">
+        app:tabIndicatorHeight="0dp" />
 
-    </com.google.android.material.tabs.TabLayout>
     <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
         android:id="@+id/dotsIndicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
-        app:dotsColor="@color/white"
+        android:layout_marginBottom="@dimen/_12sdp"
+        app:dotsColor="#CBD5E1"
         app:dotsCornerRadius="8dp"
-        app:dotsSize="@dimen/_7sdp"
+        app:dotsSize="@dimen/_8sdp"
         app:dotsSpacing="@dimen/_4sdp"
         app:dotsWidthFactor="2.5"
         app:layout_constraintBottom_toTopOf="@+id/btn_next"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:progressMode="false"
-        app:selectedDotColor="@color/bg_dark" />
+        app:selectedDotColor="#2563EB" />
 
-    <ImageView
+    <TextView
         android:id="@+id/btn_next"
-        android:layout_width="@dimen/_70sdp"
-        android:layout_height="@dimen/_30sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:paddingHorizontal="@dimen/_8sdp"
+        android:paddingVertical="@dimen/_6sdp"
+        android:text="Next"
+        android:textColor="#2563EB"
+        android:textSize="@dimen/_15ssp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/native_ad"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/next">
+        app:layout_constraintEnd_toEndOf="parent" />
 
-
-    </ImageView>
-
-
-    <ImageView
+    <TextView
         android:id="@+id/btn_get_started"
-        android:layout_width="@dimen/_70sdp"
-        android:layout_height="@dimen/_30sdp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:background="@drawable/next"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_42sdp"
+        android:background="@drawable/btn_primary_light"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/_24sdp"
+        android:text="Get Started"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_15ssp"
+        android:textStyle="bold"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/native_ad"
-        app:layout_constraintEnd_toEndOf="parent">
-
-
-    </ImageView>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="@dimen/_10sdp" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/native_ad"
@@ -102,7 +93,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_8sdp"
         android:visibility="visible"
-        app:cardBackgroundColor="@color/bg_dark"
+        app:cardBackgroundColor="@color/surface_variant"
         app:cardCornerRadius="0dp"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -132,6 +123,5 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
