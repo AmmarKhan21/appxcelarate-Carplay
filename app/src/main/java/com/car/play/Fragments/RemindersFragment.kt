@@ -75,17 +75,34 @@ class RemindersFragment : Fragment() {
     }
 
     private fun setupFilterChips() {
+        val chips = listOf(binding.chipAll, binding.chipActive, binding.chipCompleted)
         binding.chipAll.setOnClickListener {
             currentFilter = "All"
+            updateChipStyles(chips, 0)
             observeData()
         }
         binding.chipActive.setOnClickListener {
             currentFilter = "Active"
+            updateChipStyles(chips, 1)
             observeData()
         }
         binding.chipCompleted.setOnClickListener {
             currentFilter = "Completed"
+            updateChipStyles(chips, 2)
             observeData()
+        }
+        updateChipStyles(chips, 0)
+    }
+
+    private fun updateChipStyles(chips: List<android.widget.TextView>, selectedIndex: Int) {
+        chips.forEachIndexed { i, chip ->
+            if (i == selectedIndex) {
+                chip.setBackgroundResource(R.drawable.chip_bg_selected)
+                chip.setTextColor(android.graphics.Color.WHITE)
+            } else {
+                chip.setBackgroundResource(R.drawable.chip_bg)
+                chip.setTextColor(0xFFBBBBBB.toInt())
+            }
         }
     }
 
@@ -128,18 +145,18 @@ class RemindersFragment : Fragment() {
         val calendar = Calendar.getInstance()
 
         val categories = arrayOf("Oil Change", "Tire Rotation", "Insurance", "Inspection", "Car Wash", "Other")
-        val categoryAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, categories)
-        categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        val categoryAdapter = ArrayAdapter(requireContext(), R.layout.spinner_item_dark, categories)
+        categoryAdapter.setDropDownViewResource(R.layout.spinner_dropdown_dark)
         dialogBinding.spinnerCategory.adapter = categoryAdapter
 
         val priorities = arrayOf("High", "Medium", "Low")
-        val priorityAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, priorities)
-        priorityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        val priorityAdapter = ArrayAdapter(requireContext(), R.layout.spinner_item_dark, priorities)
+        priorityAdapter.setDropDownViewResource(R.layout.spinner_dropdown_dark)
         dialogBinding.spinnerPriority.adapter = priorityAdapter
 
         val intervals = arrayOf("Weekly", "Monthly", "Yearly")
-        val intervalAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, intervals)
-        intervalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        val intervalAdapter = ArrayAdapter(requireContext(), R.layout.spinner_item_dark, intervals)
+        intervalAdapter.setDropDownViewResource(R.layout.spinner_dropdown_dark)
         dialogBinding.spinnerRecurringInterval.adapter = intervalAdapter
 
         dialogBinding.switchRecurring.setOnCheckedChangeListener { _, isChecked ->

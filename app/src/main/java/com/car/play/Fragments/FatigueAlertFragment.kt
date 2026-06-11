@@ -103,6 +103,10 @@ class FatigueAlertFragment : Fragment() {
         binding.btnStart.setOnClickListener { startDrivingSession() }
         binding.btnStop.setOnClickListener { stopDrivingSession() }
 
+        binding.switchEnable.setOnCheckedChangeListener { _, _ -> saveSettings() }
+        binding.switchVibrate.setOnCheckedChangeListener { _, _ -> saveSettings() }
+        binding.switchSound.setOnCheckedChangeListener { _, _ -> saveSettings() }
+
         binding.btnRestStops.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=rest+stop+near+me"))
             intent.setPackage("com.google.android.apps.maps")
@@ -275,7 +279,7 @@ class FatigueAlertFragment : Fragment() {
         if (isDriving) {
             val sessionDuration = System.currentTimeMillis() - sessionStartTime
             totalDrivingTimeToday += sessionDuration
-            saveSettings()
         }
+        saveSettings()
     }
 }

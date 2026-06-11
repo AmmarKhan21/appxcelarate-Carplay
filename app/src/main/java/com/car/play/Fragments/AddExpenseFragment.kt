@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.content.FileProvider
+import com.car.play.android.app.R
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -55,8 +56,8 @@ class AddExpenseFragment : Fragment() {
     }
 
     private fun setupSpinner() {
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, categories)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        val adapter = ArrayAdapter(requireContext(), R.layout.spinner_item_dark, categories)
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_dark)
         binding.spinnerCategory.adapter = adapter
     }
 

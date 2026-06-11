@@ -146,12 +146,16 @@ class Emergency : Fragment() {
 
         val nameInput = EditText(requireContext()).apply {
             hint = "Contact Name"
+            setTextColor(android.graphics.Color.WHITE)
+            setHintTextColor(0xFF888888.toInt())
             setSingleLine()
         }
 
         val phoneInput = EditText(requireContext()).apply {
             hint = "Phone Number"
             inputType = android.text.InputType.TYPE_CLASS_PHONE
+            setTextColor(android.graphics.Color.WHITE)
+            setHintTextColor(0xFF888888.toInt())
             setSingleLine()
         }
 

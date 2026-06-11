@@ -7,9 +7,46 @@
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:statusBarColor">@color/bg_dark</item>
+        <item name="alertDialogTheme">@style/DarkAlertDialog</item>
+        <item name="android:alertDialogTheme">@style/DarkAlertDialog</item>
+        <item name="android:datePickerDialogTheme">@style/DarkDatePicker</item>
+        <item name="android:timePickerDialogTheme">@style/DarkDatePicker</item>
     </style>
 
     <style name="Theme.NewCarplay" parent="Base.Theme.NewCarplay" />
+
+    <style name="DarkAlertDialog" parent="ThemeOverlay.Material3.Dialog.Alert">
+        <item name="android:colorBackground">#1A1A2E</item>
+        <item name="colorSurface">#1A1A2E</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">#BBBBBB</item>
+        <item name="android:editTextColor">@color/white</item>
+        <item name="editTextColor">@color/white</item>
+        <item name="colorPrimary">#3E73BF</item>
+        <item name="colorAccent">#3E73BF</item>
+    </style>
+
+    <style name="DarkDatePicker" parent="ThemeOverlay.Material3.Dialog">
+        <item name="android:colorBackground">#1A1A2E</item>
+        <item name="colorSurface">#1A1A2E</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">#BBBBBB</item>
+        <item name="colorPrimary">#3E73BF</item>
+        <item name="colorAccent">#3E73BF</item>
+        <item name="android:headerBackground">#2058AF</item>
+    </style>
+
+    <style name="DarkSpinnerItem" parent="android:Widget.TextView.SpinnerItem">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+    </style>
+
+    <style name="DarkSpinnerDropdown" parent="android:Widget.ListView.DropDown">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">#1A1A2E</item>
+    </style>
 
     <style name="AppTheme.Ads" parent="Theme.MaterialComponents.Light">
         <item name="android:textSize">@dimen/_10sdp</item>

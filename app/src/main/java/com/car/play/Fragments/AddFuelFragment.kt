@@ -62,8 +62,8 @@ class AddFuelFragment : Fragment() {
 
     private fun setupFuelTypeSpinner() {
         val fuelTypes = arrayOf("Petrol", "Diesel", "CNG", "Electric")
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, fuelTypes)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        val adapter = ArrayAdapter(requireContext(), R.layout.spinner_item_dark, fuelTypes)
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_dark)
         binding.spinnerFuelType.adapter = adapter
     }
 
