@@ -18,8 +18,8 @@ android {
         applicationId = "com.car.play.android.app"
         minSdk = 24
         targetSdk = 36
-        versionCode = 9
-        versionName = "1.9"
+        versionCode = 12
+        versionName = "1.12"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
