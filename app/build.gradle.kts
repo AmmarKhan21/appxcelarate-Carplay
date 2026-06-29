@@ -18,8 +18,8 @@ android {
         applicationId = "com.car.play.android.app"
         minSdk = 24
         targetSdk = 36
-        versionCode = 12
-        versionName = "1.12"
+        versionCode = 14
+        versionName = "1.14"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -59,6 +59,11 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    packaging {
+        jniLibs {
+            useLegacyPackaging = false
+        }
     }
 }
 
@@ -119,11 +124,12 @@ dependencies {
     implementation ("com.karumi:dexter:6.2.3")
     implementation (libs.dotsindicator)
 
-    // CameraX
-    implementation("androidx.camera:camera-core:1.4.1")
-    implementation("androidx.camera:camera-camera2:1.4.1")
-    implementation("androidx.camera:camera-lifecycle:1.4.1")
-    implementation("androidx.camera:camera-video:1.4.1")
-    implementation("androidx.camera:camera-view:1.4.1")
+    // CameraX (1.4.2+ required for 16 KB page size support on Play Store)
+    val cameraVersion = "1.4.2"
+    implementation("androidx.camera:camera-core:$cameraVersion")
+    implementation("androidx.camera:camera-camera2:$cameraVersion")
+    implementation("androidx.camera:camera-lifecycle:$cameraVersion")
+    implementation("androidx.camera:camera-video:$cameraVersion")
+    implementation("androidx.camera:camera-view:$cameraVersion")
 
 }

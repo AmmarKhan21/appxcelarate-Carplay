@@ -159,7 +159,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_2sdp"
-                        android:text="Uses activity recognition to detect driving"
+                        android:text="Manual driving mode toggle"
                         android:textColor="#BBBBBB"
                         android:textSize="@dimen/_9ssp" />
 

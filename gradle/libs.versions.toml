@@ -1,5 +1,5 @@
 [versions]
-agp = "8.4.2"
+agp = "8.7.2"
 coreSplashscreen = "1.0.1"
 coreSplashscreenVersion = "1.1.0-alpha01"
 gradle = "7.4.3"

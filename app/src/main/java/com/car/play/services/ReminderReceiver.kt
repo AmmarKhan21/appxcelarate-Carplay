@@ -14,7 +14,9 @@ import com.car.play.android.app.R
 class ReminderReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val title = intent.getStringExtra("title") ?: "Reminder"
-        val message = intent.getStringExtra("message") ?: "You have a car service reminder"
+        val message = intent.getStringExtra("description")
+            ?: intent.getStringExtra("message")
+            ?: "You have a car service reminder"
         val reminderId = intent.getIntExtra("reminder_id", 0)
 
         val tapIntent = Intent(context, HomeActivity::class.java).apply {

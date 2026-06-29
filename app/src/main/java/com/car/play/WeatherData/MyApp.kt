@@ -7,8 +7,13 @@ import android.content.Context
 import android.os.Build
 import com.car.play.GoogleAds.AppOpenAdManager
 import com.car.play.GoogleAds.RemoteConfig
+import com.car.play.android.app.db.AppDatabase
+import com.car.play.android.app.services.ReminderScheduler
 import com.google.android.gms.ads.MobileAds
 import com.google.firebase.FirebaseApp
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MyApp : Application() {
     companion object {
@@ -28,6 +33,18 @@ class MyApp : Application() {
         appOpenAdManager = AppOpenAdManager(this)
         MobileAds.initialize(this) {}
         createNotificationChannels()
+        rescheduleReminders()
+    }
+
+    private fun rescheduleReminders() {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val reminders = AppDatabase.getDatabase(this@MyApp).reminderDao().getActiveRemindersSync()
+                ReminderScheduler.rescheduleAll(this@MyApp, reminders)
+            } catch (e: Exception) {
+                android.util.Log.e("MyApp", "Failed to reschedule reminders", e)
+            }
+        }
     }
 
     private fun createNotificationChannels() {

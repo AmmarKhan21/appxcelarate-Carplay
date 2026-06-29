@@ -6,12 +6,10 @@ import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
-import android.text.InputType
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -21,6 +19,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import com.car.play.GoogleAds.GoogleAds
 import com.car.play.android.app.R
+import com.car.play.android.app.databinding.DialogUpdateMileageBinding
 import com.car.play.android.app.databinding.FragmentPredictiveMaintenanceBinding
 import com.intuit.sdp.R as sdpR
 import java.text.NumberFormat
@@ -139,6 +138,11 @@ class PredictiveMaintenanceFragment : Fragment() {
             else -> "Service Required!"
         }
         binding.tvHealthStatus.setTextColor(getStatusColor(healthScore))
+        binding.tvHealthHint.text = if (hasAnyServiceRecord()) {
+            "Based on mileage and service history"
+        } else {
+            "Based on odometer — mark services done to improve accuracy"
+        }
 
         rebuildCards()
     }
@@ -331,20 +335,30 @@ class PredictiveMaintenanceFragment : Fragment() {
         return if (lastKm > 0) {
             item.intervalKm - (currentKm - lastKm)
         } else {
-            item.intervalKm
+            // No service recorded yet — estimate from current odometer
+            item.intervalKm - currentKm
         }
     }
 
     private fun calculateRemainingDays(item: MaintenanceItem): Int {
-        val lastDateStr = prefs.getString("${item.key}_last_date", null) ?: return item.intervalDays
-        return try {
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-            val lastDate = dateFormat.parse(lastDateStr) ?: return item.intervalDays
-            val daysSince = TimeUnit.MILLISECONDS.toDays(Date().time - lastDate.time).toInt()
-            (item.intervalDays - daysSince).coerceAtLeast(0)
-        } catch (e: Exception) {
-            item.intervalDays
+        val lastDateStr = prefs.getString("${item.key}_last_date", null)
+        if (lastDateStr != null) {
+            return try {
+                val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                val lastDate = dateFormat.parse(lastDateStr) ?: return estimateDaysFromMileage(item)
+                val daysSince = TimeUnit.MILLISECONDS.toDays(Date().time - lastDate.time).toInt()
+                (item.intervalDays - daysSince).coerceAtLeast(0)
+            } catch (e: Exception) {
+                estimateDaysFromMileage(item)
+            }
         }
+        return estimateDaysFromMileage(item)
+    }
+
+    private fun estimateDaysFromMileage(item: MaintenanceItem): Int {
+        val remainingKm = calculateRemainingKm(item).coerceAtLeast(0)
+        if (item.intervalKm <= 0) return item.intervalDays
+        return (item.intervalDays.toFloat() * remainingKm / item.intervalKm).toInt().coerceAtLeast(0)
     }
 
     private fun getItemStatus(remainingKm: Int, intervalKm: Int): ItemStatus {
@@ -359,14 +373,18 @@ class PredictiveMaintenanceFragment : Fragment() {
         var totalPercent = 0f
         var count = 0
         for (item in ITEMS) {
-            val remaining = calculateRemainingKm(item).coerceAtLeast(0)
+            val remainingKm = calculateRemainingKm(item)
             val daysRemaining = calculateRemainingDays(item)
-            val kmPercent = (remaining.toFloat() / item.intervalKm * 100).coerceIn(0f, 100f)
+            val kmPercent = (remainingKm.toFloat() / item.intervalKm * 100).coerceIn(0f, 100f)
             val daysPercent = (daysRemaining.toFloat() / item.intervalDays * 100).coerceIn(0f, 100f)
             totalPercent += minOf(kmPercent, daysPercent)
             count++
         }
-        return if (count > 0) (totalPercent / count).toInt() else 100
+        return if (count > 0) (totalPercent / count).toInt() else 0
+    }
+
+    private fun hasAnyServiceRecord(): Boolean {
+        return ITEMS.any { prefs.getFloat("${it.key}_last_km", 0f) > 0f || prefs.getString("${it.key}_last_date", null) != null }
     }
 
     private fun getStatusColor(score: Int): Int {
@@ -380,45 +398,44 @@ class PredictiveMaintenanceFragment : Fragment() {
     }
 
     private fun showUpdateMileageDialog() {
-        val layout = LinearLayout(requireContext()).apply {
-            orientation = LinearLayout.VERTICAL
-            setPadding(60, 40, 60, 20)
-        }
-
+        val dialogBinding = DialogUpdateMileageBinding.inflate(LayoutInflater.from(requireContext()))
         val currentKm = prefs.getFloat(KEY_CURRENT_MILEAGE, 0f)
-        val mileageInput = EditText(requireContext()).apply {
-            hint = "Current odometer reading (km)"
-            inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
-            if (currentKm > 0) setText(currentKm.toInt().toString())
-            setTextColor(Color.WHITE)
-            setHintTextColor(0xFF888888.toInt())
-            setSingleLine()
+        if (currentKm > 0) {
+            dialogBinding.etMileage.setText(currentKm.toInt().toString())
         }
-        layout.addView(mileageInput)
 
-        AlertDialog.Builder(requireContext())
-            .setTitle("Update Mileage")
-            .setMessage("Enter your current odometer reading so predictions stay accurate.")
-            .setView(layout)
-            .setPositiveButton("Save") { _, _ ->
-                val km = mileageInput.text.toString().toFloatOrNull()
-                if (km != null && km > 0) {
-                    prefs.edit().putFloat(KEY_CURRENT_MILEAGE, km).apply()
-                    updateUI()
-                    Toast.makeText(requireContext(), "Mileage updated to ${NumberFormat.getNumberInstance(Locale.getDefault()).format(km.toInt())} km", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(requireContext(), "Please enter a valid number", Toast.LENGTH_SHORT).show()
-                }
+        val dialog = AlertDialog.Builder(requireContext(), R.style.Theme_NewCarplay)
+            .setView(dialogBinding.root)
+            .create()
+
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        dialogBinding.btnCancel.setOnClickListener { dialog.dismiss() }
+
+        dialogBinding.btnSave.setOnClickListener {
+            val km = dialogBinding.etMileage.text.toString().trim().toFloatOrNull()
+            if (km != null && km > 0) {
+                prefs.edit().putFloat(KEY_CURRENT_MILEAGE, km).apply()
+                updateUI()
+                Toast.makeText(
+                    requireContext(),
+                    "Mileage updated to ${NumberFormat.getNumberInstance(Locale.getDefault()).format(km.toInt())} km",
+                    Toast.LENGTH_SHORT
+                ).show()
+                dialog.dismiss()
+            } else {
+                Toast.makeText(requireContext(), "Please enter a valid number", Toast.LENGTH_SHORT).show()
             }
-            .setNegativeButton("Cancel", null)
-            .show()
+        }
+
+        dialog.show()
     }
 
     private fun showMarkServiceDoneDialog(item: MaintenanceItem) {
         val currentKm = prefs.getFloat(KEY_CURRENT_MILEAGE, 0f)
         val nf = NumberFormat.getNumberInstance(Locale.getDefault())
 
-        AlertDialog.Builder(requireContext())
+        AlertDialog.Builder(requireContext(), R.style.DarkAlertDialog)
             .setTitle("${item.emoji} ${item.title}")
             .setMessage("Mark this service as completed today at ${nf.format(currentKm.toInt())} km?\n\nThis will reset the prediction timer for this service.")
             .setPositiveButton("Mark Done") { _, _ ->

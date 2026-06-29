@@ -1,20 +1,16 @@
 
 package com.car.play.android.app.Fragments
 import android.Manifest
-import android.content.ContentValues
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.PermissionRequest
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.app.lock.hide.apps.secure.utils.dialogs.PhotoAccessPermissionDialog1
@@ -26,6 +22,7 @@ import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import java.io.File
 
 class DocumentFragment : Fragment() {
     private lateinit var googleAds: GoogleAds
@@ -90,12 +87,21 @@ class DocumentFragment : Fragment() {
         selectImageLauncher.launch("image/*")
     }
 
-    // Function to open the camera and capture an image
     private fun openCamera() {
-        val contentValues = ContentValues()
-        contentValues.put(MediaStore.Images.Media.TITLE, "Captured Image")
-        imageUri = requireActivity().contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)!!
-        takePictureLauncher.launch(imageUri)
+        try {
+            val photoFile = File(
+                requireContext().cacheDir,
+                "document_${System.currentTimeMillis()}.jpg"
+            )
+            imageUri = FileProvider.getUriForFile(
+                requireContext(),
+                "${requireContext().packageName}.provider",
+                photoFile
+            )
+            takePictureLauncher.launch(imageUri)
+        } catch (e: Exception) {
+            Toast.makeText(requireContext(), "Unable to open camera", Toast.LENGTH_SHORT).show()
+        }
     }
 
     // Function to disable button for a short period to prevent multiple clicks
@@ -141,15 +147,8 @@ class DocumentFragment : Fragment() {
     }
     private fun handleDeniedPermissions(deniedResponses: Collection<PermissionDeniedResponse>) {
         for (response in deniedResponses) {
-            when (response.permissionName) {
-                Manifest.permission.READ_MEDIA_IMAGES,
-                Manifest.permission.READ_MEDIA_VIDEO,
-                Manifest.permission.CAMERA,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE -> {
-                    val dialog = PhotoAccessPermissionDialog1(this.requireActivity())
-                    dialog.show()
-                }
+            if (response.permissionName == Manifest.permission.CAMERA) {
+                showPermissionDeniedDialog()
             }
         }
     }

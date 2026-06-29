@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import com.car.play.android.app.R
 import androidx.fragment.app.Fragment
@@ -37,8 +38,16 @@ class AddExpenseFragment : Fragment() {
 
     companion object {
         private const val REQUEST_CAMERA = 2001
-        private const val REQUEST_GALLERY = 2002
     }
+
+    private val galleryLauncher =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+            uri?.let {
+                receiptPath = it.toString()
+                binding.ivReceiptPreview.visibility = View.VISIBLE
+                binding.ivReceiptPreview.setImageURI(it)
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -124,8 +133,7 @@ class AddExpenseFragment : Fragment() {
     }
 
     private fun openGallery() {
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(intent, REQUEST_GALLERY)
+        galleryLauncher.launch("image/*")
     }
 
     private fun createImageFile(): File {
@@ -138,20 +146,9 @@ class AddExpenseFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK) {
-            when (requestCode) {
-                REQUEST_CAMERA -> {
-                    binding.ivReceiptPreview.visibility = View.VISIBLE
-                    binding.ivReceiptPreview.setImageURI(photoUri)
-                }
-                REQUEST_GALLERY -> {
-                    data?.data?.let { uri ->
-                        receiptPath = uri.toString()
-                        binding.ivReceiptPreview.visibility = View.VISIBLE
-                        binding.ivReceiptPreview.setImageURI(uri)
-                    }
-                }
-            }
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CAMERA) {
+            binding.ivReceiptPreview.visibility = View.VISIBLE
+            binding.ivReceiptPreview.setImageURI(photoUri)
         }
     }
 

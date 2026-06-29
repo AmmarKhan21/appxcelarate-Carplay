@@ -68,7 +68,7 @@
         android:padding="@dimen/_5sdp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/white"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toTopOf="@id/native_ad"
         app:layout_constraintTop_toBottomOf="@id/toolBar"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +84,9 @@
         android:gravity="center"
         android:text="Add"
         android:textColor="@color/white"
-        android:backgroundTint="#727A99"
+        app:backgroundTint="@color/accent_blue"
+        app:icon="@android:drawable/ic_input_add"
+        app:iconTint="@color/white"
         app:layout_constraintBottom_toTopOf="@id/native_ad"
         app:layout_constraintEnd_toEndOf="parent" />
     <androidx.cardview.widget.CardView

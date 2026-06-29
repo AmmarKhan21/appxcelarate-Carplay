@@ -5,11 +5,12 @@ import androidx.room.*
 
 @Dao
 interface ReminderDao {
-    @Insert suspend fun insert(reminder: ReminderEntity)
+    @Insert suspend fun insert(reminder: ReminderEntity): Long
     @Update suspend fun update(reminder: ReminderEntity)
     @Delete suspend fun delete(reminder: ReminderEntity)
     @Query("SELECT * FROM reminders ORDER BY date ASC, time ASC") fun getAllReminders(): LiveData<List<ReminderEntity>>
     @Query("SELECT * FROM reminders WHERE isCompleted = 0 ORDER BY date ASC") fun getActiveReminders(): LiveData<List<ReminderEntity>>
+    @Query("SELECT * FROM reminders WHERE isCompleted = 0") suspend fun getActiveRemindersSync(): List<ReminderEntity>
     @Query("SELECT * FROM reminders WHERE id = :id") fun getReminderById(id: Long): LiveData<ReminderEntity?>
     @Query("UPDATE reminders SET isCompleted = :completed WHERE id = :id") suspend fun updateCompletionStatus(id: Long, completed: Boolean)
 }

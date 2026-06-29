@@ -111,7 +111,7 @@
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
                 android:textColor="@color/white"
-                android:textColorHint="#999999"
+                android:textColorHint="@color/text_hint"
                 android:textSize="@dimen/_12ssp" />
 
             <!-- Make -->
@@ -134,7 +134,7 @@
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
                 android:textColor="@color/white"
-                android:textColorHint="#999999"
+                android:textColorHint="@color/text_hint"
                 android:textSize="@dimen/_12ssp" />
 
             <!-- Model -->
@@ -157,7 +157,7 @@
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
                 android:textColor="@color/white"
-                android:textColorHint="#999999"
+                android:textColorHint="@color/text_hint"
                 android:textSize="@dimen/_12ssp" />
 
             <!-- Year -->
@@ -180,7 +180,7 @@
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
                 android:textColor="@color/white"
-                android:textColorHint="#999999"
+                android:textColorHint="@color/text_hint"
                 android:textSize="@dimen/_12ssp" />
 
             <!-- Color -->
@@ -203,7 +203,7 @@
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
                 android:textColor="@color/white"
-                android:textColorHint="#999999"
+                android:textColorHint="@color/text_hint"
                 android:textSize="@dimen/_12ssp" />
 
             <!-- License Plate -->
@@ -226,7 +226,7 @@
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
                 android:textColor="@color/white"
-                android:textColorHint="#999999"
+                android:textColorHint="@color/text_hint"
                 android:textSize="@dimen/_12ssp" />
 
             <!-- VIN -->
@@ -249,7 +249,7 @@
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
                 android:textColor="@color/white"
-                android:textColorHint="#999999"
+                android:textColorHint="@color/text_hint"
                 android:textSize="@dimen/_12ssp" />
 
             <!-- Purchase Date -->
@@ -274,7 +274,7 @@
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
                 android:textColor="@color/white"
-                android:textColorHint="#999999"
+                android:textColorHint="@color/text_hint"
                 android:textSize="@dimen/_12ssp" />
 
             <!-- Save Button -->

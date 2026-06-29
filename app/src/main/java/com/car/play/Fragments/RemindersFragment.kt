@@ -1,22 +1,20 @@
 package com.car.play.android.app.Fragments
 
-import android.app.AlarmManager
+import android.Manifest
 import android.app.DatePickerDialog
-import android.app.PendingIntent
 import android.app.TimePickerDialog
-import android.content.Context
-import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.Spinner
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,7 +25,7 @@ import com.car.play.android.app.databinding.DialogAddReminderBinding
 import com.car.play.android.app.databinding.FragmentRemindersBinding
 import com.car.play.android.app.db.ReminderEntity
 import com.car.play.android.app.db.ReminderViewModel
-import com.google.android.material.switchmaterial.SwitchMaterial
+import com.car.play.android.app.services.ReminderScheduler
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -39,6 +37,11 @@ class RemindersFragment : Fragment() {
     private lateinit var viewModel: ReminderViewModel
     private lateinit var reminderAdapter: ReminderAdapter
     private var currentFilter = "All"
+    private var isObserving = false
+
+    private val notificationPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,8 +56,20 @@ class RemindersFragment : Fragment() {
         setupClickListeners()
         setupFilterChips()
         observeData()
+        requestNotificationPermissionIfNeeded()
 
         return binding.root
+    }
+
+    private fun requestNotificationPermissionIfNeeded() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+            ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.POST_NOTIFICATIONS
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
     }
 
     private fun setupRecyclerView() {
@@ -79,17 +94,17 @@ class RemindersFragment : Fragment() {
         binding.chipAll.setOnClickListener {
             currentFilter = "All"
             updateChipStyles(chips, 0)
-            observeData()
+            refreshList()
         }
         binding.chipActive.setOnClickListener {
             currentFilter = "Active"
             updateChipStyles(chips, 1)
-            observeData()
+            refreshList()
         }
         binding.chipCompleted.setOnClickListener {
             currentFilter = "Completed"
             updateChipStyles(chips, 2)
-            observeData()
+            refreshList()
         }
         updateChipStyles(chips, 0)
     }
@@ -107,26 +122,41 @@ class RemindersFragment : Fragment() {
     }
 
     private fun observeData() {
-        val liveData = when (currentFilter) {
-            "Active" -> viewModel.activeReminders
-            else -> viewModel.allReminders
+        if (isObserving) return
+        isObserving = true
+
+        viewModel.allReminders.observe(viewLifecycleOwner) { reminders ->
+            if (!isAdded) return@observe
+            refreshList(reminders)
+        }
+        viewModel.activeReminders.observe(viewLifecycleOwner) { reminders ->
+            if (!isAdded) return@observe
+            if (currentFilter == "Active") {
+                refreshList(reminders)
+            }
+        }
+    }
+
+    private fun refreshList(reminders: List<ReminderEntity>? = null) {
+        val source = reminders ?: when (currentFilter) {
+            "Active" -> viewModel.activeReminders.value
+            else -> viewModel.allReminders.value
+        } ?: emptyList()
+
+        val filteredList = when (currentFilter) {
+            "Active" -> source.filter { !it.isCompleted }
+            "Completed" -> source.filter { it.isCompleted }
+            else -> source
         }
 
-        liveData.observe(viewLifecycleOwner, Observer { reminders ->
-            val filteredList = when (currentFilter) {
-                "Completed" -> reminders.filter { it.isCompleted }
-                else -> reminders
-            }
-
-            if (filteredList.isNullOrEmpty()) {
-                binding.emptyImg.visibility = View.VISIBLE
-                binding.rvReminders.visibility = View.GONE
-            } else {
-                binding.emptyImg.visibility = View.GONE
-                binding.rvReminders.visibility = View.VISIBLE
-                reminderAdapter.updateList(filteredList)
-            }
-        })
+        if (filteredList.isEmpty()) {
+            binding.emptyImg.visibility = View.VISIBLE
+            binding.rvReminders.visibility = View.GONE
+        } else {
+            binding.emptyImg.visibility = View.GONE
+            binding.rvReminders.visibility = View.VISIBLE
+            reminderAdapter.updateList(filteredList)
+        }
     }
 
     private fun showDeleteDialog(reminder: ReminderEntity) {
@@ -227,35 +257,23 @@ class RemindersFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            viewModel.addReminder(title, description, date, time, isRecurring, recurringInterval, category, priority)
-            scheduleNotification(title, description, calendar)
+            val triggerAt = ReminderScheduler.parseTriggerTime(date, time)
+            if (triggerAt == null) {
+                Toast.makeText(requireContext(), "Invalid date or time", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (triggerAt <= System.currentTimeMillis()) {
+                Toast.makeText(requireContext(), "Please choose a future date and time", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            viewModel.addReminder(
+                title, description, date, time, isRecurring, recurringInterval, category, priority
+            )
             Toast.makeText(requireContext(), "Reminder saved", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }
 
         dialog.show()
-    }
-
-    private fun scheduleNotification(title: String, description: String, calendar: Calendar) {
-        try {
-            val alarmManager = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
-            val intent = Intent("com.car.play.REMINDER_NOTIFICATION").apply {
-                putExtra("title", title)
-                putExtra("description", description)
-            }
-            val pendingIntent = PendingIntent.getBroadcast(
-                requireContext(),
-                System.currentTimeMillis().toInt(),
-                intent,
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-            )
-            alarmManager.setAndAllowWhileIdle(
-                AlarmManager.RTC_WAKEUP,
-                calendar.timeInMillis,
-                pendingIntent
-            )
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
     }
 }
