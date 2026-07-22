@@ -18,8 +18,8 @@ android {
         applicationId = "com.car.play.android.app"
         minSdk = 24
         targetSdk = 36
-        versionCode = 14
-        versionName = "1.14"
+        versionCode = 15
+        versionName = "1.15"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -118,7 +118,7 @@ dependencies {
     implementation (libs.logging.interceptor)
 //    implementation ("com.github.ihsanbal:LoggingInterceptor:3.1.0")
 
-    implementation("com.android.billingclient:billing:7.1.1")
+    implementation("com.android.billingclient:billing:9.1.0")
 
     implementation (libs.androidx.core.splashscreen)
     implementation ("com.karumi:dexter:6.2.3")

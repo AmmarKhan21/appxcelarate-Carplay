@@ -19,6 +19,7 @@ import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClientStateListener
 import com.android.billingclient.api.BillingFlowParams
 import com.android.billingclient.api.BillingResult
+import com.android.billingclient.api.PendingPurchasesParams
 import com.android.billingclient.api.ProductDetails
 import com.android.billingclient.api.Purchase
 import com.android.billingclient.api.QueryProductDetailsParams
@@ -142,7 +143,11 @@ class homefragment : Fragment() {
             .setListener { billingResult, purchases ->
                 handlePurchase(purchases)
             }
-            .enablePendingPurchases()  // Required for API level 30+
+            .enablePendingPurchases(
+                PendingPurchasesParams.newBuilder()
+                    .enableOneTimeProducts()
+                    .build()
+            )
             .build()
 
         billingClient.startConnection(object : BillingClientStateListener {
@@ -175,10 +180,24 @@ class homefragment : Fragment() {
             .setProductList(productList)
             .build()
 
-        billingClient.queryProductDetailsAsync(params) { billingResult, productDetailsList ->
-            if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && productDetailsList.isNotEmpty()) {
-                val productDetails = productDetailsList[0]
-                initiatePurchase(productDetails)
+        billingClient.queryProductDetailsAsync(params) { billingResult, queryProductDetailsResult ->
+            if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                val productDetailsList = queryProductDetailsResult.productDetailsList
+                if (productDetailsList.isNotEmpty()) {
+                    initiatePurchase(productDetailsList[0])
+                } else {
+                    Toast.makeText(
+                        this.requireActivity(),
+                        "Product not available. Please try again later.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            } else {
+                Toast.makeText(
+                    this.requireActivity(),
+                    "Unable to load products. Please try again later.",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
@@ -197,25 +216,29 @@ class homefragment : Fragment() {
     }
 
     private fun handlePurchase(purchases: List<Purchase>?) {
+        if (!isAdded) return
         purchases?.forEach { purchase ->
             if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED) {
-                when (purchase.products[0]) {
+                when (purchase.products.firstOrNull()) {
                     "removeads" -> {
                         SharedPrefrence.saveSubscriptionState(this.requireActivity(), true)
                     }
                 }
 
-                val acknowledgePurchaseParams = AcknowledgePurchaseParams.newBuilder()
-                    .setPurchaseToken(purchase.purchaseToken)
-                    .build()
+                if (!purchase.isAcknowledged) {
+                    val acknowledgePurchaseParams = AcknowledgePurchaseParams.newBuilder()
+                        .setPurchaseToken(purchase.purchaseToken)
+                        .build()
 
-                billingClient.acknowledgePurchase(acknowledgePurchaseParams) { billingResult ->
-                    if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
-                        Toast.makeText(
-                            this.requireActivity(),
-                            "Purchase successful!",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                    billingClient.acknowledgePurchase(acknowledgePurchaseParams) { billingResult ->
+                        if (!isAdded) return@acknowledgePurchase
+                        if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                            Toast.makeText(
+                                this.requireActivity(),
+                                "Purchase successful!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
                 }
             }
