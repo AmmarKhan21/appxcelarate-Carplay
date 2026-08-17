@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="designModeName" format="string" />
+    <attr name="appBackground" format="reference" />
+    <attr name="appSplashBackground" format="reference" />
+    <attr name="featureCardBackground" format="reference" />
+    <attr name="navigationSurfaceColor" format="color" />
+    <attr name="appCardColor" format="color" />
+    <attr name="appCardStrokeColor" format="color" />
+    <attr name="appDeepSurfaceColor" format="color" />
+    <attr name="appElevatedSurfaceColor" format="color" />
+    <attr name="appInputSurfaceColor" format="color" />
+    <attr name="appTextPrimaryColor" format="color" />
+    <attr name="appTextSecondaryColor" format="color" />
+    <attr name="appIconTintColor" format="color" />
+    <attr name="appAdSurfaceColor" format="color" />
+</resources>
