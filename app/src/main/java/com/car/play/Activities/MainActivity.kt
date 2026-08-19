@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     private var hasNavigated = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        com.car.play.android.app.design.DesignTheme.apply(this)
         super.onCreate(savedInstanceState)
         binding = ActivityCarSplashBinding.inflate(layoutInflater)
         setContentView(binding.root)

@@ -7,10 +7,14 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.fragment.app.Fragment
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.NavHostFragment
@@ -27,9 +31,12 @@ import com.car.play.GoogleAds.GoogleAds
 import com.car.play.GoogleAds.onAdShowed
 import com.car.play.Utils.SharedPrefrence
 import com.car.play.android.app.R
+import com.car.play.android.app.design.DesignMode
+import com.car.play.android.app.design.DesignPreferences
 import com.car.play.android.app.databinding.FragmentHomefragmentBinding
 import com.car.play.android.app.dialogs.RatingDialog
 import com.car.play.android.app.dialogs.SharePrivacyDialog.showSharePrivacyDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class homefragment : Fragment() {
     private lateinit var billingClient: BillingClient
@@ -48,6 +55,7 @@ class homefragment : Fragment() {
         setupBillingClient()
         googleAds.CheckNative(this@homefragment,binding.nativeAd)
         setupClickListeners()
+        applySelectedDesign()
         requestCameraPermission()
         return binding.root
     }
@@ -116,6 +124,80 @@ class homefragment : Fragment() {
             binding.nav.close()
             RatingDialog.ratingDialog(this, requireActivity())
         }
+        binding.ivDesignMode.setOnClickListener {
+            binding.nav.close()
+            showDesignPicker()
+        }
+    }
+
+    private fun showDesignPicker() {
+        val preferences = DesignPreferences(requireContext())
+        val currentMode = preferences.getDesignMode()
+
+        val content = LayoutInflater.from(requireContext())
+            .inflate(R.layout.dialog_design_picker, null, false)
+        val listContainer = content.findViewById<LinearLayout>(R.id.design_preview_list)
+
+        val dialog = MaterialAlertDialogBuilder(requireContext())
+            .setView(content)
+            .setNegativeButton(R.string.design_close, null)
+            .create()
+
+        DesignMode.entries.forEach { mode ->
+            val card = buildDesignPreview(listContainer, mode, mode == currentMode) {
+                dialog.dismiss()
+                if (mode != currentMode) {
+                    preferences.setDesignMode(mode)
+                    requireActivity().recreate()
+                }
+            }
+            listContainer.addView(card)
+        }
+
+        dialog.show()
+    }
+
+    private fun buildDesignPreview(
+        parent: ViewGroup,
+        mode: DesignMode,
+        isSelected: Boolean,
+        onSelected: () -> Unit
+    ): View {
+        val themedContext = ContextThemeWrapper(requireContext(), mode.themeResId)
+        val view = LayoutInflater.from(themedContext)
+            .inflate(R.layout.item_design_preview, parent, false)
+
+        view.findViewById<View>(R.id.preview_header)
+            .setBackgroundResource(mode.homeHeaderResId)
+        view.findViewById<TextView>(R.id.preview_header_title).setText(mode.homeTitleResId)
+        view.findViewById<TextView>(R.id.preview_header_subtitle).setText(mode.homeSubtitleResId)
+        view.findViewById<TextView>(R.id.preview_name).setText(mode.displayNameResId)
+        view.findViewById<TextView>(R.id.preview_description).setText(mode.descriptionResId)
+        view.findViewById<View>(R.id.preview_check).isVisible = isSelected
+        view.findViewById<View>(R.id.preview_root).setBackgroundResource(
+            if (isSelected) R.drawable.design_preview_frame_selected
+            else R.drawable.design_preview_frame
+        )
+
+        (view.layoutParams as? LinearLayout.LayoutParams)?.bottomMargin =
+            (16 * resources.displayMetrics.density).toInt()
+
+        view.setOnClickListener { onSelected() }
+        return view
+    }
+
+    private fun applySelectedDesign() {
+        val mode = DesignPreferences(requireContext()).getDesignMode()
+
+        binding.imgMain.setBackgroundResource(mode.homeHeaderResId)
+        binding.homeHeaderTitle.setText(mode.homeTitleResId)
+        binding.homeHeaderSubtitle.setText(mode.homeSubtitleResId)
+
+        val showFigmaChrome = mode != DesignMode.LEGACY
+        binding.homeStatusBadge.isVisible = showFigmaChrome
+        binding.homeHeaderTitle.isVisible = showFigmaChrome
+        binding.homeHeaderSubtitle.isVisible = showFigmaChrome
+        binding.vehicleUtilitiesTitle.isVisible = showFigmaChrome
     }
 
     private fun setupFeatureTile(view: android.view.View, destinationId: Int) {

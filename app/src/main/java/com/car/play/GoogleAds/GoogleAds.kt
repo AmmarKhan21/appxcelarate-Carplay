@@ -383,7 +383,10 @@ class GoogleAds {
 
     // Show the loading dialog for 1 second
     private fun showLoadingDialog(activity: Activity) {
-        progressDialog = ProgressDialog(activity)
+        progressDialog = ProgressDialog(
+            activity,
+            androidx.appcompat.R.style.Theme_AppCompat_Light_Dialog
+        )
         progressDialog?.setMessage("Loading Ad please wait...")
         progressDialog?.setCancelable(false)  // Dialog is not cancellable
         progressDialog?.show()  // Show the dialog

@@ -14,4 +14,6 @@
     <attr name="appTextSecondaryColor" format="color" />
     <attr name="appIconTintColor" format="color" />
     <attr name="appAdSurfaceColor" format="color" />
+    <attr name="homeHeaderBackground" format="reference" />
+    <attr name="homeStatusBadgeColor" format="color" />
 </resources>

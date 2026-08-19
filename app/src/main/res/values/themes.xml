@@ -1,42 +1,213 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
     <style name="Base.Theme.NewCarplay" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:fitsSystemWindows">true</item>
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:statusBarColor">@color/bg_dark</item>
-        <item name="alertDialogTheme">@style/DarkAlertDialog</item>
-        <item name="android:alertDialogTheme">@style/DarkAlertDialog</item>
-        <item name="android:datePickerDialogTheme">@style/DarkDatePicker</item>
-        <item name="android:timePickerDialogTheme">@style/DarkDatePicker</item>
+        <item name="colorPrimary">@color/accent_blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSurface">@color/dark_surface</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorOnSurfaceVariant">@color/text_secondary</item>
+        <item name="alertDialogTheme">@style/VariantAlertDialog</item>
+        <item name="android:alertDialogTheme">@style/VariantAlertDialog</item>
+        <item name="android:datePickerDialogTheme">@style/VariantDatePicker</item>
+        <item name="android:timePickerDialogTheme">@style/VariantDatePicker</item>
+        <item name="designModeName">@string/design_legacy</item>
+        <item name="appBackground">@drawable/app_bg</item>
+        <item name="appSplashBackground">@drawable/splash_bg</item>
+        <item name="featureCardBackground">@drawable/card_bg</item>
+        <item name="homeHeaderBackground">@drawable/img_main</item>
+        <item name="homeStatusBadgeColor">@color/success_green</item>
+        <item name="navigationSurfaceColor">@color/bg_dark</item>
+        <item name="appCardColor">@color/dark_card</item>
+        <item name="appCardStrokeColor">@color/divider</item>
+        <item name="appDeepSurfaceColor">@color/dark_surface</item>
+        <item name="appElevatedSurfaceColor">@color/dark_card</item>
+        <item name="appInputSurfaceColor">@color/input_bg</item>
+        <item name="appTextPrimaryColor">@color/white</item>
+        <item name="appTextSecondaryColor">@color/text_secondary</item>
+        <item name="appIconTintColor">@color/white</item>
+        <item name="appAdSurfaceColor">@color/bg_dark</item>
     </style>
 
     <style name="Theme.NewCarplay" parent="Base.Theme.NewCarplay" />
 
-    <style name="DarkAlertDialog" parent="ThemeOverlay.Material3.Dialog.Alert">
-        <item name="android:colorBackground">#1A1A2E</item>
-        <item name="colorSurface">#1A1A2E</item>
-        <item name="colorOnSurface">@color/white</item>
-        <item name="android:textColorPrimary">@color/white</item>
-        <item name="android:textColorSecondary">#BBBBBB</item>
-        <item name="android:editTextColor">@color/white</item>
-        <item name="editTextColor">@color/white</item>
-        <item name="colorPrimary">#3E73BF</item>
-        <item name="colorAccent">#3E73BF</item>
+    <style name="Theme.NewCarplay.Stealth" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:statusBarColor">@color/stealth_background</item>
+        <item name="colorPrimary">@color/stealth_primary</item>
+        <item name="colorOnPrimary">@color/stealth_on_primary</item>
+        <item name="colorSurface">@color/stealth_surface</item>
+        <item name="colorOnSurface">@color/stealth_text_primary</item>
+        <item name="colorOnSurfaceVariant">@color/stealth_text_secondary</item>
+        <item name="designModeName">@string/design_stealth</item>
+        <item name="appBackground">@drawable/stealth_app_bg</item>
+        <item name="appSplashBackground">@drawable/stealth_app_bg</item>
+        <item name="featureCardBackground">@drawable/stealth_feature_card</item>
+        <item name="homeHeaderBackground">@drawable/stealth_home_header</item>
+        <item name="homeStatusBadgeColor">@color/stealth_status</item>
+        <item name="navigationSurfaceColor">@color/stealth_surface</item>
+        <item name="appCardColor">@color/stealth_surface_elevated</item>
+        <item name="appCardStrokeColor">@color/stealth_outline</item>
+        <item name="appDeepSurfaceColor">@color/stealth_surface</item>
+        <item name="appElevatedSurfaceColor">@color/stealth_surface_elevated</item>
+        <item name="appInputSurfaceColor">@color/stealth_surface_elevated</item>
+        <item name="appTextPrimaryColor">@color/stealth_text_primary</item>
+        <item name="appTextSecondaryColor">@color/stealth_text_secondary</item>
+        <item name="appIconTintColor">@color/stealth_text_primary</item>
+        <item name="appAdSurfaceColor">@color/stealth_ad_surface</item>
     </style>
 
-    <style name="DarkDatePicker" parent="ThemeOverlay.Material3.Dialog">
-        <item name="android:colorBackground">#1A1A2E</item>
-        <item name="colorSurface">#1A1A2E</item>
-        <item name="colorOnSurface">@color/white</item>
-        <item name="android:textColorPrimary">@color/white</item>
-        <item name="android:textColorSecondary">#BBBBBB</item>
-        <item name="colorPrimary">#3E73BF</item>
-        <item name="colorAccent">#3E73BF</item>
-        <item name="android:headerBackground">#2058AF</item>
+    <style name="Theme.NewCarplay.Frost" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:statusBarColor">@color/frost_background</item>
+        <item name="colorPrimary">@color/frost_primary</item>
+        <item name="colorOnPrimary">@color/frost_on_primary</item>
+        <item name="colorSurface">@color/frost_surface</item>
+        <item name="colorOnSurface">@color/frost_text_primary</item>
+        <item name="colorOnSurfaceVariant">@color/frost_text_secondary</item>
+        <item name="designModeName">@string/design_frost</item>
+        <item name="appBackground">@drawable/frost_app_bg</item>
+        <item name="appSplashBackground">@drawable/frost_app_bg</item>
+        <item name="featureCardBackground">@drawable/frost_feature_card</item>
+        <item name="homeHeaderBackground">@drawable/frost_home_header</item>
+        <item name="homeStatusBadgeColor">@color/frost_status</item>
+        <item name="navigationSurfaceColor">@color/frost_surface</item>
+        <item name="appCardColor">@color/frost_surface_elevated</item>
+        <item name="appCardStrokeColor">@color/frost_outline</item>
+        <item name="appDeepSurfaceColor">@color/frost_surface</item>
+        <item name="appElevatedSurfaceColor">@color/frost_surface_elevated</item>
+        <item name="appInputSurfaceColor">@color/frost_surface_elevated</item>
+        <item name="appTextPrimaryColor">@color/frost_text_primary</item>
+        <item name="appTextSecondaryColor">@color/frost_text_secondary</item>
+        <item name="appIconTintColor">@color/frost_text_primary</item>
+        <item name="appAdSurfaceColor">@color/frost_ad_surface</item>
     </style>
+
+    <style name="Theme.NewCarplay.Cockpit" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:statusBarColor">@color/cockpit_background</item>
+        <item name="colorPrimary">@color/cockpit_primary</item>
+        <item name="colorOnPrimary">@color/cockpit_on_primary</item>
+        <item name="colorSurface">@color/cockpit_surface</item>
+        <item name="colorOnSurface">@color/cockpit_text_primary</item>
+        <item name="colorOnSurfaceVariant">@color/cockpit_text_secondary</item>
+        <item name="designModeName">@string/design_cockpit</item>
+        <item name="appBackground">@drawable/cockpit_app_bg</item>
+        <item name="appSplashBackground">@drawable/cockpit_app_bg</item>
+        <item name="featureCardBackground">@drawable/cockpit_feature_card</item>
+        <item name="homeHeaderBackground">@drawable/cockpit_home_header</item>
+        <item name="homeStatusBadgeColor">@color/cockpit_status</item>
+        <item name="navigationSurfaceColor">@color/cockpit_surface</item>
+        <item name="appCardColor">@color/cockpit_surface_elevated</item>
+        <item name="appCardStrokeColor">@color/cockpit_outline</item>
+        <item name="appDeepSurfaceColor">@color/cockpit_surface</item>
+        <item name="appElevatedSurfaceColor">@color/cockpit_surface_elevated</item>
+        <item name="appInputSurfaceColor">@color/cockpit_surface_elevated</item>
+        <item name="appTextPrimaryColor">@color/cockpit_text_primary</item>
+        <item name="appTextSecondaryColor">@color/cockpit_text_secondary</item>
+        <item name="appIconTintColor">@color/cockpit_text_primary</item>
+        <item name="appAdSurfaceColor">@color/cockpit_ad_surface</item>
+    </style>
+
+    <style name="Theme.NewCarplay.Daylight" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/daylight_background</item>
+        <item name="colorPrimary">@color/daylight_primary</item>
+        <item name="colorOnPrimary">@color/daylight_on_primary</item>
+        <item name="colorSurface">@color/daylight_surface</item>
+        <item name="colorOnSurface">@color/daylight_text_primary</item>
+        <item name="colorOnSurfaceVariant">@color/daylight_text_secondary</item>
+        <item name="designModeName">@string/design_daylight</item>
+        <item name="appBackground">@drawable/daylight_app_bg</item>
+        <item name="appSplashBackground">@drawable/daylight_app_bg</item>
+        <item name="featureCardBackground">@drawable/daylight_feature_card</item>
+        <item name="homeHeaderBackground">@drawable/daylight_home_header</item>
+        <item name="homeStatusBadgeColor">@color/daylight_status</item>
+        <item name="navigationSurfaceColor">@color/daylight_surface</item>
+        <item name="appCardColor">@color/daylight_surface_elevated</item>
+        <item name="appCardStrokeColor">@color/daylight_outline</item>
+        <item name="appDeepSurfaceColor">@color/daylight_surface</item>
+        <item name="appElevatedSurfaceColor">@color/daylight_surface_elevated</item>
+        <item name="appInputSurfaceColor">@color/daylight_background</item>
+        <item name="appTextPrimaryColor">@color/daylight_text_primary</item>
+        <item name="appTextSecondaryColor">@color/daylight_text_secondary</item>
+        <item name="appIconTintColor">@color/daylight_text_primary</item>
+        <item name="appAdSurfaceColor">@color/daylight_ad_surface</item>
+    </style>
+
+    <style name="Theme.NewCarplay.AppleGlass" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:statusBarColor">@color/apple_background</item>
+        <item name="colorPrimary">@color/apple_primary</item>
+        <item name="colorOnPrimary">@color/apple_on_primary</item>
+        <item name="colorSurface">@color/apple_surface</item>
+        <item name="colorOnSurface">@color/apple_text_primary</item>
+        <item name="colorOnSurfaceVariant">@color/apple_text_secondary</item>
+        <item name="designModeName">@string/design_apple_glass</item>
+        <item name="appBackground">@drawable/apple_app_bg</item>
+        <item name="appSplashBackground">@drawable/apple_app_bg</item>
+        <item name="featureCardBackground">@drawable/apple_feature_card</item>
+        <item name="homeHeaderBackground">@drawable/apple_home_header</item>
+        <item name="homeStatusBadgeColor">@color/apple_status</item>
+        <item name="navigationSurfaceColor">@color/apple_surface</item>
+        <item name="appCardColor">@color/apple_surface_elevated</item>
+        <item name="appCardStrokeColor">@color/apple_outline</item>
+        <item name="appDeepSurfaceColor">@color/apple_surface</item>
+        <item name="appElevatedSurfaceColor">@color/apple_surface_elevated</item>
+        <item name="appInputSurfaceColor">@color/apple_surface_elevated</item>
+        <item name="appTextPrimaryColor">@color/apple_text_primary</item>
+        <item name="appTextSecondaryColor">@color/apple_text_secondary</item>
+        <item name="appIconTintColor">@color/apple_text_primary</item>
+        <item name="appAdSurfaceColor">@color/apple_ad_surface</item>
+    </style>
+
+    <style name="Theme.NewCarplay.CarbonRally" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:statusBarColor">@color/rally_background</item>
+        <item name="colorPrimary">@color/rally_primary</item>
+        <item name="colorOnPrimary">@color/rally_on_primary</item>
+        <item name="colorSurface">@color/rally_surface</item>
+        <item name="colorOnSurface">@color/rally_text_primary</item>
+        <item name="colorOnSurfaceVariant">@color/rally_text_secondary</item>
+        <item name="designModeName">@string/design_carbon_rally</item>
+        <item name="appBackground">@drawable/rally_app_bg</item>
+        <item name="appSplashBackground">@drawable/rally_app_bg</item>
+        <item name="featureCardBackground">@drawable/rally_feature_card</item>
+        <item name="homeHeaderBackground">@drawable/rally_home_header</item>
+        <item name="homeStatusBadgeColor">@color/rally_status</item>
+        <item name="navigationSurfaceColor">@color/rally_surface</item>
+        <item name="appCardColor">@color/rally_surface_elevated</item>
+        <item name="appCardStrokeColor">@color/rally_outline</item>
+        <item name="appDeepSurfaceColor">@color/rally_surface</item>
+        <item name="appElevatedSurfaceColor">@color/rally_surface_elevated</item>
+        <item name="appInputSurfaceColor">@color/rally_surface_elevated</item>
+        <item name="appTextPrimaryColor">@color/rally_text_primary</item>
+        <item name="appTextSecondaryColor">@color/rally_text_secondary</item>
+        <item name="appIconTintColor">@color/rally_text_primary</item>
+        <item name="appAdSurfaceColor">@color/rally_ad_surface</item>
+    </style>
+
+    <style name="VariantAlertDialog" parent="ThemeOverlay.Material3.Dialog.Alert">
+        <item name="android:colorBackground">?attr/colorSurface</item>
+        <item name="colorSurface">?attr/colorSurface</item>
+        <item name="colorOnSurface">?attr/colorOnSurface</item>
+        <item name="android:textColorPrimary">?attr/colorOnSurface</item>
+        <item name="android:textColorSecondary">?attr/colorOnSurfaceVariant</item>
+        <item name="android:editTextColor">?attr/colorOnSurface</item>
+        <item name="editTextColor">?attr/colorOnSurface</item>
+        <item name="colorPrimary">?attr/colorPrimary</item>
+        <item name="colorAccent">?attr/colorPrimary</item>
+    </style>
+
+    <style name="VariantDatePicker" parent="ThemeOverlay.Material3.Dialog">
+        <item name="android:colorBackground">?attr/colorSurface</item>
+        <item name="colorSurface">?attr/colorSurface</item>
+        <item name="colorOnSurface">?attr/colorOnSurface</item>
+        <item name="android:textColorPrimary">?attr/colorOnSurface</item>
+        <item name="android:textColorSecondary">?attr/colorOnSurfaceVariant</item>
+        <item name="colorPrimary">?attr/colorPrimary</item>
+        <item name="colorAccent">?attr/colorPrimary</item>
+        <item name="android:headerBackground">?attr/colorPrimary</item>
+    </style>
+
+    <style name="DarkAlertDialog" parent="VariantAlertDialog" />
+    <style name="DarkDatePicker" parent="VariantDatePicker" />
 
     <style name="DarkSpinnerItem" parent="android:Widget.TextView.SpinnerItem">
         <item name="android:textColor">@color/white</item>
@@ -69,6 +240,7 @@
         <item name="colorControlNormal">@color/white</item>
         <item name="colorControlActivated">@color/orange</item>
     </style>
+
     <style name="AdActivityTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@android:color/black</item>
         <item name="android:windowIsTranslucent">false</item>

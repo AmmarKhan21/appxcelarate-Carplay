@@ -5,24 +5,73 @@
     android:id="@+id/nav"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_bg"
+    android:background="?attr/appBackground"
     tools:context=".Fragments.homefragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/app_bg">
+        android:background="?attr/appBackground">
 
-        <ImageView
-            android:id="@+id/img_main"
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:id="@+id/home_header_container"
+            android:layout_width="0dp"
             android:layout_height="@dimen/_170sdp"
-            android:background="@drawable/img_main"
-            android:contentDescription="@string/txt_error"
-            android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img_main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/homeHeaderBackground"
+                android:contentDescription="@string/txt_error"
+                android:scaleType="centerCrop" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/_16sdp"
+                android:paddingEnd="@dimen/_16sdp"
+                android:paddingBottom="@dimen/_14sdp">
+
+                <TextView
+                    android:id="@+id/home_status_badge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/home_status_badge_bg"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_4sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_4sdp"
+                    android:text="@string/carplay_active"
+                    android:textColor="?attr/homeStatusBadgeColor"
+                    android:textSize="@dimen/_9sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/home_header_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="@string/design_legacy_home_title"
+                    android:textColor="?attr/appTextPrimaryColor"
+                    android:textSize="@dimen/_16sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/home_header_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:text="@string/design_preview_subtitle"
+                    android:textColor="?attr/appTextSecondaryColor"
+                    android:textSize="@dimen/_10sdp" />
+            </LinearLayout>
+        </FrameLayout>
 
         <ImageView
             android:id="@+id/iv_remove_ads"
@@ -34,8 +83,8 @@
             android:paddingStart="@dimen/_10sdp"
             android:paddingEnd="@dimen/_10sdp"
             android:src="@drawable/ads"
-            app:layout_constraintBottom_toBottomOf="@id/img_main"
-            app:layout_constraintEnd_toEndOf="@id/img_main" />
+            app:layout_constraintBottom_toBottomOf="@id/home_header_container"
+            app:layout_constraintEnd_toEndOf="@id/home_header_container" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -89,7 +138,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginHorizontal="@dimen/_8sdp"
-            app:layout_constraintTop_toBottomOf="@+id/img_main"
+            app:layout_constraintTop_toBottomOf="@+id/home_header_container"
             app:layout_constraintBottom_toTopOf="@id/rmv_ads"
             android:scrollbars="none">
 
@@ -97,6 +146,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/vehicle_utilities_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/vehicle_utilities"
+                        android:textColor="?attr/appTextPrimaryColor"
+                        android:textSize="@dimen/_14sdp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/connected_vehicle"
+                        android:textColor="?attr/appTextSecondaryColor"
+                        android:textSize="@dimen/_9sdp" />
+                </LinearLayout>
 
                 <!-- Row 1: Car Connect + Document -->
                 <LinearLayout
@@ -110,9 +184,9 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_weight="1"
                         android:layout_marginEnd="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
+                        android:background="?attr/featureCardBackground">
                         <ImageView android:id="@+id/carimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/carplay" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Car Connect" app:layout_constraintTop_toBottomOf="@id/carimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Car Connect" app:layout_constraintTop_toBottomOf="@id/carimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="?attr/appTextPrimaryColor" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/iv_documents"
@@ -120,9 +194,9 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_weight="1"
                         android:layout_marginStart="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
+                        android:background="?attr/featureCardBackground">
                         <ImageView android:id="@+id/docimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/document_icon" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Document" app:layout_constraintTop_toBottomOf="@id/docimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Document" app:layout_constraintTop_toBottomOf="@id/docimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="?attr/appTextPrimaryColor" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
@@ -138,9 +212,9 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_weight="1"
                         android:layout_marginEnd="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
+                        android:background="?attr/featureCardBackground">
                         <ImageView android:id="@+id/expenseimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/expense_icon" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Expense" app:layout_constraintTop_toBottomOf="@id/expenseimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Expense" app:layout_constraintTop_toBottomOf="@id/expenseimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="?attr/appTextPrimaryColor" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/iv_carparking"
@@ -148,9 +222,9 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_weight="1"
                         android:layout_marginStart="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
+                        android:background="?attr/featureCardBackground">
                         <ImageView android:id="@+id/parkimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/parking_icon" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Car Parking" app:layout_constraintTop_toBottomOf="@id/parkimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Car Parking" app:layout_constraintTop_toBottomOf="@id/parkimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="?attr/appTextPrimaryColor" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
@@ -166,9 +240,9 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_weight="1"
                         android:layout_marginEnd="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
+                        android:background="?attr/featureCardBackground">
                         <ImageView android:id="@+id/weatherimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/weather_icon" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Weather" app:layout_constraintTop_toBottomOf="@id/weatherimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Weather" app:layout_constraintTop_toBottomOf="@id/weatherimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="?attr/appTextPrimaryColor" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/iv_speedometer"
@@ -176,9 +250,9 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_weight="1"
                         android:layout_marginStart="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
+                        android:background="?attr/featureCardBackground">
                         <ImageView android:id="@+id/speedimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/ic_speedometer" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Speedometer" app:layout_constraintTop_toBottomOf="@id/speedimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Speedometer" app:layout_constraintTop_toBottomOf="@id/speedimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="?attr/appTextPrimaryColor" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
@@ -194,9 +268,9 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_weight="1"
                         android:layout_marginEnd="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
+                        android:background="?attr/featureCardBackground">
                         <ImageView android:id="@+id/fuelimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/ic_fuel" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fuel Tracker" app:layout_constraintTop_toBottomOf="@id/fuelimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fuel Tracker" app:layout_constraintTop_toBottomOf="@id/fuelimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="?attr/appTextPrimaryColor" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/iv_reminders"
@@ -204,9 +278,9 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_weight="1"
                         android:layout_marginStart="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
+                        android:background="?attr/featureCardBackground">
                         <ImageView android:id="@+id/reminderimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/ic_reminder" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Reminders" app:layout_constraintTop_toBottomOf="@id/reminderimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Reminders" app:layout_constraintTop_toBottomOf="@id/reminderimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="?attr/appTextPrimaryColor" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
@@ -222,7 +296,7 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_weight="1"
                         android:layout_marginEnd="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
+                        android:background="?attr/featureCardBackground">
                         <ImageView android:id="@+id/emergencyimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/ic_sos_phone" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Emergency" app:layout_constraintTop_toBottomOf="@id/emergencyimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/emergency_red" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -232,9 +306,9 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_weight="1"
                         android:layout_marginStart="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
+                        android:background="?attr/featureCardBackground">
                         <ImageView android:id="@+id/tripimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/ic_trip" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Trip Tracker" app:layout_constraintTop_toBottomOf="@id/tripimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Trip Tracker" app:layout_constraintTop_toBottomOf="@id/tripimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="?attr/appTextPrimaryColor" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
@@ -250,9 +324,9 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_weight="1"
                         android:layout_marginEnd="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
+                        android:background="?attr/featureCardBackground">
                         <ImageView android:id="@+id/scoreimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/ic_driving_score" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Drive Score" app:layout_constraintTop_toBottomOf="@id/scoreimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Drive Score" app:layout_constraintTop_toBottomOf="@id/scoreimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="?attr/appTextPrimaryColor" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/iv_nearby"
@@ -260,9 +334,9 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_weight="1"
                         android:layout_marginStart="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
+                        android:background="?attr/featureCardBackground">
                         <ImageView android:id="@+id/nearbyimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/ic_location" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Nearby" app:layout_constraintTop_toBottomOf="@id/nearbyimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Nearby" app:layout_constraintTop_toBottomOf="@id/nearbyimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="?attr/appTextPrimaryColor" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
@@ -278,9 +352,9 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_weight="1"
                         android:layout_marginEnd="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
+                        android:background="?attr/featureCardBackground">
                         <ImageView android:id="@+id/dashcamimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/camera_icon" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Dash Cam" app:layout_constraintTop_toBottomOf="@id/dashcamimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Dash Cam" app:layout_constraintTop_toBottomOf="@id/dashcamimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="?attr/appTextPrimaryColor" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/iv_tire"
@@ -288,9 +362,9 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_weight="1"
                         android:layout_marginStart="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
+                        android:background="?attr/featureCardBackground">
                         <ImageView android:id="@+id/tireimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/ic_tire" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tire Pressure" app:layout_constraintTop_toBottomOf="@id/tireimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tire Pressure" app:layout_constraintTop_toBottomOf="@id/tireimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="?attr/appTextPrimaryColor" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
@@ -306,9 +380,9 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_weight="1"
                         android:layout_marginEnd="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
+                        android:background="?attr/featureCardBackground">
                         <ImageView android:id="@+id/carprofileimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/ic_garage" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="My Cars" app:layout_constraintTop_toBottomOf="@id/carprofileimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="My Cars" app:layout_constraintTop_toBottomOf="@id/carprofileimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="?attr/appTextPrimaryColor" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/iv_fatigue"
@@ -316,9 +390,9 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_weight="1"
                         android:layout_marginStart="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
+                        android:background="?attr/featureCardBackground">
                         <ImageView android:id="@+id/fatigueimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/ic_fatigue" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fatigue Alert" app:layout_constraintTop_toBottomOf="@id/fatigueimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fatigue Alert" app:layout_constraintTop_toBottomOf="@id/fatigueimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="?attr/appTextPrimaryColor" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
@@ -334,9 +408,9 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_weight="1"
                         android:layout_marginEnd="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
+                        android:background="?attr/featureCardBackground">
                         <ImageView android:id="@+id/insuranceimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/ic_insurance" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Insurance" app:layout_constraintTop_toBottomOf="@id/insuranceimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Insurance" app:layout_constraintTop_toBottomOf="@id/insuranceimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="?attr/appTextPrimaryColor" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/iv_mileage"
@@ -344,9 +418,9 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_weight="1"
                         android:layout_marginStart="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
+                        android:background="?attr/featureCardBackground">
                         <ImageView android:id="@+id/mileageimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/ic_mileage" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mileage Log" app:layout_constraintTop_toBottomOf="@id/mileageimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mileage Log" app:layout_constraintTop_toBottomOf="@id/mileageimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="?attr/appTextPrimaryColor" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
@@ -362,9 +436,9 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_weight="1"
                         android:layout_marginEnd="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
+                        android:background="?attr/featureCardBackground">
                         <ImageView android:id="@+id/aiimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/graph" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="AI Assistant" app:layout_constraintTop_toBottomOf="@id/aiimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="AI Assistant" app:layout_constraintTop_toBottomOf="@id/aiimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="?attr/appTextPrimaryColor" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/iv_dnd"
@@ -372,9 +446,9 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_weight="1"
                         android:layout_marginStart="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
+                        android:background="?attr/featureCardBackground">
                         <ImageView android:id="@+id/dndimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/ic_dnd" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Drive Mode" app:layout_constraintTop_toBottomOf="@id/dndimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Drive Mode" app:layout_constraintTop_toBottomOf="@id/dndimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="?attr/appTextPrimaryColor" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
@@ -390,9 +464,9 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_weight="1"
                         android:layout_marginEnd="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
+                        android:background="?attr/featureCardBackground">
                         <ImageView android:id="@+id/expmanimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/ic_wallet" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Expenses" app:layout_constraintTop_toBottomOf="@id/expmanimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Expenses" app:layout_constraintTop_toBottomOf="@id/expmanimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="?attr/appTextPrimaryColor" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/iv_service_history"
@@ -400,9 +474,9 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_weight="1"
                         android:layout_marginStart="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
+                        android:background="?attr/featureCardBackground">
                         <ImageView android:id="@+id/historyimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/ic_service_history" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Service History" app:layout_constraintTop_toBottomOf="@id/historyimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Service History" app:layout_constraintTop_toBottomOf="@id/historyimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="?attr/appTextPrimaryColor" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
@@ -418,9 +492,9 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_weight="1"
                         android:layout_marginEnd="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
+                        android:background="?attr/featureCardBackground">
                         <ImageView android:id="@+id/voiceimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/ic_mic" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Voice" app:layout_constraintTop_toBottomOf="@id/voiceimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Voice" app:layout_constraintTop_toBottomOf="@id/voiceimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="?attr/appTextPrimaryColor" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/iv_predictive"
@@ -428,9 +502,9 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_weight="1"
                         android:layout_marginStart="@dimen/_3sdp"
-                        android:background="@drawable/card_bg">
+                        android:background="?attr/featureCardBackground">
                         <ImageView android:id="@+id/predictimg" android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp" android:src="@drawable/ic_maintenance" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="@dimen/_18sdp" android:contentDescription="@string/txt_error"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Maintenance" app:layout_constraintTop_toBottomOf="@id/predictimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Maintenance" app:layout_constraintTop_toBottomOf="@id/predictimg" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:textColor="?attr/appTextPrimaryColor" android:textSize="@dimen/_10sdp" android:textStyle="bold"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
@@ -455,7 +529,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:visibility="visible"
-            app:cardBackgroundColor="@color/bg_dark"
+            app:cardBackgroundColor="?attr/appAdSurfaceColor"
             app:cardCornerRadius="0dp"
             app:cardElevation="0dp"
             android:layout_marginBottom="@dimen/_5sdp"
@@ -498,7 +572,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/app_bg"
+            android:background="?attr/appBackground"
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -551,9 +625,35 @@
                 <!--                        android:layout_height="wrap_content"-->
                 <!--                        android:layout_marginStart="@dimen/_7sdp"-->
                 <!--                        android:text="@string/txt_feedback"-->
-                <!--                        android:textColor="@color/white"-->
+                <!--                        android:textColor="?attr/appTextPrimaryColor"-->
                 <!--                        android:textSize="16sp" />-->
                 <!--                </LinearLayout>-->
+
+                <LinearLayout
+                    android:id="@+id/iv_design_mode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:contentDescription="@string/design_mode"
+                        android:src="@drawable/ic_design_mode"
+                        app:tint="?attr/appIconTintColor" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_7sdp"
+                        android:text="@string/design_mode"
+                        android:textColor="?attr/appTextPrimaryColor"
+                        android:textSize="16sp" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/iv_ratus"
@@ -576,7 +676,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_7sdp"
                         android:text="@string/txt_ratus"
-                        android:textColor="@color/white"
+                        android:textColor="?attr/appTextPrimaryColor"
                         android:textSize="16sp" />
                 </LinearLayout>
 
@@ -601,7 +701,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_7sdp"
                         android:text="@string/txt_share_app"
-                        android:textColor="@color/white"
+                        android:textColor="?attr/appTextPrimaryColor"
                         android:textSize="16sp" />
                 </LinearLayout>
 
@@ -627,7 +727,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_7sdp"
                         android:text="@string/txt_privacy"
-                        android:textColor="@color/white"
+                        android:textColor="?attr/appTextPrimaryColor"
                         android:textSize="16sp" />
                 </LinearLayout>
 

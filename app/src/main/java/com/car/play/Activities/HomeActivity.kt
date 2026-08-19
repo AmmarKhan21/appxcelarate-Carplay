@@ -14,6 +14,7 @@ import com.car.play.android.app.dialogs.ExitDialog
 class HomeActivity : AppCompatActivity() {
     private val binding by lazy { ActivityHomeBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
+        com.car.play.android.app.design.DesignTheme.apply(this)
         super.onCreate(savedInstanceState)
 //        enableEdgeToEdge()
         setContentView(binding.root)

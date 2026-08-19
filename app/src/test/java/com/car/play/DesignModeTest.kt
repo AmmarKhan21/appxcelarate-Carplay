@@ -14,21 +14,22 @@ class DesignModeTest {
     }
 
     @Test
-    fun previousExecutivePreferenceMigratesToMidnightTheme() {
-        val mode = DesignMode.fromPreference("executive")
-
-        assertEquals(DesignMode.MIDNIGHT, mode)
-        assertEquals(R.style.Theme_NewCarplay_Midnight, mode.themeResId)
+    fun figmaVariantsMapToDistinctThemes() {
+        assertEquals(DesignMode.STEALTH, DesignMode.fromPreference("stealth"))
+        assertEquals(R.style.Theme_NewCarplay_Stealth, DesignMode.STEALTH.themeResId)
+        assertEquals(DesignMode.FROST, DesignMode.fromPreference("frost"))
+        assertEquals(DesignMode.COCKPIT, DesignMode.fromPreference("cockpit"))
+        assertEquals(DesignMode.DAYLIGHT, DesignMode.fromPreference("daylight"))
+        assertEquals(DesignMode.APPLE_GLASS, DesignMode.fromPreference("apple_glass"))
+        assertEquals(DesignMode.CARBON_RALLY, DesignMode.fromPreference("carbon_rally"))
     }
 
     @Test
-    fun allNewDesignPreferencesMapToDistinctThemes() {
-        assertEquals(DesignMode.PEARL, DesignMode.fromPreference("pearl"))
-        assertEquals(R.style.Theme_NewCarplay_Pearl, DesignMode.PEARL.themeResId)
-        assertEquals(DesignMode.SAGE, DesignMode.fromPreference("sage"))
-        assertEquals(R.style.Theme_NewCarplay_Sage, DesignMode.SAGE.themeResId)
-        assertEquals(DesignMode.CARBON, DesignMode.fromPreference("carbon"))
-        assertEquals(R.style.Theme_NewCarplay_Carbon, DesignMode.CARBON.themeResId)
+    fun previousPreferencesMigrateToClosestFigmaVariant() {
+        assertEquals(DesignMode.STEALTH, DesignMode.fromPreference("executive"))
+        assertEquals(DesignMode.DAYLIGHT, DesignMode.fromPreference("pearl"))
+        assertEquals(DesignMode.FROST, DesignMode.fromPreference("sage"))
+        assertEquals(DesignMode.CARBON_RALLY, DesignMode.fromPreference("carbon"))
     }
 
     @Test

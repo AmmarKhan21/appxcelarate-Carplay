@@ -14,7 +14,7 @@ class DesignPreferences(context: Context) {
         val initialMode = if (isUpdatedInstall()) {
             DesignMode.LEGACY
         } else {
-            DesignMode.PEARL
+            DesignMode.STEALTH
         }
         setDesignMode(initialMode)
         return initialMode

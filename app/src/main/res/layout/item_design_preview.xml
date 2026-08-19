@@ -27,7 +27,7 @@
                 android:id="@+id/preview_header_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/executive_home_title"
+                android:text="@string/design_legacy_home_title"
                 android:textColor="?attr/appTextPrimaryColor"
                 android:textSize="13sp"
                 android:textStyle="bold" />

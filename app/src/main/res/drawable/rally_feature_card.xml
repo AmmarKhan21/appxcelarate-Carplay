@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/rally_surface_elevated" />
+            <corners android:radius="14dp" />
+            <stroke
+                android:width="1dp"
+                android:color="@color/rally_outline" />
+        </shape>
+    </item>
+    <item
+        android:gravity="top|start"
+        android:height="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/rally_primary" />
+        </shape>
+    </item>
+</layer-list>

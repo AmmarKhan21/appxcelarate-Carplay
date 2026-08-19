@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/daylight_surface" />
+            <corners android:radius="18dp" />
+            <stroke
+                android:width="1dp"
+                android:color="@color/daylight_outline" />
+        </shape>
+    </item>
+</layer-list>
