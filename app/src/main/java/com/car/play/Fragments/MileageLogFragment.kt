@@ -30,7 +30,6 @@ class MileageLogFragment : Fragment() {
     ): View {
         binding = FragmentMileageLogBinding.inflate(inflater, container, false)
         googleAds = GoogleAds()
-        googleAds.CheckNative(this, binding.nativeAd)
         viewModel = ViewModelProvider(requireActivity()).get(MileageLogViewModel::class.java)
 
         setupRecyclerView()
@@ -60,10 +59,12 @@ class MileageLogFragment : Fragment() {
             if (logs.isNullOrEmpty()) {
                 binding.tvEmpty.visibility = View.VISIBLE
                 binding.rvMileage.visibility = View.GONE
+                binding.nativeAd.visibility = View.GONE
             } else {
                 binding.tvEmpty.visibility = View.GONE
                 binding.rvMileage.visibility = View.VISIBLE
                 mileageAdapter.updateList(logs)
+                googleAds.CheckNative(this, binding.nativeAd)
             }
         })
 

@@ -49,7 +49,6 @@ class RemindersFragment : Fragment() {
     ): View {
         binding = FragmentRemindersBinding.inflate(inflater, container, false)
         googleAds = GoogleAds()
-        googleAds.CheckNative(this, binding.nativeAd)
         viewModel = ViewModelProvider(requireActivity()).get(ReminderViewModel::class.java)
 
         setupRecyclerView()
@@ -152,10 +151,12 @@ class RemindersFragment : Fragment() {
         if (filteredList.isEmpty()) {
             binding.emptyImg.visibility = View.VISIBLE
             binding.rvReminders.visibility = View.GONE
+            binding.nativeAd.visibility = View.GONE
         } else {
             binding.emptyImg.visibility = View.GONE
             binding.rvReminders.visibility = View.VISIBLE
             reminderAdapter.updateList(filteredList)
+            googleAds.CheckNative(this, binding.nativeAd)
         }
     }
 

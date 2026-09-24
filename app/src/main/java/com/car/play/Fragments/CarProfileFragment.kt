@@ -33,7 +33,6 @@ class CarProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         googleAds = GoogleAds()
-        googleAds.CheckNative(this@CarProfileFragment, binding.nativeAd)
         viewModel = ViewModelProvider(requireActivity())[CarProfileViewModel::class.java]
 
         setupRecyclerView()
@@ -88,10 +87,12 @@ class CarProfileFragment : Fragment() {
             if (cars.isNullOrEmpty()) {
                 binding.rvCars.visibility = View.GONE
                 binding.tvEmpty.visibility = View.VISIBLE
+                binding.nativeAd.visibility = View.GONE
             } else {
                 binding.rvCars.visibility = View.VISIBLE
                 binding.tvEmpty.visibility = View.GONE
                 carAdapter.updateList(cars)
+                googleAds.CheckNative(this@CarProfileFragment, binding.nativeAd)
             }
         }
     }

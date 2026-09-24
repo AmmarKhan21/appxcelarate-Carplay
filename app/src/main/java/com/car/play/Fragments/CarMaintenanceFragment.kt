@@ -27,7 +27,6 @@ class CarMaintenanceFragment : Fragment() {
     ): View? {
         binding = FragmentCarMaintenanceBinding.inflate(inflater, container, false)
         googleAds = GoogleAds()
-        googleAds.CheckNative(this, binding.nativeAd)
         viewModel = ViewModelProvider(requireActivity()).get(CarMaintenanceViewModel::class.java)
 
         setupRecyclerView()
@@ -38,9 +37,11 @@ class CarMaintenanceFragment : Fragment() {
             if (services.isEmpty()) {
                 binding.emptyImg.visibility = View.VISIBLE
                 binding.documentrecyclerview.visibility = View.GONE
+                binding.nativeAd.visibility = View.GONE
             } else {
                 binding.emptyImg.visibility = View.GONE
                 binding.documentrecyclerview.visibility = View.VISIBLE
+                googleAds.CheckNative(this, binding.nativeAd)
 
                 // Pass the delete action to the adapter
                 val adapter = CarMaintenanceAdapter(services.toMutableList()) { service ->

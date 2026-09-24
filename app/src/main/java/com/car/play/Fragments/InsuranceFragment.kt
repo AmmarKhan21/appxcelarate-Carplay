@@ -34,7 +34,6 @@ class InsuranceFragment : Fragment() {
     ): View {
         binding = FragmentInsuranceBinding.inflate(inflater, container, false)
         googleAds = GoogleAds()
-        googleAds.CheckNative(this, binding.nativeAd)
         viewModel = ViewModelProvider(requireActivity()).get(InsuranceViewModel::class.java)
 
         setupRecyclerView()
@@ -79,10 +78,12 @@ class InsuranceFragment : Fragment() {
             if (policies.isNullOrEmpty()) {
                 binding.tvEmpty.visibility = View.VISIBLE
                 binding.rvInsurance.visibility = View.GONE
+                binding.nativeAd.visibility = View.GONE
             } else {
                 binding.tvEmpty.visibility = View.GONE
                 binding.rvInsurance.visibility = View.VISIBLE
                 insuranceAdapter.updateList(policies)
+                googleAds.CheckNative(this, binding.nativeAd)
             }
         })
     }

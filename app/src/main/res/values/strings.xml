@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Android Carplay</string>
     <string name="txt_error">Error</string>
+    <string name="txt_buy_now">Buy Now</string>
     <string name="txt_share_app">Share App</string>
     <string name="txt_ratus">Rate Us</string>
     <string name="txt_feedback">Feedback</string>

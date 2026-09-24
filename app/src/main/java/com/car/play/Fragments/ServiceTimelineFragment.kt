@@ -42,7 +42,6 @@ class ServiceTimelineFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         googleAds = GoogleAds()
-        googleAds.CheckNative(this, binding.nativeAd)
         setupRecyclerView()
         setupClickListeners()
         loadRecords()
@@ -107,10 +106,12 @@ class ServiceTimelineFragment : Fragment() {
         if (records.isEmpty()) {
             binding.tvEmpty.visibility = View.VISIBLE
             binding.rvTimeline.visibility = View.GONE
+            binding.nativeAd.visibility = View.GONE
         } else {
             binding.tvEmpty.visibility = View.GONE
             binding.rvTimeline.visibility = View.VISIBLE
             timelineAdapter.updateList(records)
+            googleAds.CheckNative(this, binding.nativeAd)
         }
     }
 

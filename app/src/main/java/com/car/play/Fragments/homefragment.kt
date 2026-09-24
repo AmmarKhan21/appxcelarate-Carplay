@@ -47,6 +47,8 @@ class homefragment : Fragment() {
         setupSubscribeButton()
         setupBillingClient()
         googleAds.CheckNative(this@homefragment,binding.nativeAd)
+        binding.rmvAds.visibility =
+            if (SharedPrefrence.checkSubscriptionState(requireActivity())) View.GONE else View.VISIBLE
         setupClickListeners()
         requestCameraPermission()
         return binding.root
@@ -130,13 +132,9 @@ class homefragment : Fragment() {
         }
     }
     private fun setupSubscribeButton() {
-        binding.ivRemoveAds.setOnClickListener {
-            queryAvailableProducts("removeads")
-        }
         binding.rmvAds.setOnClickListener {
             queryAvailableProducts("removeads")
         }
-
     }
     private fun setupBillingClient() {
         billingClient = BillingClient.newBuilder(this.requireActivity())
